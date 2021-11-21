@@ -22,21 +22,13 @@ public class Question2 {
         int card1Number, card2Number;
         
         //for first characteristic (color)
-        //String[] color = { "Red" , "Blue", "Green", "Yellow"};
-        //card1Color = color[(int) (Math.random() * color.length)];
         card1Color = rand.nextInt(4)+1; // 4 is red 1 is yellow
-        //System.out.println(card1Color);
         card2Color = rand.nextInt(4)+1; // 4 is red 1 is yellow
-        //System.out.println(card2Color);
         
-        //for second characteristics (number
+        //for second characteristics (number)
         card1Number = rand.nextInt(10)+1;
-        card1Number = 10;
-       // System.out.println(card1Number);
         card2Number = rand.nextInt(10)+1;
-        card2Number = 1;
-       // System.out.println(card2Number);
-       
+        
         //print out card 1 characteristics
         switch (card1Color){
             case 1 : 
@@ -52,6 +44,7 @@ public class Question2 {
                 System.out.println("Card 1 : Red " +card1Number);
                 break; 
         }
+        
         //print out card 2 characteristics
         switch (card2Color){
             case 1 : 
@@ -70,19 +63,29 @@ public class Question2 {
         
         //testing which is bigger
         if (card1Number > card2Number){
-            if ( card1Number == 10 && card2Number ==1){
+            if ( card1Number == 10 && card2Number ==1){    
+                System.out.println("Card 2 is bigger");
+            }
+            else if(card1Number > card2Number){
+                System.out.println("Card 1 is bigger");
+            }
+            else{
                 if (card1Color > card2Color){
                     System.out.println("Card 1 is bigger");
                 }
-            //System.out.println("Card 2 is bigger");
-            }
-            else{
-                System.out.println("Card 2 is bigger");
             }
         }
         else{
-            if(card2Color > card1Color){
+            if ( card2Number == 10 && card1Number ==1){    
+                System.out.println("Card 1 is bigger");
+            }
+            else if(card1Number < card2Number){
                 System.out.println("Card 2 is bigger");
+            }
+            else{
+                if (card2Color > card1Color){
+                    System.out.println("Card 2 is bigger");
+                }
             }
         }
     }
