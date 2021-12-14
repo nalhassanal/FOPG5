@@ -10,7 +10,7 @@ public class Main {
        userID = "U2102848";//initialize to some value
        userPass = "Hassanal";
        String ID, password;// this is for the user input
-       Scanner in = new Scanner(System.in);
+       Scanner in = new Scanner(System.in);// in for input
        boolean keepGoing = true;// this to make sure the loop keeps going
        int count=0;// this is to keep track of user trial
        while (keepGoing == true){
@@ -35,8 +35,8 @@ public class Main {
                  if ( ID.equalsIgnoreCase(userID) && password.equalsIgnoreCase(userPass)){// check if both credentials are true
                     System.out.println("Welcome Staff");
                     break;// breaks the loop and continue staff part
-                 }
-             }
+                }
+            }
             else {
                 if(count <3)//give three tries to login
                 System.out.println("Invalid. Try again!");
@@ -45,6 +45,6 @@ public class Main {
                     System.out.println("Exceeded 3 tries. Program exited.");
                 }
             }
-       }
+        }
     }
 }
