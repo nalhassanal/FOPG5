@@ -1,50 +1,103 @@
 package First;
+
+import static First.LoginPage.staffLogin;
+import static First.LoginPage.staffRegister;
+import static First.LoginPage.studentLogin;
+import static First.LoginPage.studentRegister;
+import java.util.Scanner;
+
 /**
  *
  * @author Hassanal
  */
-import java.util.*;
 public class Main {
-    public static void main(String [] args){
-       String type, userID, userPass;
-       userID = "U2102848";//initialize to some value
-       userPass = "Hassanal";
-       String ID, password;// this is for the user input
-       Scanner in = new Scanner(System.in);// in for input
-       boolean keepGoing = true;// this to make sure the loop keeps going
-       int count=0;// this is to keep track of user trial
-       while (keepGoing == true){
-           count++;
-            System.out.println("Are you student or staff?");// get input from user for student or staff
+    public static void main(String[] args){
+        Scanner in = new Scanner(System.in);
+        String type;
+        boolean keepGoing = true;
+        
+        while(keepGoing){
+            int i = 0;
+            i++;
+            // asks user if they have account or not (START)
+            System.out.println("Do you have account? (yes or no)");
             type = in.nextLine();
-            if ("student".equalsIgnoreCase(type)){//checks if the type is for students
-                System.out.println("Enter user ID : ");//get input from user for their ID
-                ID = in.nextLine();
-                System.out.println("Enter user Password : ");//get input from user for their password
-                password = in.nextLine();
-                if ( ID.equalsIgnoreCase(userID) && password.equalsIgnoreCase(userPass)){// checks if both credentials are true
-                    System.out.println("Welcome Student");
-                    break;//breaks the loop and continue student part
+            if("NO".equals(type) || "no".equals(type) || "No".equals(type)){
+                // asks user if they want to REGISTER as student or staff
+                System.out.println("Do you want to register as student or staff? (student or staff)");
+                type = in.nextLine();
+                switch(type){
+                    case "staff":
+                        staffRegister();
+                        // asks user if they want to continue AFTER REGISTER
+                        System.out.println("do you want to continue? (yes or no)");
+                        type = in.nextLine();
+                        if("YES".equals(type) || "yes".equals(type) ||"Yes".equals(type))
+                            keepGoing = true;
+                        else if("no".equals(type) || "NO".equals(type) || type == "No")
+                            keepGoing = false;
+                        break;
+
+                    case "student":
+                        studentRegister();
+                        // asks user if they want to continue AFTER REGISTER
+                        System.out.println("do you want to continue? (yes or no)");
+                        type = in.nextLine();
+                        if("YES".equals(type) || "yes".equals(type) ||"Yes".equals(type))
+                            keepGoing = true;
+                        else if("NO".equals(type) || "no".equals(type) || "No".equals(type))
+                            keepGoing = false;
+                        break;
+
+                    default:
+                        // error statement
+                        System.out.println("Error please reload program.");
+                        keepGoing = false;
+                        break;
                 }
             }
-            else if ("staff".equalsIgnoreCase(type)){// checks if the type is for staff
-                 System.out.println("Enter user ID : ");// get input for staff ID
-                 ID = in.nextLine();
-                 System.out.println("Enter user Password : ");// get input for staff password
-                 password = in.nextLine();
-                 if ( ID.equalsIgnoreCase(userID) && password.equalsIgnoreCase(userPass)){// check if both credentials are true
-                    System.out.println("Welcome Staff");
-                    break;// breaks the loop and continue staff part
+            else if("YES".equals(type) || "yes".equals(type) ||"Yes".equals(type)){
+                // asks user if they are student or staff
+                System.out.println("Are you a student or staff? (student or staff)");
+                type = in.nextLine();
+                switch(type){
+                    case "staff":
+                        String login = staffLogin();
+                        // display login result
+                        System.out.println(login);
+                        // asks user if they want to continue AFTER LOGIN
+                        System.out.println("do you want to continue? (yes or no)");
+                        type = in.nextLine();
+                        if("YES".equals(type) || "yes".equals(type) ||"Yes".equals(type))
+                            keepGoing = true;
+                        else if("NO".equals(type) || "no".equals(type) || "No".equals(type))
+                            keepGoing = false;
+                        break;
+                    
+                    case "student":
+                        login = studentLogin();
+                        // display login result
+                        System.out.println(login);
+                        // asks user if they want to continue AFTER LOGIN
+                        System.out.println("do you want to continue? (yes or no)");
+                        type = in.nextLine();
+                        if("YES".equals(type) || "yes".equals(type) ||"Yes".equals(type))
+                            keepGoing = true;
+                        else if("NO".equals(type) || "no".equals(type) || "No".equals(type))
+                            keepGoing = false;
+                        break;
+                   
+                    default:
+                        // error message
+                        System.out.println("Error please reload program.");
+                        keepGoing = false;
+                        break;
                 }
             }
-            else {
-                if(count <3)//give three tries to login
-                System.out.println("Invalid. Try again!");
-                else if (count == 3){ // more than 3 tries exit the loop
-                    keepGoing = false;// make loop condition false
-                    System.out.println("Exceeded 3 tries. Program exited.");
-                }
-            }
+            
+            // breaks the loop after 3 tries at START
+            if ( i >= 3)
+                keepGoing = false;
         }
     }
 }
