@@ -8,6 +8,7 @@ package First;
         so when registering, and then want to login
         have to reload program
 */
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -39,8 +40,11 @@ public class LoginPage {
         
         try{
             String filename = "staff";
-            //creates new file for staff
-            PrintWriter outputStream = new PrintWriter(new FileOutputStream(filename));
+            // creates new file if not there
+            // if file exists it will do nothing
+            File file = new File(filename);
+            // appends existing file
+            PrintWriter outputStream = new PrintWriter(new FileOutputStream(file,true));
             //adds the string staff into the file
             outputStream.println(staff);
             //closes the file connection
@@ -51,8 +55,11 @@ public class LoginPage {
         
         try{
             String filename = "staffCredentials";
-            //creates new file for staffCredentials
-            PrintWriter outputStream = new PrintWriter(new FileOutputStream(filename));
+            // creates new file if not there
+            // if file exists it will do nothing
+            File file = new File(filename);
+            // appends existing file
+            PrintWriter outputStream = new PrintWriter(new FileOutputStream(file,true));
             //adds the string staff into the file
             outputStream.println(username);
             outputStream.println(password);
@@ -85,8 +92,11 @@ public class LoginPage {
         
         try{
             String filename = "student";
-            //creates new file for student
-            PrintWriter outputStream = new PrintWriter(new FileOutputStream(filename));
+            // creates new file if not there
+            // if file exists it will do nothing
+            File file = new File(filename);
+            // appends existing file
+            PrintWriter outputStream = new PrintWriter(new FileOutputStream(file,true));
             //adds the string studentinto the file
             outputStream.println(student);
             //closes the file connection
@@ -97,8 +107,11 @@ public class LoginPage {
         
         try{
             String filename = "studentCredentials";
-            //creates new file for studentCredentials
-            PrintWriter outputStream = new PrintWriter(new FileOutputStream(filename));
+            // creates new file if not there
+            // if file exists it will do nothing
+            File file = new File(filename);
+            // appends existing file
+            PrintWriter outputStream = new PrintWriter(new FileOutputStream(file,true));
             //adds the credentials into the file
             outputStream.println(matrixNum);
             outputStream.println(password);
