@@ -4,10 +4,6 @@ package First;
  * @author Hassanal
  */
 
-/*
-        so when registering, and then want to login
-        have to reload program
-*/
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
