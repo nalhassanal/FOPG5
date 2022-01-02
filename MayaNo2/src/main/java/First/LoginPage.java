@@ -45,6 +45,9 @@ public class LoginPage {
             PrintWriter outputStream = new PrintWriter(new FileOutputStream(file, true));
             //adds the string staff into the file
             outputStream.println(staff);
+            //flushes PrintWriter
+            //clear the stream of any element that may be or maybe not inside the stream
+            outputStream.flush();
             //closes the file connection
             outputStream.close();
         } catch (IOException ex) {
@@ -61,6 +64,9 @@ public class LoginPage {
             //adds the string staff into the file
             outputStream.println(username);
             outputStream.println(password);
+            //flushes PrintWriter
+            //clear the stream of any element that may be or maybe not inside the stream
+            outputStream.flush();
             //closes the file connection
             outputStream.close();
         } catch (IOException ex) {
@@ -97,6 +103,8 @@ public class LoginPage {
             PrintWriter outputStream = new PrintWriter(new FileOutputStream(file, true));
             //adds the string studentinto the file
             outputStream.println(student);
+            //flushes PrintWriter
+            //clear the stream of any element that may be or maybe not inside the stream            outputStream.flush();
             //closes the file connection
             outputStream.close();
         } catch (IOException ex) {
@@ -113,6 +121,9 @@ public class LoginPage {
             //adds the credentials into the file
             outputStream.println(matrixNum);
             outputStream.println(password);
+            //flushes PrintWriter
+            //clear the stream of any element that may be or maybe not inside the stream
+            outputStream.flush();
             //closes the file connection
             outputStream.close();
         } catch (IOException ex) {
