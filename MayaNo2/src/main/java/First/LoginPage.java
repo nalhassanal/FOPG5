@@ -37,7 +37,7 @@ public class LoginPage {
         staff = username + " " + mail + " " + fullname + " " + password;
 
         try {
-            String filename = "staff";
+            String filename = "staff.txt";
             // creates new file if not there
             // if file exists it will do nothing
             File file = new File(filename);
@@ -52,7 +52,7 @@ public class LoginPage {
         }
 
         try {
-            String filename = "staffCredentials";
+            String filename = "staffCredentials.txt";
             // creates new file if not there
             // if file exists it will do nothing
             File file = new File(filename);
@@ -89,7 +89,7 @@ public class LoginPage {
         student = matrixNum + " " + mail + " " + fullname + " " + password;
 
         try {
-            String filename = "student";
+            String filename = "student.txt";
             // creates new file if not there
             // if file exists it will do nothing
             File file = new File(filename);
@@ -104,7 +104,7 @@ public class LoginPage {
         }
 
         try {
-            String filename = "studentCredentials";
+            String filename = "studentCredentials.txt";
             // creates new file if not there
             // if file exists it will do nothing
             File file = new File(filename);
@@ -133,7 +133,7 @@ public class LoginPage {
         passInput = in.nextLine();
 
         try {
-            String filename = "staffCredentials";
+            String filename = "staffCredentials.txt";
             // to read contents of file
             Scanner inputStream = new Scanner(new FileInputStream(filename));
 
@@ -178,7 +178,7 @@ public class LoginPage {
         passInput = in.nextLine();
 
         try {
-            String filename = "studentCredentials";
+            String filename = "studentCredentials.txt";
 
             Scanner inputStream = new Scanner(new FileInputStream(filename));
 
