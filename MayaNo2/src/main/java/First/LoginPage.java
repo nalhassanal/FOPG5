@@ -16,7 +16,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class LoginPage {
-
     public static void staffRegister() {
         //this method will ask users input for information
         //this method creates two files, staff and staffCredentials
