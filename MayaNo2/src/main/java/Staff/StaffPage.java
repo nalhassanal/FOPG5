@@ -104,10 +104,10 @@ public class StaffPage {
                     ACT [i] = ACT1;
                     break;
                 case 2:
-                    ACT [i] = ACT1;
+                    ACT [i] = ACT2;
                     break;
                 case 3:
-                    ACT [i] = ACT1;
+                    ACT [i] = ACT3;
                     break;
                 default:
                     break;
@@ -157,7 +157,6 @@ public class StaffPage {
             
         } catch(IOException ex){
             System.out.println("IO Error " +ex.getMessage());
-            ret = "Failed to add Modules";
         }
         return ret;
     }
