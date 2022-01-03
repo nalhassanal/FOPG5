@@ -4,7 +4,7 @@ package First;
  *
  * @author Hassanal
  */
-
+// dont use static method here
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -16,7 +16,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class LoginPage {
-    public static void staffRegister() {
+
+    public LoginPage() {
+    }
+    
+    public void staffRegister() {
         //this method will ask users input for information
         //this method creates two files, staff and staffCredentials
         //student stores all staff information
@@ -74,7 +78,7 @@ public class LoginPage {
         }
     }
 
-    public static void studentRegister() {
+    public void studentRegister() {
         //this method will ask users input for information
         //this method creates two files, student and studentCredentials
         //student stores all student information
@@ -131,7 +135,7 @@ public class LoginPage {
         }
     }
 
-    public static String staffLogin() {
+    public String staffLogin() {
         // this method will read from staffCredential file 
         // will ask for staff input for username and password
         // and will check every element in the file
@@ -176,7 +180,7 @@ public class LoginPage {
         }
     }
 
-    public static String studentLogin() {
+    public String studentLogin() {
         // this method will read from studentCredential file 
         // will ask for student input for matrix num and password
         // and will check every element in the file
