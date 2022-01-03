@@ -1,9 +1,6 @@
 package First;
 
-import static First.LoginPage.staffLogin;
-import static First.LoginPage.staffRegister;
-import static First.LoginPage.studentLogin;
-import static First.LoginPage.studentRegister;
+
 import java.util.Scanner;
 
 /**
@@ -12,6 +9,7 @@ import java.util.Scanner;
  */
 public class Main {
     public static void main(String[] args){
+        LoginPage log = new LoginPage();
         Scanner in = new Scanner(System.in);
         String type;
         boolean keepGoing = true;
@@ -28,7 +26,7 @@ public class Main {
                 type = in.nextLine();
                 switch(type){
                     case "staff":
-                        staffRegister();
+                        log.staffRegister();
                         // asks user if they want to continue AFTER REGISTER
                         System.out.println("do you want to continue? (yes or no)");
                         type = in.nextLine();
@@ -39,7 +37,7 @@ public class Main {
                         break;
 
                     case "student":
-                        studentRegister();
+                        log.studentRegister();
                         // asks user if they want to continue AFTER REGISTER
                         System.out.println("do you want to continue? (yes or no)");
                         type = in.nextLine();
@@ -62,7 +60,7 @@ public class Main {
                 type = in.nextLine();
                 switch(type){
                     case "staff":
-                        String login = staffLogin();
+                        String login = log.staffLogin();
                         // display login result
                         System.out.println(login);
                         // asks user if they want to continue AFTER LOGIN
@@ -75,7 +73,7 @@ public class Main {
                         break;
                     
                     case "student":
-                        login = studentLogin();
+                        login = log.studentLogin();
                         // display login result
                         System.out.println(login);
                         // asks user if they want to continue AFTER LOGIN
