@@ -1,11 +1,13 @@
 package Staff;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Scanner;
@@ -50,7 +52,6 @@ public class StaffPage {
             }
         }        
     }
-    
     
     private static void module(){
         int menu = 0;
@@ -102,7 +103,7 @@ public class StaffPage {
         System.out.println("Please enter the number of occurences > ");
         numofOcc = input.nextInt();
         
-        // ask the number of occurences
+        // ask the number of credit hours
         System.out.println("Please enter the number of credits > ");
         credits = input.nextInt();
        
@@ -161,16 +162,14 @@ public class StaffPage {
         }
         
         try{
-            String filename = "allModules.txt";
+            String filename = "allModules.txt", moduleInfo;
             
             File file = new File(filename);
             
             PrintWriter outputStream = new PrintWriter(new FileOutputStream(file,true));
+            moduleInfo = moduleCode + "," + moduleName +","+numofOcc+","+credits+","+Activities;
             
-            outputStream.println(moduleCode);
-            outputStream.println(moduleName);
-            outputStream.println(numofOcc);
-            outputStream.println(Activities);
+            outputStream.println(moduleInfo);
             
             ret = "Module Added successfully";
             outputStream.flush();
@@ -183,70 +182,67 @@ public class StaffPage {
     }
     
     private static void deleteModule(){
+        // this method is to perform delete module
+        // can only delete modules one by one
+        // asks user for the module code to be deleted
+        
         input = new Scanner(System.in);
+        String filename = "allModules.txt", moduleCode;
+        System.out.println("Please enter the module code that you want to remove");
+        moduleCode = input.nextLine();
+        int position = 0;
         
-        String delete; 
-        System.out.println("Please enter the module code that you want to delete");
-        delete = input.nextLine();
-        
-        String filename = "output.txt";
-        String filename1 = "allModules.txt";
-        String filename2 = "delete.txt";
-        try {
-            File file = new File(filename2);
-            PrintWriter outputStream = new PrintWriter(new FileOutputStream(filename2,true));
-            outputStream.println(delete);
-            outputStream.flush();
-            outputStream.close();
-        } catch (IOException ex) {
-            System.out.println("IO error "+ex.getMessage());
-        }
+        String tempFile = "temp.txt";
+        File oldFile = new File(filename); // creates a file object for allModules.txt
+        // creates a temporary output file after we remove the term 
+        File newFile = new File(tempFile);
+        // creates a file object corresponding to the specific module
+        File file = new File(moduleCode+".txt");
+        String currentLine;
+        String [] data;
         
         try{
-            File file = new File(filename);
-            File file1 = new File(filename1);
-            PrintWriter outputStream = new PrintWriter(new FileOutputStream(filename,true));
-
-            Scanner inputStream = new Scanner(new FileInputStream(filename1));
-            String line1 = inputStream.nextLine();
+            FileWriter fWriter = new FileWriter(tempFile, true);
+            BufferedWriter buffWrite = new BufferedWriter(fWriter);
+            PrintWriter outputStream = new PrintWriter(buffWrite);
             
-            while(inputStream.hasNextLine()){
-                Scanner inputStream1 = new Scanner(new FileInputStream(filename2));
-                String line2 = inputStream1.nextLine();
+            FileReader fReader = new FileReader(filename);
+            BufferedReader buffReader = new BufferedReader(fReader);
+            
+            while ((currentLine = buffReader.readLine()) != null){
                 
-                while (inputStream1.hasNextLine()){
-                    boolean flag = false;
-                    if (line1.equals(line2)){
-                        flag = true;
-                        break;
-                    }
-                    else{
-                        inputStream.nextLine();
-                        inputStream.nextLine();
-                        inputStream.nextLine();
-                    }
-                    line2 = inputStream1.nextLine();
-                    if(!flag){
-                        outputStream.println(line1);
-                    }
+                data=currentLine.split(",");
+                // when data in position 0 it is actually module code
+                // so we compare the input with the data from text file
+                // if data is not the same ( false )
+                // we write the current line that buffered reader is reading
+                // into the temporary file
+                if (!(data[position].equals(moduleCode))){
+                    outputStream.println(currentLine);
                 }
-                line1 = inputStream.nextLine();
             }
-            
-//            if(file1.renameTo(file))
-//                System.out.println("File succesffully renamed");
-//            else
-//                System.out.println("Failed");
 
             outputStream.flush();
-            
-            //closing connections
-            inputStream.close();
             outputStream.close();
-            System.out.println("File successful");
+            fWriter.close();
+            buffWrite.close();
+            buffReader.close();
+            fReader.close();
+            
+            //System.out.println("successfully deleted term");
+            // delete unwanted files such as old allModules
+            // and corresponding module file
+            oldFile.delete();
+            file.delete();
+            // creates a dummy file that has the same name as allModule
+            // then rename the temporary output file to be the same as dummy file name
+            File temp = new File(filename);
+            newFile.renameTo(temp);
+            //System.out.println("Deleted old file");
         } catch(IOException ex){
-            System.out.println("IO error "+ex.getMessage());
-        }
+            System.out.println("IO Error "+ex.getMessage());
+        } 
+        
     }
     
     private static void editModule(){
@@ -262,87 +258,65 @@ public class StaffPage {
     }
     
 }
-/*
-public static void deleteStudents() throws IOException, FileNotFoundException
-{
-    Scanner console = new Scanner(System.in);
-    String SY, date;
-    System.out.println("ENTER THE SCHOOL YEAR: SY: ");
-    SY = console.next();
 
-    int i = 0;
-
-    Scanner print = new Scanner(new FileReader("Students- SY " + SY + " " + ".txt"));
-    //display text file
-    while(print.hasNextLine())
-    {
-        String stud= print.nextLine();
-        System.out.println(stud);
-    }   
-
-    File inputFile = new File("Students- SY " + SY + " " + ".txt");
-    File tempFile = new File("Students- SY " + SY + " " + ".txt.bak");
-
-    BufferedReader reader = new BufferedReader(new FileReader(inputFile));
-    BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile));
-
-    String remove;
-    String currentLine;
-
-    System.out.println("ENTER STUDENT's ID NUMBER TO BE DELETED:  ");
-    remove = console.next();
-    while((currentLine = reader.readLine()) != null)
-    {
-        String trimmedLine = currentLine.trim();
-        if(!trimmedLine.startsWith(remove)) 
-        {
-            writer.write(String.format("%s%n",currentLine)); 
-
-        }
-    }  
-    //close reader/writer
-    writer.close();
-    reader.close();
-  //delete file
-    if(inputFile.delete())
-    {
-        tempFile.renameTo(inputFile);
-    }
-    else
-    {
-        System.out.println("FAIL");
-    }
-*/
 
 /*
-            while(line1 != null){
-                boolean flag = false;
+        input = new Scanner(System.in);
+        String delete;
+        System.out.println("Enter module code that you want to delete");
+        delete = input.nextLine();
+        File deleteFile = null , outputFile;
+        try{
+        deleteFile = new File("Delete.txt");
+        outputFile = new File("output.txt");
+        
+        PrintWriter outputStream2 = new PrintWriter(new FileOutputStream(deleteFile));
+        PrintWriter outputStream3 = new PrintWriter(new FileOutputStream(outputFile));
+        
+        
+            
+            PrintWriter outputStream = new PrintWriter(new FileOutputStream(deleteFile,true));
+            outputStream.println(delete);
+            
+            outputStream.flush();
+            outputStream.close();
+            
+            Scanner inputStream = new Scanner(new FileInputStream(deleteFile));
+            Scanner inputStream1 = new Scanner(new FileInputStream("addModules.txt"));
+            PrintWriter outputStream1 = new PrintWriter(new FileOutputStream(outputFile,true));
+            
+            while (inputStream1.hasNextLine()){
+                String line1 = inputStream1.nextLine();
                 
-               //BufferedReader br2 = new BufferedReader(new FileReader(filename2));
-                Scanner inputStream1 = new Scanner(new FileInputStream(filename2));
-                String line2 = inputStream1.nextLine();
-                
-                
-                if(line1.equals(line2)){
-                        flag = true;
-                }
-                
-                // if flag = false
-                // write line of filename1 to filename
-                if(!flag)
-                    outputStream.println(line1);
-                /*while (line2 != null){
-                    if(line1.equals(line2)){
-                        flag = true;
-                        break;
+                while (inputStream.hasNextLine()){
+                    String line = inputStream.nextLine();
+                    if (line.equals(line1)){
+                        System.out.println("found same string");
+                        inputStream1.nextLine();
+                        inputStream1.nextLine();
+                        inputStream1.nextLine();
                     }
-                    // update condition
-                    line2 = inputStream1.next();
+                    else{
+                        System.out.println("no same string");
+                        outputStream1.println(line1);
+                    }
                 }
-                
-                //update condition
-                line1 = inputStream.nextLine();
-                if(line1 == null)
-                    System.out.println("Successfully deleted");
             }
-            */
+            
+            if(outputFile.renameTo(inputFile))
+                System.out.println("File succesffully renamed");
+            else
+                System.out.println("Failed");
+            
+            outputStream1.flush();
+            outputStream1.close();
+            inputStream.close();
+            inputStream1.close();
+            
+            System.out.println("File process successful");
+            
+        } catch(IOException ex){
+            System.out.println("IO Error " +ex.getMessage());
+        }
+        
+*/
