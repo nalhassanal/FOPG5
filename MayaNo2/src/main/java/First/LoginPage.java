@@ -4,13 +4,7 @@ package First;
  *
  * @author Hassanal
  */
-// add requirements for registrations
-// add more to staff such as add lecturer level
-// Professor
-// Associate Professor
-// Senior Lecturer
-// Lecturer
-// add more to student registration such as muet and programme (course)
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -25,6 +19,7 @@ public class LoginPage {
 
     public LoginPage() {
     }
+    
     
     public void staffRegister() {
         //this method will ask users input for information
@@ -66,7 +61,7 @@ public class LoginPage {
         System.out.println("Please enter your password");
         password = input.nextLine();
         System.out.println("Please enter your status");
-        System.out.println("1. Lecturer\n2. Senior Lecturer\n3.Associate Professor\n4. Professor");
+        System.out.println("1. Lecturer\n2. Senior Lecturer\n3. Associate Professor\n4. Professor");
         System.out.println("Choose only 1");
         statusNum = input.nextInt();
         
@@ -135,7 +130,7 @@ public class LoginPage {
         //student stores all student information
         //studentCredentials is used explicitly by student login 
         Scanner input = new Scanner(System.in);
-        String mail ="", matrixNum, password, fullname, student , programme ="Bachelor of Computer Science (Data Science)", muet = "Band 3";
+        String mail ="", matrixNum, password, fullname, student , programme ="Bachelor of Computer Science (Data Science)", muet = "Band 2";
         int muetNum,programmeNum;
         // asking user credentials
         System.out.println("Please enter your Full Name");
@@ -186,6 +181,9 @@ public class LoginPage {
         muetNum = input.nextInt();
         
         switch(muetNum){
+            case 2:
+                muet = "Band 2";
+                break;
             case 3:
                 muet = "Band 3";
                 break;
@@ -253,12 +251,13 @@ public class LoginPage {
         System.out.println("Please enter your username and password");
         userInput = in.nextLine();
         passInput = in.nextLine();
-
+        
         try {
             String filename = "staffCredentials.txt";
             // to read contents of file
             Scanner inputStream = new Scanner(new FileInputStream(filename));
 
+            
             while (inputStream.hasNextLine()) {
                 if (userInput.equals(inputStream.nextLine())) {//line 1
                     count = 1;
@@ -279,10 +278,13 @@ public class LoginPage {
         }
 
         if (count == 2) {
+            //popupBox.infoBox("Login Successful" , "Login");
             return "Login successful";
         } else if (count == 1) {
+            //popupBox.infoBox("Login Unsuccessful", "Login");
             return "Login unsuccessful\nwrong password";
         } else {
+           // popupBox.infoBox("User is not registered", "Login");
             return "User is not registered";
         }
     }
