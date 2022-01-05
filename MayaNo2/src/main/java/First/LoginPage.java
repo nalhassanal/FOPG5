@@ -32,7 +32,7 @@ public class LoginPage {
         //student stores all staff information
         //staffCredentials is used explicitly by student login 
         Scanner input = new Scanner(System.in);
-        String mail, username, password, fullname, staff, status;
+        String mail ="", username ="", password, fullname, staff, status ="Lecturer";
         int statusNum;
         // asking user credentials
         System.out.println("Please enter your Full Name");
@@ -135,7 +135,7 @@ public class LoginPage {
         //student stores all student information
         //studentCredentials is used explicitly by student login 
         Scanner input = new Scanner(System.in);
-        String mail, matrixNum, password, fullname, student , programme , muet;
+        String mail ="", matrixNum, password, fullname, student , programme ="Bachelor of Computer Science (Data Science)", muet = "Band 3";
         int muetNum,programmeNum;
         // asking user credentials
         System.out.println("Please enter your Full Name");
@@ -173,7 +173,7 @@ public class LoginPage {
                 programme = "Bachelor of Computer Science (Computer System and Network";
                 break;
             case 4:
-                programme = "Bachelor of Computer Science (Software Engineering)"
+                programme = "Bachelor of Computer Science (Software Engineering)";
                 break;
             case 5:
                 programme = "Bachelor of Information Technology (Information Systems";
