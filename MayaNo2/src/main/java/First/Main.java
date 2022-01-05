@@ -8,42 +8,64 @@ import java.util.Scanner;
  * @author Hassanal
  */
 public class Main {
+        static LoginPage log = new LoginPage();
+        static Scanner in = new Scanner(System.in);
+        static String type;
+        static boolean keepGoing = true;
+        static popupBox box;
     public static void main(String[] args){
-        LoginPage log = new LoginPage();
-        Scanner in = new Scanner(System.in);
-        String type;
-        boolean keepGoing = true;
+        int typeNum;
+        in = new Scanner(System.in);
         int i = 0;
         do{
-            i++;
-            // asks user if they have account or not (START)
-            System.out.println("Do you have account? (yes or no)");
+            System.out.println("What do you want to do?");
+            System.out.println("1. Login\n2. Register");
+            typeNum = in.nextInt();
+            
+            switch(typeNum){
+                case 1:
+                    logIn();
+                    break;
+                case 2:
+                    register();
+                    break;
+                default:
+                    i++;
+                    System.out.println("Invalid Input\nPlease Try Again");
+                    main(null);
+                    break;
+            }
+            // asks user if they want to log out
+            System.out.println("do you want to continue? (yes or no)");
             type = in.nextLine();
-            if("NO".equals(type) || "no".equals(type) || "No".equals(type)){
+            if("YES".equals(type) || "yes".equals(type) ||"Yes".equals(type))
+                main(null);
+            else if("NO".equals(type) || "no".equals(type) || "No".equals(type))
+                keepGoing = false;
+            
+            // breaks the loop after 3 tries at START
+            if ( i > 2){
+                System.out.println("Please reload the program");
+                keepGoing = false;
+            }
+        }while(keepGoing);
+    }
+    
+    public static void register(){
                 // asks user if they want to REGISTER as student or staff
+                in = new Scanner(System.in);
+                log = new LoginPage();
                 System.out.println("Do you want to register as student or staff? (student or staff)");
                 type = in.nextLine();
                 switch(type){
                     case "staff":
                         log.staffRegister();
-                        // asks user if they want to continue AFTER REGISTER
-                        System.out.println("do you want to continue? (yes or no)");
-                        type = in.nextLine();
-                        if("YES".equals(type) || "yes".equals(type) ||"Yes".equals(type))
-                            keepGoing = true;
-                        else if("no".equals(type) || "NO".equals(type) || type == "No")
-                            keepGoing = false;
+                        logIn();
                         break;
 
                     case "student":
                         log.studentRegister();
-                        // asks user if they want to continue AFTER REGISTER
-                        System.out.println("do you want to continue? (yes or no)");
-                        type = in.nextLine();
-                        if("YES".equals(type) || "yes".equals(type) ||"Yes".equals(type))
-                            keepGoing = true;
-                        else if("NO".equals(type) || "no".equals(type) || "No".equals(type))
-                            keepGoing = false;
+                        logIn();
                         break;
 
                     default:
@@ -52,50 +74,44 @@ public class Main {
                         keepGoing = false;
                         break;
                 }
-            }
-            else if("YES".equals(type) || "yes".equals(type) ||"Yes".equals(type)){
-                // asks user if they are student or staff
-                System.out.println("Are you a student or staff? (student or staff)");
+    }
+    
+    public static void logIn(){
+        // asks user if they are student or staff
+        in = new Scanner(System.in);
+        box = new popupBox();
+        //box.infoBox("WELCOME TO LOGIN PAGE", "LOGIN PAGE");
+        System.out.println("Are you a student or staff? (student or staff)");
+        type = in.nextLine();
+        switch(type){
+            case "staff":
+                String login = log.staffLogin();
+                // display login result
+                System.out.println(login);
+                //main(null);
+                break;
+                
+                /*// asks user if they want to log out maybe
+                System.out.println("do you want to continue? (yes or no)");
                 type = in.nextLine();
-                switch(type){
-                    case "staff":
-                        String login = log.staffLogin();
-                        // display login result
-                        System.out.println(login);
-                        // asks user if they want to continue AFTER LOGIN
-                        System.out.println("do you want to continue? (yes or no)");
-                        type = in.nextLine();
-                        if("YES".equals(type) || "yes".equals(type) ||"Yes".equals(type))
-                            keepGoing = true;
-                        else if("NO".equals(type) || "no".equals(type) || "No".equals(type))
-                            keepGoing = false;
-                        break;
-                    
-                    case "student":
-                        login = log.studentLogin();
-                        // display login result
-                        System.out.println(login);
-                        // asks user if they want to continue AFTER LOGIN
-                        System.out.println("do you want to continue? (yes or no)");
-                        type = in.nextLine();
-                        if("YES".equals(type) || "yes".equals(type) ||"Yes".equals(type))
-                            keepGoing = true;
-                        else if("NO".equals(type) || "no".equals(type) || "No".equals(type))
-                            keepGoing = false;
-                        break;
-                   
-                    default:
-                        // error message
-                        System.out.println("Error please reload program.");
-                        keepGoing = false;
-                        break;
-                }
-            }
-            // breaks the loop after 3 tries at START
-            if ( i > 2){
-                System.out.println("Please reload the program");
+                if("YES".equals(type) || "yes".equals(type) ||"Yes".equals(type))
+                    main(null);
+                else if("NO".equals(type) || "no".equals(type) || "No".equals(type))
+                    break;
+                break;
+*/
+            case "student":
+                login = log.studentLogin();
+                // display login result
+                System.out.println(login);
+                //main(null);
+                break;
+
+            default:
+                // error message
+                System.out.println("Error please reload program.");
                 keepGoing = false;
-            }
-        }while(keepGoing);
+                break;
+        }
     }
 }
