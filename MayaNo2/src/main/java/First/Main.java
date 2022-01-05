@@ -13,9 +13,8 @@ public class Main {
         Scanner in = new Scanner(System.in);
         String type;
         boolean keepGoing = true;
-        
-        while(keepGoing){
-            int i = 0;
+        int i = 0;
+        do{
             i++;
             // asks user if they have account or not (START)
             System.out.println("Do you have account? (yes or no)");
@@ -92,10 +91,11 @@ public class Main {
                         break;
                 }
             }
-            
             // breaks the loop after 3 tries at START
-            if ( i >= 3)
+            if ( i > 2){
+                System.out.println("Please reload the program");
                 keepGoing = false;
-        }
+            }
+        }while(keepGoing);
     }
 }
