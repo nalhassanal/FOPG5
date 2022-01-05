@@ -4,7 +4,13 @@ package First;
  *
  * @author Hassanal
  */
-// dont use static method here
+// add requirements for registrations
+// add more to staff such as add lecturer level
+// Professor
+// Associate Professor
+// Senior Lecturer
+// Lecturer
+// add more to student registration such as muet and programme (course)
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -26,29 +32,74 @@ public class LoginPage {
         //student stores all staff information
         //staffCredentials is used explicitly by student login 
         Scanner input = new Scanner(System.in);
-        String mail, username, password, fullname, staff;
+        String mail, username, password, fullname, staff, status;
+        int statusNum;
         // asking user credentials
         System.out.println("Please enter your Full Name");
         fullname = input.nextLine();
-        System.out.println("Please enter your Univerisity Email");
-        mail = input.nextLine();
-        System.out.println("Please enter your preferred username");
-        username = input.nextLine();
+        boolean keepGoing = true;
+        while (keepGoing){
+            System.out.println("Please enter your Univerisity Email");
+            mail = input.nextLine();
+            Checker check = new Checker(mail);
+            if (check.emailCheck(mail))
+                keepGoing = false;
+            else{
+                System.out.println("Invalid entry for email\nTry again\n");
+                System.out.println("Email example username@um.edu.my");
+                keepGoing = true;
+            }
+        }
+        keepGoing = true;
+        while (keepGoing){
+            System.out.println("Please enter your preferred username");
+            username = input.nextLine();
+            Checker check = new Checker(username);
+            if(check.emailCheck(mail))
+                keepGoing = false;
+            else{
+                System.out.println("Invalid entry for username\nTry again\n");
+                System.out.println("Username must be start with alphabet and not contain ( - & _ & .)");
+                keepGoing = true;
+            }
+        }
         System.out.println("Please enter your password");
         password = input.nextLine();
-
+        System.out.println("Please enter your status");
+        System.out.println("1. Lecturer\n2. Senior Lecturer\n3.Associate Professor\n4. Professor");
+        System.out.println("Choose only 1");
+        statusNum = input.nextInt();
+        
+        switch(statusNum){
+            case 1:
+                status = "Lecturer";
+                break;
+            case 2:
+                status = "Senior Lecturer";
+                break;
+            case 3:
+                status = "Associate Professor";
+                break;
+            case 4:
+                status = "Professor";
+                break;
+        }
+        
         //making all credentials into one string
-        staff = username + " " + mail + " " + fullname + " " + password;
+        staff = username + "," + mail + "," + fullname + "," + password + "," +status;
 
         try {
             String filename = "staff.txt";
             // creates new file if not there
             // if file exists it will do nothing
             File file = new File(filename);
+            
             // appends existing file
             PrintWriter outputStream = new PrintWriter(new FileOutputStream(file, true));
+            
             //adds the string staff into the file
             outputStream.println(staff);
+            
             //flushes PrintWriter
             //clear the stream of any element that may be or maybe not inside the stream
             outputStream.flush();
@@ -84,19 +135,74 @@ public class LoginPage {
         //student stores all student information
         //studentCredentials is used explicitly by student login 
         Scanner input = new Scanner(System.in);
-        String mail, matrixNum, password, fullname, student;
+        String mail, matrixNum, password, fullname, student , programme , muet;
+        int muetNum,programmeNum;
         // asking user credentials
         System.out.println("Please enter your Full Name");
         fullname = input.nextLine();
-        System.out.println("Please enter your Univerisity Email");
-        mail = input.nextLine();
+        
+        boolean keepGoing = true;
+        while (keepGoing){
+            System.out.println("Please enter your Univerisity Email");
+            mail = input.nextLine();
+            Checker check = new Checker(mail);
+            if (check.emailCheck(mail))
+                keepGoing = false;
+            else{
+                System.out.println("Invalid entry for email\nTry again\n");
+                System.out.println("Email example username@siswa.um.edu.my");
+                keepGoing = true;
+            }
+        }
         System.out.println("Please enter your Matrix Number");
         matrixNum = input.nextLine();
         System.out.println("Please enter your password");
         password = input.nextLine();
-
+        System.out.println("Please choose your programme");
+        System.out.println("1. AI\n2. DATA SCIENCE\n3. COMPUTER SYSTEM AND NETWORK\n"
+                + "4. SOFTWARE ENGINEERING\n5. INFORMATION SYSTEMS\n6. MULTIMEDIA COMPUTING");
+        programmeNum = input.nextInt();
+        switch (programmeNum){
+            case 1:
+                programme = "Bachelor of Computer Science (Artificial Intelligence)";
+                break;
+            case 2:
+                programme = "Bachelor of Computer Science (Data Science)";
+                break;
+            case 3:
+                programme = "Bachelor of Computer Science (Computer System and Network";
+                break;
+            case 4:
+                programme = "Bachelor of Computer Science (Software Engineering)"
+                break;
+            case 5:
+                programme = "Bachelor of Information Technology (Information Systems";
+                break;
+            case 6:
+                programme = "Bachelor of Information Technology (Multimedia)";
+                break;
+        }
+        System.out.println("Please enter your MUET band (3,4,5,6)");
+        muetNum = input.nextInt();
+        
+        switch(muetNum){
+            case 3:
+                muet = "Band 3";
+                break;
+            case 4:
+                muet = "Band 4";
+                break;
+            case 5:
+                muet = "Band 5/6";
+                break;
+            case 6:
+                muet = "Band 5/6";
+                break;
+        }
+        
         //making all credentials into one string
-        student = matrixNum + " " + mail + " " + fullname + " " + password;
+        student = matrixNum + "," + mail + "," + fullname + "," + password
+                +"," +programme +"," +muet;
 
         try {
             String filename = "student.txt";
@@ -108,7 +214,8 @@ public class LoginPage {
             //adds the string studentinto the file
             outputStream.println(student);
             //flushes PrintWriter
-            //clear the stream of any element that may be or maybe not inside the stream            outputStream.flush();
+            //clear the stream of any element that may be or maybe not inside the stream            
+            outputStream.flush();
             //closes the file connection
             outputStream.close();
         } catch (IOException ex) {
