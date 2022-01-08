@@ -2,6 +2,7 @@ package First;
 
 
 import java.util.Scanner;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -14,6 +15,8 @@ public class Main {
         static boolean keepGoing = true;
         static popupBox box;
     public static void main(String[] args){
+        box = new popupBox();
+        box.infoBox("WELCOME TO MAYA 2.0", "MAYA");
         int typeNum;
         in = new Scanner(System.in);
         int i = 0;
@@ -52,35 +55,39 @@ public class Main {
     }
     
     public static void register(){
-                // asks user if they want to REGISTER as student or staff
-                in = new Scanner(System.in);
-                log = new LoginPage();
-                System.out.println("Do you want to register as student or staff? (student or staff)");
-                type = in.nextLine();
-                switch(type){
-                    case "staff":
-                        log.staffRegister();
-                        logIn();
-                        break;
+        box = new popupBox();
+        box.infoBox("WELCOME TO REGISTRATION PAGE", "REGISTRATION PAGE");
 
-                    case "student":
-                        log.studentRegister();
-                        logIn();
-                        break;
+        // asks user if they want to REGISTER as student or staff
+        in = new Scanner(System.in);
+        log = new LoginPage();
+        System.out.println("Do you want to register as student or staff? (student or staff)");
+        type = in.nextLine();
+        switch(type){
+            case "staff":
+                log.staffRegister();
+                logIn();
+                break;
 
-                    default:
-                        // error statement
-                        System.out.println("Error please reload program.");
-                        keepGoing = false;
-                        break;
-                }
+            case "student":
+                log.studentRegister();
+                logIn();
+                break;
+
+            default:
+                // error statement
+                System.out.println("Error please reload program.");
+                keepGoing = false;
+                break;
+        }
     }
     
     public static void logIn(){
         // asks user if they are student or staff
-        in = new Scanner(System.in);
+        
         box = new popupBox();
-        //box.infoBox("WELCOME TO LOGIN PAGE", "LOGIN PAGE");
+        box.infoBox("WELCOME TO LOGIN PAGE", "LOGIN PAGE");
+        in = new Scanner(System.in);
         System.out.println("Are you a student or staff? (student or staff)");
         type = in.nextLine();
         switch(type){
