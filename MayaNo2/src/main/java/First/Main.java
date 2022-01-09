@@ -2,7 +2,6 @@ package First;
 
 
 import java.util.Scanner;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -10,6 +9,7 @@ import javax.swing.JOptionPane;
  */
 public class Main {
         static LoginPage log = new LoginPage();
+        static StaffPage staff = new StaffPage();
         static Scanner in = new Scanner(System.in);
         static String type;
         static boolean keepGoing = true;
@@ -95,18 +95,15 @@ public class Main {
                 String login = log.staffLogin();
                 // display login result
                 System.out.println(login);
-                //main(null);
-                break;
-                
-                /*// asks user if they want to log out maybe
-                System.out.println("do you want to continue? (yes or no)");
+                staff.staff();
+                // asks user if they want to log out maybe
+                System.out.println("do you want to log out? (yes or no)");
                 type = in.nextLine();
                 if("YES".equals(type) || "yes".equals(type) ||"Yes".equals(type))
-                    main(null);
-                else if("NO".equals(type) || "no".equals(type) || "No".equals(type))
                     break;
+                else if("NO".equals(type) || "no".equals(type) || "No".equals(type))
+                    main(null);
                 break;
-*/
             case "student":
                 login = log.studentLogin();
                 // display login result
