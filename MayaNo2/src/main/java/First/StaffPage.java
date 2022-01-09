@@ -3,6 +3,8 @@ package First;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -14,7 +16,12 @@ import java.util.Scanner;
  * @author Hassanal
  */
 public class StaffPage {
+    private static popupBox box;//add gui
     private static Scanner input;
+
+    public StaffPage() {
+    }
+    
     public static void main (String[] args){
         input = new Scanner(System.in);
         int menu, count = 0;
@@ -25,7 +32,7 @@ public class StaffPage {
             System.out.println("1. Modify Modules");
             System.out.println("2. View Modules");
             System.out.println("3. View Students in your classes");
-            System.out.println("4. Exit");
+            System.out.println("4. Return");
             System.out.println("Enter the number you want >> ");
             menu = input.nextInt();
             switch (menu) {
@@ -50,7 +57,7 @@ public class StaffPage {
             }
         }        
     }
-    static LoginPage log;
+    private static LoginPage log;
     private static void module(){
         int menu = 0;
         log = new LoginPage();
@@ -59,20 +66,37 @@ public class StaffPage {
         System.out.println("1. Create a new module");
         System.out.println("2. Delete existing module");
         System.out.println("3. Edit a module");
-        System.out.println("4. Exit");
+        System.out.println("4. Return");
         System.out.println("Enter the number you want >> ");
         menu = input.nextInt();
         if ( menu == 1){
-            
-            String process = addModule();
-            System.out.println(process);
+            //if (log.staffTest()){
+                String process = addModule();
+                System.out.println(process);
+           // }
+            //else{
+                System.out.println("You are not allowed access in section");
+                System.out.println("Please choose another number");
+            //}
             module();
+            
         }
         else if ( menu == 2){
-            deleteModule();
+           // if (log.staffTest()){
+                String process = deleteModule();
+                System.out.println(process);
+            //}
+            //else{
+                System.out.println("You are not allowed access in section");
+                System.out.println("Please choose another number");
+            //}
+            module();
         }
         else if ( menu == 3){
-            editModule();
+            //String filename ,moduleCode , lectureName;
+            String process = editModule();
+            System.out.println(process);
+            module();
         }
         else if ( menu == 4){
             //staffPage(); // rename main as staffPage
@@ -87,7 +111,7 @@ public class StaffPage {
     // maybe this method can only be accessed by higher ranking lecturers only
     private static String addModule(){
         input = new Scanner(System.in);
-        int numofOcc = 1, credits = 1 , numAct;
+        int numAct , numofOcc , credits = 1 ;
         String moduleCode = "WIX1001", moduleName = "Computing Maths" , Activities = "Lab";
         String ret = "Unsuccessfull Module Addition";
         final String ACT1 = "Lecture", ACT2 = "Tutorial" , ACT3 = "Lab";
@@ -144,6 +168,7 @@ public class StaffPage {
         }
       
         try{
+            // this is the file for specific module
             String filename = moduleCode + ".txt";
             File file = new File(filename);
             
@@ -154,9 +179,10 @@ public class StaffPage {
             else if ( numAct == 2){
                 Activities = ACT[0] +" & " +ACT[1];
             }
-            outputStream.println(moduleCode);
-            outputStream.println(moduleName);
-            outputStream.println(numofOcc);
+            // info seperated by comma
+            // additional info such as lecture name will 
+            // added at editModule
+            outputStream.println(moduleCode +","+moduleName+","+numAct+","+numofOcc);
             outputStream.flush();
             outputStream.close();
         } catch(IOException ex) {
@@ -164,6 +190,7 @@ public class StaffPage {
         }
         
         try{
+            // this is the file for all modules
             String filename = "allModules.txt", moduleInfo;
             
             File file = new File(filename);
@@ -183,13 +210,13 @@ public class StaffPage {
         return ret;
     }
     
-    private static void deleteModule(){
+    private static String deleteModule(){
         // this method is to perform delete module
         // can only delete modules one by one
         // asks user for the module code to be deleted
         
         input = new Scanner(System.in);
-        String filename = "allModules.txt", moduleCode;
+        String filename = "allModules.txt", moduleCode , ret ="Failed to delete\nModule did not exist";
         System.out.println("Please enter the module code that you want to remove");
         moduleCode = input.nextLine();
         int position = 0;
@@ -206,7 +233,7 @@ public class StaffPage {
         try{
             FileWriter fWriter = new FileWriter(tempFile, true);
             BufferedWriter buffWrite = new BufferedWriter(fWriter);
-            PrintWriter outputStream = new PrintWriter(buffWrite);
+            PrintWriter outputStream = new PrintWriter(buffWrite,true);
             
             FileReader fReader = new FileReader(filename);
             BufferedReader buffReader = new BufferedReader(fReader);
@@ -241,18 +268,75 @@ public class StaffPage {
             File temp = new File(filename);
             newFile.renameTo(temp);
             //System.out.println("Deleted old file");
+            ret = "Successfully deleted module";
         } catch(IOException ex){
             System.out.println("IO Error "+ex.getMessage());
         } 
-        
+        return ret;
     }
     
     //maybe this method can be accessed by all lecturers
-    private static void editModule(){
-        /*
+    private static String editModule(){
+        input = new Scanner(System.in);
+        String moduleCode , ret ="Failed to add new items";
+        System.out.println("Enter the Module code that you want to edit >>");
+        moduleCode = input.nextLine();
+        String filename = moduleCode+".txt", currentLine;
+        String [] data;
+        int numAct = 1;
+        File modulefile = new File(filename);     
         
-        */
-        String moduleCode;
+        int index;
+        String name;
+        String day,time;
+        String act2Name = "" ,act2day = "Monday",act2time = "0900 - 1100";
+        try{
+            // appends existing file
+            PrintWriter outputStream = new PrintWriter(new FileOutputStream(modulefile,true));
+            Scanner inputStream = new Scanner(new FileInputStream(modulefile));
+            // this block is to find the number of activities of the module
+            currentLine = inputStream.nextLine();
+            data = currentLine.split(",");
+            numAct= Integer.parseInt(data[2]);
+            
+            System.out.println("Please enter the index of this occurence");
+            index = input.nextInt();
+            
+            // this does not work for some reason
+            System.out.println("Please enter the name for the Lecture activity"); 
+            name = input.nextLine();
+
+            System.out.println("Please enter the day and time will the Lecture occur\n"
+                    + "Format : Monday\n1300 - 1500 (24 hour)");
+            day = input.nextLine();
+            time = input.nextLine();
+
+            if (numAct > 1 ){
+                System.out.println("Please enter the name for the Lab/Tutorial Activity");
+                act2Name = input.nextLine();
+                System.out.println("Please enter the day and time will the activity occur\n"
+                    + "Format : Monday\n1300 - 1500 (24 hour)");
+                act2day = input.nextLine();
+                act2time = input.nextLine();
+            }
+            
+            // prints all the input data
+            outputStream.println("L,"+name +"," +day+","+time);
+            if(numAct > 1){
+                outputStream.println("T,"+index +"," +act2Name+",Day,"+act2day +",Time," +act2time);
+            }
+            else{
+                outputStream.println("L,"+index +"," +name+",Day,"+day +",Time," +time);
+            }
+            
+            outputStream.flush();
+            outputStream.close();
+            inputStream.close();
+            ret = "Successfully added new items";
+        }catch(FileNotFoundException ex){
+            System.out.println("IO Error " +ex.getMessage());
+        }
+        return ret;
     }
     
     private static void view(){
@@ -264,5 +348,3 @@ public class StaffPage {
     }
     
 }
-
-
