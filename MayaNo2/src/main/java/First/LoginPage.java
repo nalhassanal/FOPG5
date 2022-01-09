@@ -20,7 +20,6 @@ public class LoginPage {
     public LoginPage() {
     }
     
-    
     public void staffRegister() {
         //this method will ask users input for information
         //this method creates two files, staff and staffCredentials
@@ -240,13 +239,14 @@ public class LoginPage {
         }
     }
 
+    private String userInput;
     public String staffLogin() {
         // this method will read from staffCredential file 
         // will ask for staff input for username and password
         // and will check every element in the file
         // to compare with given input
         Scanner in = new Scanner(System.in);
-        String userInput, passInput;
+        String passInput;
         int count = 0;
         System.out.println("Please enter your username and password");
         userInput = in.nextLine();
@@ -332,5 +332,39 @@ public class LoginPage {
         } else {
             return "User is not registered";
         }
+    }
+    
+    public boolean staffTest(){
+        // if staff status is associate prof and prof only return true
+        //staff = username + "," + mail + "," + fullname + "," + password + "," +status;
+        String inUser = userInput;
+        int position =4;
+        String filename = "staff.txt";
+        boolean ret = false;
+        try{
+            String [] data;
+            String currentLine;
+            File file = new File(filename);
+            Scanner inputStream = new Scanner (new FileInputStream(file));
+            while(inputStream.hasNextLine()){
+                currentLine = inputStream.nextLine();
+                data = currentLine.split(",");
+                
+                if (data[0].equals(inUser) ){
+                    if(data[position].equals("Associate Professor") || data[position].equals("Professor")){
+                         ret = true;
+                        
+                    }
+                    else
+                         ret = false;
+                }
+                
+            }
+            inputStream.close();
+        } catch(FileNotFoundException ex){
+            System.out.println("IO Error "+ex.getMessage());
+            return false;
+        }
+        return ret;
     }
 }
