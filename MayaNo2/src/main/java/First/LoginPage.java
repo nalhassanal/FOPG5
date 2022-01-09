@@ -176,7 +176,7 @@ public class LoginPage {
                 programme = "Bachelor of Information Technology (Multimedia)";
                 break;
         }
-        System.out.println("Please enter your MUET band (3,4,5,6)");
+        System.out.println("Please enter your MUET band (2,3,4,5,6)");
         muetNum = input.nextInt();
         
         switch(muetNum){
