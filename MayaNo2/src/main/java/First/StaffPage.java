@@ -340,9 +340,8 @@ public class StaffPage {
     }
     
     private void view(){
-        
+      
     }
-    
     private void stuClass(){
         
     }
