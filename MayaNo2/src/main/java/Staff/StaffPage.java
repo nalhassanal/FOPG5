@@ -248,11 +248,39 @@ public class StaffPage {
     private static void editModule(){
         
     }
-    
-    private static void view(){
+  
+    private static void view() throws FileNotFoundException {
+        Scanner staffinput = new Scanner(System.in);
+        int choice = staffinput.nextInt();
+        System.out.println("Please choose an option:");
+        System.out.println("1. View all modules");
+        System.out.println("2. View modules taught occurrences taught by a specific lecturer");
+        if (choice == 1) {
+            File modules = new File("allmodules.txt");
+            Scanner scan = new Scanner(modules);
+            while (scan.hasNextLine()) {
+                System.out.println(scan.nextLine());
+            }
+        } else {
+            System.out.println("Please enter name of lecturer");
+            Scanner inputuser = new Scanner(System.in);
+            String Lecturer = inputuser.next();
+
+            File modules = new File("allmodules.txt");
+            Scanner scan = new Scanner(modules);
+            while (scan.hasNextLine() && scan.nextLine() == Lecturer) {
+                System.out.println(scan.nextLine());
+            }
+
+        }
+
+
+       
+        
         
     }
     
+
     private static void stuClass(){
         
     }
