@@ -16,13 +16,15 @@ import java.util.Scanner;
  * @author Hassanal
  */
 public class StaffPage {
-    private static popupBox box;//add gui
-    private static Scanner input;
+    private popupBox box;//add gui
+    private Scanner input;
 
     public StaffPage() {
     }
     
-    public static void main (String[] args){
+    public void staff(){
+        box = new popupBox();
+        box.infoBox("WELCOME TO STAFF SECTION", "STAFF");
         input = new Scanner(System.in);
         int menu, count = 0;
         boolean keepGoing = true;
@@ -57,8 +59,8 @@ public class StaffPage {
             }
         }        
     }
-    private static LoginPage log;
-    private static void module(){
+    private LoginPage log;
+    private void module(){
         int menu = 0;
         log = new LoginPage();
         input = new Scanner(System.in);
@@ -70,36 +72,35 @@ public class StaffPage {
         System.out.println("Enter the number you want >> ");
         menu = input.nextInt();
         if ( menu == 1){
-            //if (log.staffTest()){
+            if (log.staffTest()){
                 String process = addModule();
                 System.out.println(process);
-           // }
-            //else{
+            }
+            else{
                 System.out.println("You are not allowed access in section");
                 System.out.println("Please choose another number");
-            //}
+            }
             module();
             
         }
         else if ( menu == 2){
-           // if (log.staffTest()){
+            if (log.staffTest()){
                 String process = deleteModule();
                 System.out.println(process);
-            //}
-            //else{
+            }
+            else{
                 System.out.println("You are not allowed access in section");
                 System.out.println("Please choose another number");
-            //}
+            }
             module();
         }
         else if ( menu == 3){
-            //String filename ,moduleCode , lectureName;
             String process = editModule();
             System.out.println(process);
             module();
         }
         else if ( menu == 4){
-            //staffPage(); // rename main as staffPage
+            staff();
         }
         else{
             System.out.println("invalid number , try again");
@@ -109,7 +110,7 @@ public class StaffPage {
     
     // add how many expected target student in module
     // maybe this method can only be accessed by higher ranking lecturers only
-    private static String addModule(){
+    private String addModule(){
         input = new Scanner(System.in);
         int numAct , numofOcc , credits = 1 ;
         String moduleCode = "WIX1001", moduleName = "Computing Maths" , Activities = "Lab";
@@ -210,7 +211,7 @@ public class StaffPage {
         return ret;
     }
     
-    private static String deleteModule(){
+    private String deleteModule(){
         // this method is to perform delete module
         // can only delete modules one by one
         // asks user for the module code to be deleted
@@ -258,7 +259,6 @@ public class StaffPage {
             buffReader.close();
             fReader.close();
             
-            //System.out.println("successfully deleted term");
             // delete unwanted files such as old allModules
             // and corresponding module file
             oldFile.delete();
@@ -267,7 +267,7 @@ public class StaffPage {
             // then rename the temporary output file to be the same as dummy file name
             File temp = new File(filename);
             newFile.renameTo(temp);
-            //System.out.println("Deleted old file");
+
             ret = "Successfully deleted module";
         } catch(IOException ex){
             System.out.println("IO Error "+ex.getMessage());
@@ -276,7 +276,7 @@ public class StaffPage {
     }
     
     //maybe this method can be accessed by all lecturers
-    private static String editModule(){
+    private  String editModule(){
         input = new Scanner(System.in);
         String moduleCode , ret ="Failed to add new items";
         System.out.println("Enter the Module code that you want to edit >>");
@@ -339,11 +339,11 @@ public class StaffPage {
         return ret;
     }
     
-    private static void view(){
+    private void view(){
         
     }
     
-    private static void stuClass(){
+    private void stuClass(){
         
     }
     
