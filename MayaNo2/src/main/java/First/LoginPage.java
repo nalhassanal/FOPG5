@@ -26,7 +26,7 @@ public class LoginPage {
         //student stores all staff information
         //staffCredentials is used explicitly by student login 
         Scanner input = new Scanner(System.in);
-        String mail ="", username ="", password, fullname, staff, status ="Lecturer";
+        String mail ="", username ="", password, fullname, staff, status ="Professor";
         int statusNum;
         // asking user credentials
         System.out.println("Please enter your Full Name");
@@ -59,6 +59,7 @@ public class LoginPage {
         }
         System.out.println("Please enter your password");
         password = input.nextLine();
+        //maybe confirmstion loop
         System.out.println("Please enter your status");
         System.out.println("1. Lecturer\n2. Senior Lecturer\n3. Associate Professor\n4. Professor");
         System.out.println("Choose only 1");
@@ -239,18 +240,29 @@ public class LoginPage {
         }
     }
 
-    private String userInput;
     public String staffLogin() {
         // this method will read from staffCredential file 
         // will ask for staff input for username and password
         // and will check every element in the file
         // to compare with given input
         Scanner in = new Scanner(System.in);
+        String userInput;
         String passInput;
         int count = 0;
         System.out.println("Please enter your username and password");
         userInput = in.nextLine();
         passInput = in.nextLine();
+        
+        try{
+            String filename = "logger.txt";
+            File file = new File(filename);
+            PrintWriter outputStream = new PrintWriter(new FileOutputStream(file));
+            outputStream.print(userInput);
+            outputStream.flush();
+            outputStream.close();
+        } catch(IOException ex){
+            System.out.println("IO Error "+ex.getMessage());
+        }
         
         try {
             String filename = "staffCredentials.txt";
@@ -263,6 +275,7 @@ public class LoginPage {
                     count = 1;
                     if (passInput.equals(inputStream.nextLine())) {// line 2
                         count = 2;
+                        break; 
                     }
                 } else {
                     inputStream.nextLine();// skip line 2
@@ -276,7 +289,7 @@ public class LoginPage {
         } catch (IOException ex) {
             System.out.println("IO error " + ex.getMessage());
         }
-
+        
         if (count == 2) {
             //popupBox.infoBox("Login Successful" , "Login");
             return "Login successful";
@@ -289,6 +302,7 @@ public class LoginPage {
         }
     }
 
+    
     public String studentLogin() {
         // this method will read from studentCredential file 
         // will ask for student input for matrix num and password
@@ -300,6 +314,17 @@ public class LoginPage {
         System.out.println("Please enter your matrix number and password");
         userInput = in.nextLine();
         passInput = in.nextLine();
+        
+        try{
+            String filename = "logger.txt";
+            File file = new File(filename);
+            PrintWriter outputStream = new PrintWriter(new FileOutputStream(file));
+            outputStream.print(userInput);
+            outputStream.flush();
+            outputStream.close();
+        } catch(IOException ex){
+            System.out.println("IO Error "+ex.getMessage());
+        }
 
         try {
             String filename = "studentCredentials.txt";
@@ -311,6 +336,7 @@ public class LoginPage {
                     count = 1;
                     if (passInput.equals(inputStream.nextLine())) {
                         count = 2;
+                        break;
                     }
                 } else {
                     inputStream.nextLine();
@@ -337,10 +363,23 @@ public class LoginPage {
     public boolean staffTest(){
         // if staff status is associate prof and prof only return true
         //staff = username + "," + mail + "," + fullname + "," + password + "," +status;
-        String inUser = userInput;
+        // get inUser from logger file
+        String inUser = "";
         int position =4;
         String filename = "staff.txt";
         boolean ret = false;
+
+        // to get inUser from logger
+        try{
+            String filename1 = "logger.txt";
+            File file = new File(filename1);
+            Scanner inputStream = new Scanner(new FileInputStream(file));
+            inUser = inputStream.next();
+            inputStream.close();
+        }catch(FileNotFoundException ex){
+            System.out.println("File Not Found "+ex.getMessage());
+        }
+
         try{
             String [] data;
             String currentLine;
@@ -350,15 +389,14 @@ public class LoginPage {
                 currentLine = inputStream.nextLine();
                 data = currentLine.split(",");
                 
-                if (data[0].equals(inUser) ){
-                    if(data[position].equals("Associate Professor") || data[position].equals("Professor")){
+                if (data[0].equals(inUser) ){//something wrong
+                    if(data[position].equals("Associate Professor"))
                          ret = true;
-                        
-                    }
+                    else if (data[position].equals("Professor"))
+                        ret = true;
                     else
                          ret = false;
                 }
-                
             }
             inputStream.close();
         } catch(FileNotFoundException ex){
