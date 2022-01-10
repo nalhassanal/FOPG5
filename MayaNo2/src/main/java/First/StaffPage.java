@@ -71,8 +71,8 @@ public class StaffPage {
         System.out.println("4. Return");
         System.out.println("Enter the number you want >> ");
         menu = input.nextInt();
-        if ( menu == 1){
-            if (log.staffTest()){
+        if ( menu == 1){            
+            if (log.staffTest() ){
                 String process = addModule();
                 System.out.println(process);
             }
@@ -100,7 +100,7 @@ public class StaffPage {
             module();
         }
         else if ( menu == 4){
-            staff();
+            
         }
         else{
             System.out.println("invalid number , try again");
@@ -237,7 +237,7 @@ public class StaffPage {
             PrintWriter outputStream = new PrintWriter(buffWrite,true);
             
             FileReader fReader = new FileReader(filename);
-            BufferedReader buffReader = new BufferedReader(fReader);
+            BufferedReader buffReader = new BufferedReader(fReader); //faster reading compared to scanner 
             
             while ((currentLine = buffReader.readLine()) != null){
                 
@@ -340,7 +340,32 @@ public class StaffPage {
     }
     
     private void view(){
-      
+        Scanner staffinput = new Scanner(System.in);
+        System.out.println("Please choose an option:");
+        System.out.println("1. View all modules");
+        System.out.println("2. View modules taught occurrences taught by a specific lecturer");
+        
+        int choice = staffinput.nextInt();
+        switch (choice) {
+            case 1:
+                System.out.println("here");
+                break;
+/*
+                File modules = new File("allmodules.txt");
+                Scanner scan = new Scanner(modules);
+                while (scan.hasNextLine()) {
+                    System.out.println(scan.nextLine());
+                    break;
+                }
+*/
+            case 2:
+                System.out.println("here2");
+                break;
+                
+            default :
+                break;
+
+        }
     }
     private void stuClass(){
         
