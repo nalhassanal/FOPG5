@@ -39,12 +39,12 @@ public class Main {
                     break;
             }
             // asks user if they want to log out
-            System.out.println("do you want to continue? (yes or no)");
+            System.out.println("do you want to log out? (yes or no)");
             type = in.nextLine();
             if("YES".equals(type) || "yes".equals(type) ||"Yes".equals(type))
-                main(null);
-            else if("NO".equals(type) || "no".equals(type) || "No".equals(type))
                 keepGoing = false;
+            else if("NO".equals(type) || "no".equals(type) || "No".equals(type))
+                main(null);
             
             // breaks the loop after 3 tries at START
             if ( i > 2){
@@ -95,14 +95,9 @@ public class Main {
                 String login = log.staffLogin();
                 // display login result
                 System.out.println(login);
-                staff.staff();
-                // asks user if they want to log out maybe
-                System.out.println("do you want to log out? (yes or no)");
-                type = in.nextLine();
-                if("YES".equals(type) || "yes".equals(type) ||"Yes".equals(type))
-                    break;
-                else if("NO".equals(type) || "no".equals(type) || "No".equals(type))
-                    main(null);
+                // this maybe need some confirmation
+                if(login.equals("Login successful"))
+                   staff.staff();
                 break;
             case "student":
                 login = log.studentLogin();
