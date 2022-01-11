@@ -1,0 +1,5 @@
+WIX1002,FUNDAMENTALS OF PROGRAMMING,2,3
+L,,MONDAY,0900 - 1100
+T,1,Dr. Ang Tan Fong,Day,Thursday,Time,0900 - 1200
+L,,Monday,0900 - 1100
+T,2,Dr. Nor Badrul Anuar Bin Juma'at,Day,Thursday,Time,0900 - 1200
