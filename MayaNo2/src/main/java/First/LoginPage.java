@@ -26,7 +26,7 @@ public class LoginPage {
         //student stores all staff information
         //staffCredentials is used explicitly by student login 
         Scanner input = new Scanner(System.in);
-        String mail ="", username ="", password, fullname, staff, status ="Professor";
+        String mail ="", username ="", password ="", fullname, staff, status ="Professor";
         int statusNum;
         // asking user credentials
         System.out.println("Please enter your Full Name");
@@ -57,9 +57,19 @@ public class LoginPage {
                 keepGoing = true;
             }
         }
-        System.out.println("Please enter your password");
-        password = input.nextLine();
-        //maybe confirmstion loop
+        keepGoing = true;
+        while(keepGoing){
+            System.out.println("Please enter your password");
+            password = input.nextLine();
+            System.out.println("Please reenter your password");
+            String pCheck = input.nextLine();
+            if(password.equals(pCheck))
+                keepGoing = false;
+            else{
+                System.out.println("Please try again");
+                keepGoing = true;
+            }
+        }
         System.out.println("Please enter your status");
         System.out.println("1. Lecturer\n2. Senior Lecturer\n3. Associate Professor\n4. Professor");
         System.out.println("Choose only 1");
@@ -84,47 +94,80 @@ public class LoginPage {
         //making all credentials into one string
         staff = username + "," + mail + "," + fullname + "," + password + "," +status;
 
-        try {
-            String filename = "staff.txt";
-            // creates new file if not there
-            // if file exists it will do nothing
-            File file = new File(filename);
-            
-            // appends existing file
-            PrintWriter outputStream = new PrintWriter(new FileOutputStream(file, true));
-            
-            //adds the string staff into the file
-            outputStream.println(staff);
-            
-            //flushes PrintWriter
-            //clear the stream of any element that may be or maybe not inside the stream
-            outputStream.flush();
-            //closes the file connection
-            outputStream.close();
-        } catch (IOException ex) {
-            System.out.println("IO Error " + ex.getMessage());
-        }
+        // add a checking for existing user
+        // use if
+        // if true execute try catch
+        // else print user already exist and continue to login
+        // method(username);
+        if(existingStaff(username)){
+            try {
+                String filename = "staff.txt";
+                // creates new file if not there
+                // if file exists it will do nothing
+                File file = new File(filename);
 
-        try {
-            String filename = "staffCredentials.txt";
-            // creates new file if not there
-            // if file exists it will do nothing
-            File file = new File(filename);
-            // appends existing file
-            PrintWriter outputStream = new PrintWriter(new FileOutputStream(file, true));
-            //adds the string staff into the file
-            outputStream.println(username);
-            outputStream.println(password);
-            //flushes PrintWriter
-            //clear the stream of any element that may be or maybe not inside the stream
-            outputStream.flush();
-            //closes the file connection
-            outputStream.close();
-        } catch (IOException ex) {
-            System.out.println("IO Error " + ex.getMessage());
+                // appends existing file
+                PrintWriter outputStream = new PrintWriter(new FileOutputStream(file, true));
+
+                //adds the string staff into the file
+                outputStream.println(staff);
+
+                //flushes PrintWriter
+                //clear the stream of any element that may be or maybe not inside the stream
+                outputStream.flush();
+                //closes the file connection
+                outputStream.close();
+            } catch (IOException ex) {
+                System.out.println("IO Error " + ex.getMessage());
+            }
+
+            try {
+                String filename = "staffCredentials.txt";
+                // creates new file if not there
+                // if file exists it will do nothing
+                File file = new File(filename);
+                // appends existing file
+                PrintWriter outputStream = new PrintWriter(new FileOutputStream(file, true));
+                //adds the string staff into the file
+                outputStream.println(username);
+                outputStream.println(password);
+                //flushes PrintWriter
+                //clear the stream of any element that may be or maybe not inside the stream
+                outputStream.flush();
+                //closes the file connection
+                outputStream.close();
+            } catch (IOException ex) {
+                System.out.println("IO Error " + ex.getMessage());
+            }
+        }
+        else{
+            System.out.println("The user is already registered");
+            
         }
     }
 
+    private boolean existingStaff(String name){
+        String filename = "staff.txt";
+        File file = new File(filename);
+        String currentLine;
+        String data[];
+        boolean ret = false;
+        try{
+            Scanner inputStream = new Scanner(new FileInputStream(file));
+            while(inputStream.hasNextLine()){
+                currentLine = inputStream.nextLine();
+                data = currentLine.split(",");
+                if(name.equals(data[0]))
+                    ret = true;
+                else
+                    ret = false;
+            }
+        } catch(FileNotFoundException ex){
+            System.out.println("File not found " +ex.getMessage());
+        }
+        return ret;
+    }
+    
     public void studentRegister() {
         //this method will ask users input for information
         //this method creates two files, student and studentCredentials
@@ -203,44 +246,71 @@ public class LoginPage {
         student = matrixNum + "," + mail + "," + fullname + "," + password
                 +"," +programme +"," +muet;
 
-        try {
-            String filename = "student.txt";
-            // creates new file if not there
-            // if file exists it will do nothing
-            File file = new File(filename);
-            // appends existing file
-            PrintWriter outputStream = new PrintWriter(new FileOutputStream(file, true));
-            //adds the string studentinto the file
-            outputStream.println(student);
-            //flushes PrintWriter
-            //clear the stream of any element that may be or maybe not inside the stream            
-            outputStream.flush();
-            //closes the file connection
-            outputStream.close();
-        } catch (IOException ex) {
-            System.out.println("IO Error " + ex.getMessage());
-        }
+        if(existingSudent(matrixNum)){
+            try {
+                String filename = "student.txt";
+                // creates new file if not there
+                // if file exists it will do nothing
+                File file = new File(filename);
+                // appends existing file
+                PrintWriter outputStream = new PrintWriter(new FileOutputStream(file, true));
+                //adds the string studentinto the file
+                outputStream.println(student);
+                //flushes PrintWriter
+                //clear the stream of any element that may be or maybe not inside the stream            
+                outputStream.flush();
+                //closes the file connection
+                outputStream.close();
+            } catch (IOException ex) {
+                System.out.println("IO Error " + ex.getMessage());
+            }
 
-        try {
-            String filename = "studentCredentials.txt";
-            // creates new file if not there
-            // if file exists it will do nothing
-            File file = new File(filename);
-            // appends existing file
-            PrintWriter outputStream = new PrintWriter(new FileOutputStream(file, true));
-            //adds the credentials into the file
-            outputStream.println(matrixNum);
-            outputStream.println(password);
-            //flushes PrintWriter
-            //clear the stream of any element that may be or maybe not inside the stream
-            outputStream.flush();
-            //closes the file connection
-            outputStream.close();
-        } catch (IOException ex) {
-            System.out.println("IO Error " + ex.getMessage());
+            try {
+                String filename = "studentCredentials.txt";
+                // creates new file if not there
+                // if file exists it will do nothing
+                File file = new File(filename);
+                // appends existing file
+                PrintWriter outputStream = new PrintWriter(new FileOutputStream(file, true));
+                //adds the credentials into the file
+                outputStream.println(matrixNum);
+                outputStream.println(password);
+                //flushes PrintWriter
+                //clear the stream of any element that may be or maybe not inside the stream
+                outputStream.flush();
+                //closes the file connection
+                outputStream.close();
+            } catch (IOException ex) {
+                System.out.println("IO Error " + ex.getMessage());
+            }
+        }
+        else{
+            System.out.println("This user is already registered");
         }
     }
 
+    private boolean existingSudent(String name){
+    String filename = "staff.txt";
+    File file = new File(filename);
+    String currentLine;
+    String data[];
+    boolean ret = false;
+    try{
+        Scanner inputStream = new Scanner(new FileInputStream(file));
+        while(inputStream.hasNextLine()){
+            currentLine = inputStream.nextLine();
+            data = currentLine.split(",");
+            if(name.equals(data[0]))
+                ret = true;
+            else
+                ret = false;
+        }
+    } catch(FileNotFoundException ex){
+        System.out.println("File not found " +ex.getMessage());
+    }
+    return ret;
+    }
+    
     public String staffLogin() {
         // this method will read from staffCredential file 
         // will ask for staff input for username and password
