@@ -80,6 +80,7 @@ public class LoginPage {
                 break;
         }
         
+        //maybe add salutations
         //making all credentials into one string
         staff = username + "," + mail + "," + fullname + "," + password + "," +status;
 
