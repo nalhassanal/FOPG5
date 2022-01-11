@@ -340,32 +340,7 @@ public class StaffPage {
     }
     
     private void view(){
-        Scanner staffinput = new Scanner(System.in);
-        System.out.println("Please choose an option:");
-        System.out.println("1. View all modules");
-        System.out.println("2. View modules taught occurrences taught by a specific lecturer");
-        
-        int choice = staffinput.nextInt();
-        switch (choice) {
-            case 1:
-                System.out.println("here");
-                break;
-/*
-                File modules = new File("allmodules.txt");
-                Scanner scan = new Scanner(modules);
-                while (scan.hasNextLine()) {
-                    System.out.println(scan.nextLine());
-                    break;
-                }
-*/
-            case 2:
-                System.out.println("here2");
-                break;
-                
-            default :
-                break;
 
-        }
     }
     private void stuClass(){
         
