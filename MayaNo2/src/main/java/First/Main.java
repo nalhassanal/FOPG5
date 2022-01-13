@@ -20,6 +20,30 @@ public class Main {
         int typeNum;
         in = new Scanner(System.in);
         int i = 0;
+        displayMenu();
+        String choice = in.next();
+        switch(choice.toUpperCase()){
+            case "A" :
+                logIn();
+                break;
+                
+            case "B" :
+                register();
+                break;
+                
+            case "X" :
+                System.out.println("Exiting normally...");
+                break;
+                
+            default :
+                i++;
+                if(i >= 3){
+                    System.out.println("You entered wrong three times\nProgram exited....");
+                    break;
+                }
+                else
+                    main(null);   
+        }
         do{
             System.out.println("What do you want to do?");
             System.out.println("1. Login\n2. Register");
@@ -54,6 +78,21 @@ public class Main {
         }while(keepGoing);
     }
     
+    public static void displayMenu(){
+        System.out.println();
+        System.out.println("A) LOGIN ");
+        System.out.println("B) REGISTER ");
+        System.out.println("X) EXIT");
+        System.out.println();
+        System.out.println("Please choose one : ");
+    }
+    
+    public static void logout(){
+        System.out.println();
+        System.out.println("Do you want to log out?");
+        System.out.println();
+    }
+    
     public static void register(){
         box = new popupBox();
         box.infoBox("WELCOME TO REGISTRATION PAGE", "REGISTRATION PAGE");
@@ -63,7 +102,7 @@ public class Main {
         log = new LoginPage();
         System.out.println("Do you want to register as student or staff? (student or staff)");
         type = in.nextLine();
-        switch(type){
+        switch(type.toLowerCase()){
             case "staff":
                 log.staffRegister();
                 logIn();
@@ -90,15 +129,28 @@ public class Main {
         in = new Scanner(System.in);
         System.out.println("Are you a student or staff? (student or staff)");
         type = in.nextLine();
-        switch(type){
+        switch(type.toLowerCase()){
             case "staff":
                 String login = log.staffLogin();
-                // display login result
-                System.out.println(login);
                 // this maybe need some confirmation
-                if(login.equals("Login successful"))
-                   staff.staff();
-                break;
+                if(login.equals("Login successful")){
+                    // display login result
+                    System.out.println(login);
+                    staff.staff();
+                    logout();
+                    String logout = in.next();
+                    if(logout.equalsIgnoreCase("yes")){
+                        break;
+                    }
+                    else
+                        staff.staff();
+                }
+                else{
+                    System.out.println("Login unsuccessful");
+                    System.out.println(login);
+                    break;
+                }
+                
             case "student":
                 login = log.studentLogin();
                 // display login result
