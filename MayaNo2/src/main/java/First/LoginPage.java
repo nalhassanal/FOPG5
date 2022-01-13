@@ -151,16 +151,16 @@ public class LoginPage {
         File file = new File(filename);
         String currentLine;
         String data[];
-        boolean ret = false;
+        boolean ret = true;
         try{
             Scanner inputStream = new Scanner(new FileInputStream(file));
             while(inputStream.hasNextLine()){
                 currentLine = inputStream.nextLine();
                 data = currentLine.split(",");
                 if(name.equals(data[0]))
-                    ret = true;
-                else
                     ret = false;
+                else
+                    ret = true;
             }
         } catch(FileNotFoundException ex){
             System.out.println("File not found " +ex.getMessage());
@@ -246,7 +246,7 @@ public class LoginPage {
         student = matrixNum + "," + mail + "," + fullname + "," + password
                 +"," +programme +"," +muet;
 
-        if(existingSudent(matrixNum)){
+        if(existingStudent(matrixNum)){
             try {
                 String filename = "student.txt";
                 // creates new file if not there
@@ -289,21 +289,21 @@ public class LoginPage {
         }
     }
 
-    private boolean existingSudent(String name){
+    private boolean existingStudent(String name){
     String filename = "staff.txt";
     File file = new File(filename);
     String currentLine;
     String data[];
-    boolean ret = false;
+    boolean ret = true;
     try{
         Scanner inputStream = new Scanner(new FileInputStream(file));
         while(inputStream.hasNextLine()){
             currentLine = inputStream.nextLine();
             data = currentLine.split(",");
             if(name.equals(data[0]))
-                ret = true;
-            else
                 ret = false;
+            else
+                ret = true;
         }
     } catch(FileNotFoundException ex){
         System.out.println("File not found " +ex.getMessage());
