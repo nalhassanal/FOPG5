@@ -15,7 +15,7 @@ public class Student {
         
     }
     
-    public static void student(){
+    public void student(){
         Scanner sc = new Scanner(System.in);
         /*
         addmodule addmoduleobject = new addmodule();
