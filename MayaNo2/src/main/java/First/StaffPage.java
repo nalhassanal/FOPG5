@@ -22,6 +22,10 @@ public class StaffPage {
     public StaffPage() {
     }
     
+    // maybe add way to edit staff account
+    // maybe delete account
+    // when they delete, java deletes everything, in staff, staffcredential and also logger,
+    // they might still be in the program, but cannot do important stuff like add module
     public void staff(){
         box = new popupBox();
         box.infoBox("WELCOME TO STAFF SECTION", "STAFF");
@@ -112,82 +116,341 @@ public class StaffPage {
     // maybe this method can only be accessed by higher ranking lecturers only
     private String addModule(){
         input = new Scanner(System.in);
-        int numAct , numofOcc , credits = 1 ;
+        int [] inACT;
+        String [] ACT = {};
+        int numAct = 1, numofOcc = 1, credits = 1 ;
+        String module;
         String moduleCode = "WIX1001", moduleName = "Computing Maths" , Activities = "Lab";
         String ret = "Unsuccessfull Module Addition";
         final String ACT1 = "Lecture", ACT2 = "Tutorial" , ACT3 = "Lab";
         System.out.println("Welcome to add module!");
-       
-        // ask module code
-        System.out.println("Please enter the module code > ");
-        moduleCode = input.nextLine();
-       
-        // ask module name
-        System.out.println("Please enter the module name > ");
-        moduleName = input.nextLine();
+        System.out.println();
+        System.out.println("A) add english course");
+        System.out.println("B) add normal course");
+        System.out.println("C) add specialization course");
+        System.out.println("Please enter your choice :");
+        String option = input.nextLine();
         
-        // ask the number of occurence
-        System.out.println("Please enter the number of occurences > ");
-        numofOcc = input.nextInt();
-        
-        // ask the number of credit hours
-        System.out.println("Please enter the number of credits > ");
-        credits = input.nextInt();
-       
-        // ask the number of activities
-        System.out.println("How many activities will this module have?\n( 1 OR 2 )");
-        numAct = input.nextInt();
-        int [] inACT = new int [numAct];
-        String [] ACT = new String [numAct];
-        
-        // ask the type of activities
-        System.out.println("Please enter the activities type");
-        System.out.println("1. Lecture\t2. Tutorial\t 3. Lab");
-        for ( int i = 0 ; i < numAct ; i++){
-            inACT [i] = input.nextInt();
-            switch (inACT[i]) {
-                case 1:
-                    // store the activity type into activity array
-                    ACT [i] = ACT1;
-                    break;
-                case 2:
-                    ACT [i] = ACT2;
-                    break;
-                case 3:
-                    ACT [i] = ACT3;
-                    break;
-                default:
-                    break;
-            }
-        }
-        
-        if ( numAct == 1){
-            Activities = ACT[0];
-        }
-        else if ( numAct == 2){
-            Activities = ACT[0] +" & " +ACT[1];
-        }
-      
-        try{
-            // this is the file for specific module
-            String filename = moduleCode + ".txt";
-            File file = new File(filename);
-            
-            PrintWriter outputStream = new PrintWriter(new FileOutputStream(file,true));
-            if ( numAct == 1){
+        switch(option.toUpperCase()){
+            case "A":
+                // variable string depend on case
+                // english =string
+                // method(string)
+                // ask module code
+                System.out.println("Please enter the module code > ");
+                moduleCode = input.nextLine();
+
+                // ask module name
+                System.out.println("Please enter the module name > ");
+                moduleName = input.nextLine();
+
+                // ask the number of occurence
+                System.out.println("Please enter the number of occurences > ");
+                numofOcc = input.nextInt();
+
+                // ask the number of credit hours
+                System.out.println("Please enter the number of credits > ");
+                credits = input.nextInt();
+
+                // ask the number of activities
+                System.out.println("How many activities will this module have?\n( 1 OR 2 )");
+                numAct = input.nextInt();
+                inACT = new int [numAct];
+                ACT = new String [numAct];
+
+                // ask the type of activities
+                System.out.println("Please enter the activities type");
+                System.out.println("1. Lecture\t2. Tutorial\t 3. Lab");
+                for ( int i = 0 ; i < numAct ; i++){
+                    inACT [i] = input.nextInt();
+                    switch (inACT[i]) {
+                        case 1:
+                            // store the activity type into activity array
+                            ACT [i] = ACT1;
+                            break;
+                        case 2:
+                            ACT [i] = ACT2;
+                            break;
+                        case 3:
+                            ACT [i] = ACT3;
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                if ( numAct == 1){
                 Activities = ACT[0];
-            }
-            else if ( numAct == 2){
+                }
+                else if ( numAct == 2){
                 Activities = ACT[0] +" & " +ACT[1];
-            }
-            // info seperated by comma
-            // additional info such as lecture name will 
-            // added at editModule
-            outputStream.println(moduleCode +","+moduleName+","+numAct+","+numofOcc);
-            outputStream.flush();
-            outputStream.close();
-        } catch(IOException ex) {
-            System.out.println("IO Error " +ex.getMessage());
+                }
+                module = moduleCode +"," +moduleName+"," +numofOcc +","+credits+","+Activities;
+                try{
+                    String filename = "Englishmodulelist.txt";
+                    File file = new File(filename);
+                    PrintWriter outputStream = new PrintWriter(new FileOutputStream(file, true));
+                    System.out.println("Add information about " +ACT2 +"?") ;
+                    System.out.println("yes or no");
+                    String add = input.next();
+
+                    String name="" , day ="Monday" , time = "9";
+                    if(add.toLowerCase().equals("yes")){
+                        try{
+                            String filename1 = moduleCode +".txt";
+                            File file1 = new File(filename1);
+                            PrintWriter outputStream1 = new PrintWriter(new FileOutputStream(file1,true));
+                            if(ACT[0].equals(ACT1)){
+                                System.out.println("Add information about " +ACT[0] );
+                                System.out.println("Who will teach " +ACT[0] +" session?");
+                                name = input.nextLine();
+                                System.out.println("What day & time will it occur?");
+                                day = input.nextLine();
+
+
+                                outputStream1.println("L,"+name+","+day+","+time);
+                            }
+                            else if(ACT[0].equals(ACT2)){
+                                System.out.println("Add information about " +ACT[0] );
+                                System.out.println("Who will teach " +ACT[0] +" session?");
+                                name = input.nextLine();
+                                System.out.println("What day & time will it occur?");
+                                day = input.nextLine();
+
+
+                                outputStream1.println("T,"+name+","+day+","+time);
+                            }
+                            
+                            outputStream1.flush();
+                            outputStream1.close();
+                            
+                        } catch(IOException ex){
+                            System.out.println("IO Error " + ex.getMessage());
+                        }
+                    }
+                    else
+                        System.out.println("You can add information in edit module...");
+                    outputStream.flush();
+                    outputStream.close();
+
+                } catch (IOException ex){
+                    System.out.println("IO Error " +ex.getMessage());
+                }
+                
+                break;
+
+            case "B":
+                // ask module code
+                System.out.println("Please enter the module code > ");
+                moduleCode = input.nextLine();
+
+                // ask module name
+                System.out.println("Please enter the module name > ");
+                moduleName = input.nextLine();
+
+                // ask the number of occurence
+                System.out.println("Please enter the number of occurences > ");
+                numofOcc = input.nextInt();
+
+                // ask the number of credit hours
+                System.out.println("Please enter the number of credits > ");
+                credits = input.nextInt();
+
+                // ask the number of activities
+                System.out.println("How many activities will this module have?\n( 1 OR 2 )");
+                numAct = input.nextInt();
+                inACT = new int [numAct];
+                ACT = new String [numAct];
+
+                // ask the type of activities
+                System.out.println("Please enter the activities type");
+                System.out.println("1. Lecture\t2. Tutorial\t 3. Lab");
+                for ( int i = 0 ; i < numAct ; i++){
+                    inACT [i] = input.nextInt();
+                    switch (inACT[i]) {
+                        case 1:
+                            // store the activity type into activity array
+                            ACT [i] = ACT1;
+                            break;
+                        case 2:
+                            ACT [i] = ACT2;
+                            break;
+                        case 3:
+                            ACT [i] = ACT3;
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                if ( numAct == 1){
+                Activities = ACT[0];
+                }
+                else if ( numAct == 2){
+                Activities = ACT[0] +" & " +ACT[1];
+                }
+                try{
+                    String filename = "modulelist.txt";
+                    File file = new File(filename);
+                    PrintWriter outputStream = new PrintWriter(new FileOutputStream(file, true));
+                    System.out.println("Add information about " +ACT1 +"?") ;
+                    System.out.println("yes or no");
+                    String add = input.next();
+
+                    String name="" , day ="Monday" , time = "9";
+                    if(add.toLowerCase().equals("yes")){
+                        try{
+                            String filename1 = moduleCode +".txt";
+                            File file1 = new File(filename1);
+                            PrintWriter outputStream1 = new PrintWriter(new FileOutputStream(file1,true));
+                            // kalau lecture
+                            if(ACT[0].equals(ACT1)){
+                                System.out.println("Add information about " +ACT[0] );
+                                // tak maasuk tak bagi input
+                                System.out.println("Who will teach " +ACT[0] +" session?");
+                                name = input.nextLine();
+                                System.out.println("What day & time will it occur?");
+                                day = input.nextLine();
+                                time = input.nextLine();
+
+                                outputStream1.println("L,"+name+","+day+","+time);
+                            }
+                            // kalau tutorial
+                            else if(ACT[0].equals(ACT2)){
+                                
+                                System.out.println("Add information about " +ACT[0] );
+                                System.out.println("Who will teach " +ACT[0] +" session?");
+                                name = input.nextLine();
+                                System.out.println("What day & time will it occur?");
+                                day = input.nextLine();
+
+
+                                outputStream1.println("T,"+name+","+day+","+time);
+                            }
+                            
+                            outputStream1.flush();
+                            outputStream1.close();
+                            
+                        } catch(IOException ex){
+                            System.out.println("IO Error " + ex.getMessage());
+                        }
+                    }
+                    else
+                        System.out.println("You can add information in edit module...");
+                    outputStream.flush();
+                    outputStream.close();
+
+                } catch (IOException ex){
+                    System.out.println("IO Error " +ex.getMessage());
+                }
+                break;
+
+            case "C":
+                // ask module code
+                System.out.println("Please enter the module code > ");
+                moduleCode = input.nextLine();
+
+                // ask module name
+                System.out.println("Please enter the module name > ");
+                moduleName = input.nextLine();
+
+                // ask the number of occurence
+                System.out.println("Please enter the number of occurences > ");
+                numofOcc = input.nextInt();
+
+                // ask the number of credit hours
+                System.out.println("Please enter the number of credits > ");
+                credits = input.nextInt();
+
+                // ask the number of activities
+                System.out.println("How many activities will this module have?\n( 1 OR 2 )");
+                numAct = input.nextInt();
+                inACT = new int [numAct];
+                ACT = new String [numAct];
+
+                // ask the type of activities
+                System.out.println("Please enter the activities type");
+                System.out.println("1. Lecture\t2. Tutorial\t 3. Lab");
+                for ( int i = 0 ; i < numAct ; i++){
+                    inACT [i] = input.nextInt();
+                    switch (inACT[i]) {
+                        case 1:
+                            // store the activity type into activity array
+                            ACT [i] = ACT1;
+                            break;
+                        case 2:
+                            ACT [i] = ACT2;
+                            break;
+                        case 3:
+                            ACT [i] = ACT3;
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                if ( numAct == 1){
+                Activities = ACT[0];
+                }
+                else if ( numAct == 2){
+                Activities = ACT[0] +" & " +ACT[1];
+                }
+                module = moduleCode +"," +moduleName+"," +numofOcc +","+credits+","+Activities;
+                try{
+                    String filename = "Specializationmodulelist.txt";
+                    File file = new File(filename);
+                    PrintWriter outputStream = new PrintWriter(new FileOutputStream(file, true));
+                    // add info about course
+                    outputStream.println(module);
+                    System.out.println("Add "+ACT[0]+" information ?") ;
+                    System.out.println("yes or no");
+                    String add = input.next();
+
+                    String name="" , day ="Monday" , time = "9";
+                    if(add.toLowerCase().equals("yes")){ // here should be the specific course file
+                        // add another try catch
+                        try{
+                            String filename1 = moduleCode +".txt";
+                            File file1 = new File(filename1);
+                            PrintWriter outputStream1 = new PrintWriter(new FileOutputStream(file1,true));
+                            if(ACT[0].equals(ACT1)){
+                                System.out.println("Add information about " +ACT[0] );
+                                System.out.println("Who will teach " +ACT[0] +" session?");
+                                name = input.nextLine();
+                                System.out.println("What day & time will it occur?");
+                                day = input.nextLine();
+
+
+                                outputStream1.println("L,"+name+","+day+","+time);
+                            }
+                            else if(ACT[0].equals(ACT2)){
+                                System.out.println("Add information about " +ACT[0] );
+                                System.out.println("Who will teach " +ACT[0] +" session?");
+                                name = input.nextLine();
+                                System.out.println("What day & time will it occur?");
+                                day = input.nextLine();
+
+
+                                outputStream1.println("T,"+name+","+day+","+time);
+                            }
+                            
+                            outputStream1.flush();
+                            outputStream1.close();
+                            
+                        } catch(IOException ex){
+                            System.out.println("IO Error " + ex.getMessage());
+                        }
+                    }
+                    else
+                        System.out.println("You can add information in edit module...");
+                    outputStream.flush();
+                    outputStream.close();
+
+                } catch (IOException ex){
+                    System.out.println("IO Error " +ex.getMessage());
+                }
+                break;
+               
+            default:
+                System.out.println("Invalid option");
+                break;
         }
         
         try{
@@ -287,9 +550,28 @@ public class StaffPage {
         File modulefile = new File(filename);     
         
         int index;
-        String name;
-        String day,time;
+        String name = "";
+        String day = "Monday",time = "9";
         String act2Name = "" ,act2day = "Monday",act2time = "0900 - 1100";
+            System.out.println("Please enter the index of this occurence");
+            index = input.nextInt();
+            /*
+            // this does not work for some reason
+            
+            System.out.println("Please enter the name for the Lecture activity"); 
+            name = input.next();
+
+            System.out.println("Please enter the day and time will the Lecture occur\n"
+                    + "Format : Monday\n1300 - 1500 (24 hour)");
+            day = input.nextLine();
+            time = input.nextLine();
+*/
+            // check if existing file already have lecture || ACT[0] information
+            // check if existing file already have lecture || ACT[0] information
+            // check if existing file already have lecture || ACT[0] information
+            // check if existing file already have lecture || ACT[0] information
+            // check if existing file already have lecture || ACT[0] information
+            // if true only do below
         try{
             // appends existing file
             PrintWriter outputStream = new PrintWriter(new FileOutputStream(modulefile,true));
@@ -299,18 +581,6 @@ public class StaffPage {
             data = currentLine.split(",");
             numAct= Integer.parseInt(data[2]);
             
-            System.out.println("Please enter the index of this occurence");
-            index = input.nextInt();
-            
-            // this does not work for some reason
-            System.out.println("Please enter the name for the Lecture activity"); 
-            name = input.nextLine();
-
-            System.out.println("Please enter the day and time will the Lecture occur\n"
-                    + "Format : Monday\n1300 - 1500 (24 hour)");
-            day = input.nextLine();
-            time = input.nextLine();
-
             if (numAct > 1 ){
                 System.out.println("Please enter the name for the Lab/Tutorial Activity");
                 act2Name = input.nextLine();
@@ -340,7 +610,7 @@ public class StaffPage {
     }
     
     private void view(){
-
+        
     }
     private void stuClass(){
         
