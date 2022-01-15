@@ -1,1 +1,6 @@
-WIX1001,COMPUTING MATHEMATICS I,2,3
+L,1,Dr. Lim Chee Kau,Monday,1600 - 1800
+T,1,Dr. Lim Chee Kau,Wednesday,1200 - 1300
+L,2,Dr. Lim Chee Kau,Monday,1600 - 1800
+T,2,Dr. Aznul Qalid Bin Md Sabri,Wednesday,1300 - 1400
+L,3,Dr. Lim Chee Kau,Monday,1600 - 1800
+T,3,Dr. Erma Rahayu Binti Mohd Faizal Abdullah,Wednesday,1400 - 1500
