@@ -19,7 +19,7 @@ wailam,wlhoo@um.edu.my,Dr. Hoo Wai Lam,hoowwl,Senior Lecturer
 hasank,hasankahtan@um.edu.my,Dr. Hasan Kahtan Khalaf,kahtankhasan,Senior Lecturer
 amirkamsin,amir@um.edu.my,Dr. Amirrudin Bin Kamsin,amirkamsin,Senior Lecturer
 ywteh,tehyw@um.edu.my,Dr. Teh Ying Wah,yingwahteh,Professor
-lipyee,porlip@um.edu.my,Dr. Por Lip Yee @ Por Khoon sun,lipyeeKS,Associate Professor
+lipyee,porlip@um.edu.my,Dr. Por Lip Yee @ Por Khoon Sun,lipyeeKS,Associate Professor
 kama,kamarazaman@um.edu.my,Kamarazaman Bin Md Said,kamaraSaid,Senior Lecturer
 ainazlin,ainaazlin@um.edu.my,Aina Azlin Binti Mohamat Arif,ainaarif,Lecturer
 awinsya,awinsyakirin@um.edu.my,Nor Syakirin Binti Mohamed Nasrudin,kirinNasrudin,Lecturer
