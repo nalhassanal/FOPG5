@@ -33,7 +33,6 @@ public class StaffPage {
         int menu, count = 0;
         boolean keepGoing = true;
         while ( keepGoing){
-            
             System.out.println();
             System.out.println("Welcome to the staff page!!");
             System.out.println("1. Modify Modules");
@@ -70,52 +69,59 @@ public class StaffPage {
     }
     private LoginPage log;
     private void module(){
-        int menu = 0;
+        String menu = "";
         log = new LoginPage();
         input = new Scanner(System.in);
-        System.out.println("What do you want to do here?");
-        System.out.println("1. Create a new module");
-        System.out.println("2. Delete existing module");
-        System.out.println("3. Edit a module");
-        System.out.println("4. Return");
-        System.out.println("Enter the number you want >> ");
-        menu = input.nextInt();
-        if ( menu == 1){            
-            if (log.staffTest() ){
-                String process = addModule();
-                System.out.println(process);
-            }
-            else{
-                System.out.println("You are not allowed access in section");
-                System.out.println("Please choose another number");
-            }
-            module();
+        boolean keepGoing = true;
+        while (keepGoing){
+            System.out.println("What do you want to do here?");
+            System.out.println("A) Create a new module");
+            System.out.println("B) Delete existing module");
+            System.out.println("C) Edit a module");
+            System.out.println("R) Return");
+            System.out.println("Enter the number you want >> ");
+            menu = input.next();
             
-        }
-        else if ( menu == 2){
-            if (log.staffTest()){
-                String process = deleteModule();
-                System.out.println(process);
+            switch(menu.toUpperCase()){
+                case "A":
+                    if (log.staffTest()) {
+                        String process = addModule();
+                        System.out.println(process);
+                    } else {
+                        System.out.println("You are not allowed access in section");
+                        System.out.println("Please choose another number");
+                    }
+                    break;
+                    
+                case "B":
+                    if (log.staffTest()) {
+                        String process = deleteModule();
+                        System.out.println(process);
+                    } else {
+                        System.out.println("You are not allowed access in section");
+                        System.out.println("Please choose another number");
+                    }
+                    break;
+                    
+                case "C":
+                    String process = editModule();
+                    System.out.println(process);
+                    break;
+                    
+                case "R":
+                    keepGoing = false;
+                    System.out.println("Returning to staff page...");
+                    System.out.println();
+                    break;
+                    
+                default:
+                    System.out.println("Invalid Input\nPlease Try Again\n");
+                    System.out.println();
+                    break;                
             }
-            else{
-                System.out.println("You are not allowed access in section");
-                System.out.println("Please choose another number");
-            }
-            module();
-        }
-        else if ( menu == 3){
-            String process = editModule();
-            System.out.println(process);
-            module();
-        }
-        else if ( menu == 4){
-            
-        }
-        else{
-            System.out.println("invalid number , try again");
-            module();
         }
     }
+    
     private String moduleCode , moduleName , Activities , module;
     private int numofOcc  = 1, credits = 1, numAct = 1;
     private int [] inACT;
@@ -395,10 +401,112 @@ public class StaffPage {
     }
     
     private void view(){
-        
+        boolean keepGoing = true;
+        while (keepGoing){
+            System.out.println("Please choose an option:");
+            System.out.println("A) View all modules");
+            System.out.println("B) View modules taught by you");
+            System.out.println("R) Return");
+            Scanner staffinput = new Scanner(System.in);
+            String choice = staffinput.next();
+            switch (choice.toUpperCase()) {
+                case "A":
+                    File modules = new File("allmodules.txt");
+                    try{
+                        Scanner scan = new Scanner(modules);
+                        while (scan.hasNextLine()) {
+                            System.out.println(scan.nextLine());
+                        }
+                        break;
+                    }
+                    catch(FileNotFoundException e){
+                        System.out.println("File not found " + e.getMessage());
+                    }
+
+                case "B":
+                    String [] data;
+                    String username = "" , currentLine;
+                    try{
+                        Scanner inputStream = new Scanner(new FileInputStream("loggerStaff.txt"));
+                        inputStream.nextLine(); // skips username
+                        username = inputStream.nextLine();
+                        inputStream.close();
+                    } catch (FileNotFoundException ex){
+                        System.out.println("File not found " +ex.getMessage());
+                    }
+                    File moduleTaught = new File(username+".txt");
+                    
+                    try{
+                        Scanner inputStream = new Scanner(new FileInputStream(moduleTaught));
+                        while (inputStream.hasNextLine()){
+                            currentLine = inputStream.nextLine();
+                            data = currentLine.split(",");
+                            
+                            System.out.println(data[0] + " , " + data[1] );
+                        }
+                        inputStream.close();
+                    } catch(FileNotFoundException ex){
+                        System.out.println("File not found "+ex.getMessage());
+                    }
+                    break;
+
+                case "R":
+                    keepGoing = false;
+                    System.out.println("Returning to staff page...");
+                    System.out.println();
+                    break;
+                    
+                default:
+                    System.out.println("Invalid Input\nPlease Try Again\n");
+                    System.out.println();
+                    break;
+                    
+
+
+            }
+        }
     }
+
     private void stuClass(){
+        String username = "";
+        try {
+            Scanner inputStream = new Scanner(new FileInputStream("loggerStaff.txt"));
+            inputStream.nextLine(); // skips username
+            username = inputStream.nextLine();
+            inputStream.close();
+        } catch (FileNotFoundException ex) {
+            System.out.println("File not found " + ex.getMessage());
+        }
         
+        File moduleTaught = new File(username + ".txt");
+        System.out.println("Here are all the students in all of your modules");
+        try {
+            Scanner inputStream = new Scanner(new FileInputStream(moduleTaught));
+            String all;
+            String [] allData , prevdata ={};
+            int i = 0;
+            while (inputStream.hasNextLine()) {
+                all = inputStream.nextLine();
+                allData = all.split(",");
+                if ( i == 0){
+                System.out.println();
+                System.out.println("Module Code : ");
+                System.out.println(allData[0]);
+                }
+                System.out.println(all); // this for view stuClass
+                if(!allData[0].equals(prevdata[0])){
+                    System.out.println();
+                    System.out.println("New Module Code : ");
+                    System.out.println(allData[0]);
+                }
+                i++;
+                prevdata = allData.clone();
+            }
+            System.out.println("You have " +(i + 1) +" students in your class(es)");
+            inputStream.close();
+        } catch (FileNotFoundException ex) {
+            System.out.println("File not found " + ex.getMessage());
+        }
     }
     
 }
