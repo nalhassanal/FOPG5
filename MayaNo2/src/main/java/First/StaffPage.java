@@ -324,7 +324,7 @@ public class StaffPage {
         String [] activities = {};
         int activitiesLen = 2;
         String [] data;
-        File modulefile = new File(filename);     
+             
         File allModules = new File(filename1);
         
         // to get the type of activity
@@ -344,38 +344,42 @@ public class StaffPage {
             System.out.println("File not found " +ex.getMessage());
         }
         
+        File modulefile = new File(filename);
         int index;
         String name = "" , information;
         String day = "Monday",time = "9";
+        String mode = "L";
         System.out.println("Please enter the index of this occurence");
         index = input.nextInt();
         for ( int i = 0; i<activitiesLen ; i++){
             System.out.println();
-            System.out.println("Enter "+activities[i] +" information >> ");
+            System.out.println("Enter "+activities[i].trim() +" information >> ");
             System.out.println("Enter name > ");
+            if ( activities[i].trim().equals("Tutorial")){
+                System.out.println("Press Enter to continue");
+            } else if( activities[i].trim().equals("Tutorial"))
+                System.out.println("Press Enter to continue");
+            input.nextLine();
             name = input.nextLine();
+            
             System.out.println();
+            System.out.println(name);
             System.out.println("Enter Day and time\nExample Monday, 0900 - 1000 >> ");
             day = input.nextLine();
             time = input.nextLine();
             
+            if(activities[i].trim().equals("Lecture"))
+                mode = "L";
+            else if(activities[i].trim().equals("Tutorial"))
+                mode = "T";
+            else if(activities[i].trim().equals("Lab"))
+                mode = "TL";
+            information = mode+","+index+","+name+","+day+","+time;
             try{
                 PrintWriter outputStream = new PrintWriter(new FileOutputStream(modulefile, true));
-                if(activities[i].equals("Lecture")){
-                    // mode , occurence, name, day,time
-                    information = "L,"+index+","+name+","+day+","+time;
-                    outputStream.println(information);
-                }
-                else if(activities[i].equals("Tutorial")){
-                    // mode , occurence, name, day,time
-                    information = "T,"+index+","+name+","+day+","+time;
-                    outputStream.println(information);
-                }
-                else if(activities[i].equals("Lab")){
-                    // mode , occurence, name, day,time
-                    information = "TL,"+index+","+name+","+day+","+time;
-                    outputStream.println(information);
-                }
+                outputStream.println(information);
+                outputStream.flush();
+                outputStream.close();
             } catch (IOException ex){
                 System.out.println("IO Error " + ex.getMessage());
             }
