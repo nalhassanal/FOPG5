@@ -1,1 +1,3 @@
-GLT1021,PROFICIENCY IN ENGLISH II,1,3
+T,1,Nor Aafina Binti Mohd Zamil,Thursday,1400 - 1600
+T,2,Kiranjeet Kaur A/P Mukhtiar Singh,Thursday,1400 - 1600
+T,3,Eleena Binti Hasbullah,Thursday,1400 - 1600
