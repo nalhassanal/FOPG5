@@ -401,31 +401,48 @@ public class StaffPage {
     }
     
     private void view(){
+        /*
+        this view methods have two options
+        1. is to view all created modules with the exception of activity info
+        2. is to view modules taught by the staff
+        this method accepts has no inputs and outputs the choice from the staff
+        */
+        
         boolean keepGoing = true;
         while (keepGoing){
+            // option menu block
             System.out.println("Please choose an option:");
             System.out.println("A) View all modules");
             System.out.println("B) View modules taught by you");
             System.out.println("R) Return");
             Scanner staffinput = new Scanner(System.in);
             String choice = staffinput.next();
+            // selection block
             switch (choice.toUpperCase()) {
                 case "A":
                     File modules = new File("allmodules.txt");
                     try{
-                        Scanner scan = new Scanner(modules);
-                        while (scan.hasNextLine()) {
-                            System.out.println(scan.nextLine());
+                        // this try block is to print all information in
+                        // allmodules.txt
+                        // with no seperation between different types of modules
+                        Scanner inputStream = new Scanner(new FileInputStream(modules));
+                        while (inputStream.hasNextLine()) {
+                            System.out.println(inputStream.nextLine());
+                            System.out.println();
                         }
-                        break;
-                    }
-                    catch(FileNotFoundException e){
+                        inputStream.close();
+                    }catch(FileNotFoundException e){
                         System.out.println("File not found " + e.getMessage());
+                    }finally {
+                        break;
                     }
 
                 case "B":
                     String [] data;
                     String username = "" , currentLine;
+                    
+                    // this block is to get the staff's name
+                    // for next block purposes
                     try{
                         Scanner inputStream = new Scanner(new FileInputStream("loggerStaff.txt"));
                         inputStream.nextLine(); // skips username
@@ -434,15 +451,17 @@ public class StaffPage {
                     } catch (FileNotFoundException ex){
                         System.out.println("File not found " +ex.getMessage());
                     }
-                    File moduleTaught = new File(username+".txt");
                     
+                    // this block is to read from the staff's txt file
+                    // and prints out all of their modules that they will be teaching
+                    File moduleTaught = new File(username+".txt");
                     try{
                         Scanner inputStream = new Scanner(new FileInputStream(moduleTaught));
                         while (inputStream.hasNextLine()){
                             currentLine = inputStream.nextLine();
                             data = currentLine.split(",");
-                            
-                            System.out.println(data[0] + " , " + data[1] );
+                            System.out.println(data[0]); // just shows the module code only
+                            System.out.println();
                         }
                         inputStream.close();
                     } catch(FileNotFoundException ex){
@@ -451,12 +470,14 @@ public class StaffPage {
                     break;
 
                 case "R":
+                    // breaks the while loop and returns to staff main page
                     keepGoing = false;
                     System.out.println("Returning to staff page...");
                     System.out.println();
                     break;
                     
                 default:
+                    // error message that prompts user to try again
                     System.out.println("Invalid Input\nPlease Try Again\n");
                     System.out.println();
                     break;
@@ -468,6 +489,14 @@ public class StaffPage {
     }
 
     private void stuClass(){
+        /*
+        This method can be accessed by all staff
+        this method accepts nothing and returns with the full list of students
+        under the staff's care
+        */
+        
+        // this block is to get the staff's name
+        // for next block purposes
         String username = "";
         try {
             Scanner inputStream = new Scanner(new FileInputStream("loggerStaff.txt"));
@@ -478,6 +507,8 @@ public class StaffPage {
             System.out.println("File not found " + ex.getMessage());
         }
         
+        // this block is to read from the staff's txt file
+        // and prints out all of their modules and students in their care
         File moduleTaught = new File(username + ".txt");
         System.out.println("Here are all the students in all of your modules");
         try {
@@ -488,21 +519,26 @@ public class StaffPage {
             while (inputStream.hasNextLine()) {
                 all = inputStream.nextLine();
                 allData = all.split(",");
+                
                 if ( i == 0){
                 System.out.println();
                 System.out.println("Module Code : ");
                 System.out.println(allData[0]);
                 }
-                System.out.println(all); // this for view stuClass
-                if(!allData[0].equals(prevdata[0])){
-                    System.out.println();
-                    System.out.println("New Module Code : ");
-                    System.out.println(allData[0]);
+                System.out.println(all); // prints out all the necessary info
+                if( i > 0){
+                    // if !("Wix1001".equals("Wix1002") then true
+                    // this is just to seperate between two or more modules
+                    if(!allData[0].equals(prevdata[0])){
+                        System.out.println();
+                        System.out.println("New Module Code : ");
+                        System.out.println(allData[0]);
+                    }
                 }
                 i++;
-                prevdata = allData.clone();
+                prevdata = allData.clone(); // this is for comparing purposes
             }
-            System.out.println("You have " +(i + 1) +" students in your class(es)");
+            System.out.println("You have " +(i - 1) +" students in your class(es)");
             inputStream.close();
         } catch (FileNotFoundException ex) {
             System.out.println("File not found " + ex.getMessage());
