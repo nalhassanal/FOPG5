@@ -1,1 +1,2 @@
-WIA2001,DATABASE,2,1
+L,1,Dr. Maizatul Akmar Binti Ismail,Monday,1400 - 1600
+T,1,Dr. Maizatul Akmar Binti Ismail,Wednesday,1100 - 1200
