@@ -325,10 +325,26 @@ public class LoginPage {
         passInput = in.nextLine();
         
         try{
-            String filename = "loggerStaff.txt";
+            String [] data;
+            String filename = "loggerStaff.txt" , currentLine , name = "";
             File file = new File(filename);
+            try{
+                Scanner inputStream = new Scanner ( new FileInputStream("staff.txt"));
+
+                while (inputStream.hasNextLine()){
+                    currentLine = inputStream.nextLine();
+                    data = currentLine.split(",");
+                    if(data[0].equals(userInput)){
+                        name = data[2];
+                    }
+                }
+                inputStream.close();
+            } catch(FileNotFoundException ex){
+                System.out.println("File not found "+ex.getMessage());
+            }
             PrintWriter outputStream = new PrintWriter(new FileOutputStream(file));
-            outputStream.print(userInput);
+            outputStream.println(userInput);
+            outputStream.println(name);
             outputStream.flush();
             outputStream.close();
         } catch(IOException ex){
