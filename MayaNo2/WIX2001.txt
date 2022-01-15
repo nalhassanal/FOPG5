@@ -1,1 +1,2 @@
-WIX2001,THINKING AND COMMUNICATION SKILLS,1,2
+T,1,Hannyzzura Binti Pal @ Affal,Thursday,1000 - 1300
+T,2,Mas Idayu Binti Md Sabri,Thursday,1300 - 1600
