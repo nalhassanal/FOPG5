@@ -33,7 +33,8 @@ public class StaffPage {
         int menu, count = 0;
         boolean keepGoing = true;
         while ( keepGoing){
-            count++;
+            
+            System.out.println();
             System.out.println("Welcome to the staff page!!");
             System.out.println("1. Modify Modules");
             System.out.println("2. View Modules");
@@ -54,11 +55,15 @@ public class StaffPage {
                     break;
                 case 4:
                     keepGoing = false;
+                    System.out.println("Exiting Staff page...");
                     break;
                 default:
+                    count++;
                     System.out.println("Invalid number, try again");
-                    if ( count >= 3)
+                    if ( count >= 3){
                         keepGoing = false;
+                        System.out.println("3 failed tries.\nForcefully exit...");
+                    }
                     break;
             }
         }        
