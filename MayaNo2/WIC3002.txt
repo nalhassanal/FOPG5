@@ -1,1 +1,2 @@
-WIC3002,CRYPTOGRAPHY,2,1
+L,1,Dr. Por Lip Yee @ Por Khoon Sun,Wednesday,0900 - 1100
+T,1,Dr. Por Lip Yee @ Por Khoon Sun,Friday,1400 - 1500
