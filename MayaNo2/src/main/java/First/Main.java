@@ -17,7 +17,6 @@ public class Main {
     public static void main(String[] args){
         box = new popupBox();
         box.infoBox("WELCOME TO MAYA 2.0", "MAYA");
-        int typeNum;
         in = new Scanner(System.in);
         int i = 0;
         displayMenu();
@@ -44,38 +43,7 @@ public class Main {
                 else
                     main(null);   
         }
-        do{
-            System.out.println("What do you want to do?");
-            System.out.println("1. Login\n2. Register");
-            typeNum = in.nextInt();
-            
-            switch(typeNum){
-                case 1:
-                    logIn();
-                    break;
-                case 2:
-                    register();
-                    break;
-                default:
-                    i++;
-                    System.out.println("Invalid Input\nPlease Try Again");
-                    main(null);
-                    break;
-            }
-            // asks user if they want to log out
-            System.out.println("do you want to log out? (yes or no)");
-            type = in.nextLine();
-            if("YES".equals(type) || "yes".equals(type) ||"Yes".equals(type))
-                keepGoing = false;
-            else if("NO".equals(type) || "no".equals(type) || "No".equals(type))
-                main(null);
-            
-            // breaks the loop after 3 tries at START
-            if ( i > 2){
-                System.out.println("Please reload the program");
-                keepGoing = false;
-            }
-        }while(keepGoing);
+        
     }
     
     public static void displayMenu(){
@@ -137,19 +105,24 @@ public class Main {
                     // display login result
                     System.out.println(login);
                     staff.staff();
-                    logout();
-                    String logout = in.next();
-                    if(logout.equalsIgnoreCase("yes")){
-                        break;
+                    keepGoing = true;
+                    while (keepGoing){
+                        logout(); // maybe this needs loop
+                        String logout = in.next();
+                        if(logout.equalsIgnoreCase("yes")){
+                            keepGoing = false;
+                        }
+                        else
+                            staff.staff(); 
                     }
-                    else
-                        staff.staff();
+                    
                 }
                 else{
                     System.out.println("Login unsuccessful");
                     System.out.println(login);
                     break;
                 }
+                break;
                 
             case "student":
                 login = log.studentLogin();
