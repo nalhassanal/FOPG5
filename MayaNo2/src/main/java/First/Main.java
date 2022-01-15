@@ -10,6 +10,7 @@ import java.util.Scanner;
 public class Main {
         static LoginPage log = new LoginPage();
         static StaffPage staff = new StaffPage();
+        static Student student = new Student();
         static Scanner in = new Scanner(System.in);
         static String type;
         static boolean keepGoing = true;
@@ -126,7 +127,22 @@ public class Main {
                 
             case "student":
                 login = log.studentLogin();
-                // display login result
+                
+                if(login.equals("Login Successful")){
+                    // display login result
+                    System.out.println(login);
+                    student.student();
+                    keepGoing = true;
+                    while (keepGoing){
+                        logout();
+                        String logout = in.next();
+                        if(logout.equalsIgnoreCase("yes"))
+                            keepGoing = false;
+                        else{
+                            student.student();
+                        }
+                    }
+                }
                 System.out.println(login);
                 //main(null);
                 break;
