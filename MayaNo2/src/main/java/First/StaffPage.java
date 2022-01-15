@@ -172,43 +172,6 @@ public class StaffPage {
                 File file = new File(filename);
                 PrintWriter outputStream = new PrintWriter(new FileOutputStream(file, true));
                 outputStream.println(module);
-                System.out.println("Add information about " + ACT2 + "?");
-                System.out.println("yes or no");
-                String add = input.next();
-
-                String name = "", day = "Monday", time = "9";
-                if (add.toLowerCase().equals("yes")) {
-                    try {
-                        String filename1 = moduleCode + ".txt";
-                        File file1 = new File(filename1);
-                        PrintWriter outputStream1 = new PrintWriter(new FileOutputStream(file1, true));
-                        if (ACT[0].equals(ACT1)) {
-                            System.out.println("Add information about " + ACT[0]);
-                            System.out.println("Who will teach " + ACT[0] + " session?");
-                            name = input.nextLine();
-                            System.out.println("What day & time will it occur?");
-                            day = input.nextLine();
-
-                            outputStream1.println("L," + name + "," + day + "," + time);
-                        } else if (ACT[0].equals(ACT2)) {
-                            System.out.println("Add information about " + ACT[0]);
-                            System.out.println("Who will teach " + ACT[0] + " session?");
-                            name = input.nextLine();
-                            System.out.println("What day & time will it occur?");
-                            day = input.nextLine();
-
-                            outputStream1.println("T," + name + "," + day + "," + time);
-                        }
-
-                        outputStream1.flush();
-                        outputStream1.close();
-
-                    } catch (IOException ex) {
-                        System.out.println("IO Error " + ex.getMessage());
-                    }
-                } else {
-                    System.out.println("You can add information in edit module...");
-                }
                 outputStream.flush();
                 outputStream.close();
 
@@ -222,9 +185,6 @@ public class StaffPage {
         }
     }
     
-    //if(!studentmodulefile.exists())
-    // use this as checker so not to add more
-    
     private boolean moduleCheck(String moduleCode){
         boolean result = true;
         String filename = moduleCode+".txt";
@@ -236,8 +196,7 @@ public class StaffPage {
         return result;
     }
     
-    // add how many expected target student in module
-    // maybe this method can only be accessed by higher ranking lecturers only
+    //  this method can only be accessed by higher ranking lecturers only
     private String addModule(){
         input = new Scanner(System.in);
         String ret = "Unsuccessfull Module Addition" , specifiedName;
@@ -361,69 +320,69 @@ public class StaffPage {
         String moduleCode , ret ="Failed to add new items";
         System.out.println("Enter the Module code that you want to edit >>");
         moduleCode = input.nextLine();
-        String filename = moduleCode+".txt", currentLine;
+        String filename = moduleCode+".txt", filename1 = "allModules.txt", currentLine;
+        String [] activities = {};
+        int activitiesLen = 2;
         String [] data;
-        int numAct = 1;
         File modulefile = new File(filename);     
+        File allModules = new File(filename1);
+        
+        // to get the type of activity
+        try{
+            Scanner inputStream = new Scanner(new FileInputStream(allModules));
+            
+            while(inputStream.hasNextLine()){
+                currentLine = inputStream.nextLine();
+                data = currentLine.split(",");
+                if ( data[0].equals(moduleCode)){
+                    activities = data[4].trim().split("&");
+                    activitiesLen = activities.length;
+                    break;
+                }
+            }
+        } catch ( FileNotFoundException ex){
+            System.out.println("File not found " +ex.getMessage());
+        }
         
         int index;
-        String name = "";
+        String name = "" , information;
         String day = "Monday",time = "9";
-        String act2Name = "" ,act2day = "Monday",act2time = "0900 - 1100";
-            System.out.println("Please enter the index of this occurence");
-            index = input.nextInt();
-            /*
-            // this does not work for some reason
-            
-            System.out.println("Please enter the name for the Lecture activity"); 
-            name = input.next();
-
-            System.out.println("Please enter the day and time will the Lecture occur\n"
-                    + "Format : Monday\n1300 - 1500 (24 hour)");
+        System.out.println("Please enter the index of this occurence");
+        index = input.nextInt();
+        for ( int i = 0; i<activitiesLen ; i++){
+            System.out.println();
+            System.out.println("Enter "+activities[i] +" information >> ");
+            System.out.println("Enter name > ");
+            name = input.nextLine();
+            System.out.println();
+            System.out.println("Enter Day and time\nExample Monday, 0900 - 1000 >> ");
             day = input.nextLine();
             time = input.nextLine();
-*/
-            // check if existing file already have lecture || ACT[0] information
-            // check if existing file already have lecture || ACT[0] information
-            // check if existing file already have lecture || ACT[0] information
-            // check if existing file already have lecture || ACT[0] information
-            // check if existing file already have lecture || ACT[0] information
-            // if true only do below
-        try{
-            // appends existing file
-            PrintWriter outputStream = new PrintWriter(new FileOutputStream(modulefile,true));
-            Scanner inputStream = new Scanner(new FileInputStream(modulefile));
-            // this block is to find the number of activities of the module
-            currentLine = inputStream.nextLine();
-            data = currentLine.split(",");
-            numAct= Integer.parseInt(data[2]);
             
-            if (numAct > 1 ){
-                System.out.println("Please enter the name for the Lab/Tutorial Activity");
-                act2Name = input.nextLine();
-                System.out.println("Please enter the day and time will the activity occur\n"
-                    + "Format : Monday\n1300 - 1500 (24 hour)");
-                act2day = input.nextLine();
-                act2time = input.nextLine();
+            try{
+                PrintWriter outputStream = new PrintWriter(new FileOutputStream(modulefile, true));
+                if(activities[i].equals("Lecture")){
+                    // mode , occurence, name, day,time
+                    information = "L,"+index+","+name+","+day+","+time;
+                    outputStream.println(information);
+                }
+                else if(activities[i].equals("Tutorial")){
+                    // mode , occurence, name, day,time
+                    information = "T,"+index+","+name+","+day+","+time;
+                    outputStream.println(information);
+                }
+                else if(activities[i].equals("Lab")){
+                    // mode , occurence, name, day,time
+                    information = "TL,"+index+","+name+","+day+","+time;
+                    outputStream.println(information);
+                }
+            } catch (IOException ex){
+                System.out.println("IO Error " + ex.getMessage());
             }
-            
-            // prints all the input data
-            outputStream.println("L,"+name +"," +day+","+time);
-            if(numAct > 1){
-                outputStream.println("T,"+index +"," +act2Name+",Day,"+act2day +",Time," +act2time);
-            }
-            else{
-                outputStream.println("L,"+index +"," +name+",Day,"+day +",Time," +time);
-            }
-            
-            outputStream.flush();
-            outputStream.close();
-            inputStream.close();
             ret = "Successfully added new items";
-        }catch(FileNotFoundException ex){
-            System.out.println("IO Error " +ex.getMessage());
+            System.out.println(ret);
         }
-        return ret;
+       return "Successfully added All items";
     }
     
     private void view(){
