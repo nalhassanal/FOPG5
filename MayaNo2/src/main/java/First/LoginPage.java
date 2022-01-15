@@ -325,7 +325,7 @@ public class LoginPage {
         passInput = in.nextLine();
         
         try{
-            String filename = "logger.txt";
+            String filename = "loggerStaff.txt";
             File file = new File(filename);
             PrintWriter outputStream = new PrintWriter(new FileOutputStream(file));
             outputStream.print(userInput);
@@ -387,7 +387,7 @@ public class LoginPage {
         passInput = in.nextLine();
         
         try{
-            String filename = "logger.txt";
+            String filename = "loggerStu.txt";
             File file = new File(filename);
             PrintWriter outputStream = new PrintWriter(new FileOutputStream(file));
             outputStream.print(userInput);
