@@ -36,7 +36,7 @@ public class Chatbot {
 
         frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-        frame.setResizable(false);
+        frame.setResizable(true);
 
         frame.setSize(600, 600);
         frame.setTitle("ChatBot Here to Help !");
