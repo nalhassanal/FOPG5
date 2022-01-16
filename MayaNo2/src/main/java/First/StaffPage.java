@@ -177,6 +177,16 @@ public class StaffPage {
             Activities = ACT[0] + " & " + ACT[1];
         }
         module = moduleCode + "," + moduleName + "," + numofOcc + "," + credits + "," + Activities;
+        if (specifiedName.equals("English")){
+            System.out.println();
+            System.out.println("Please enter the Band requirement for this module");
+            System.out.println("If it has two requirements, the minimum requirement is needed");
+            System.out.println("Example : Band 5");
+            String band = input.nextLine();
+            
+            module += "," + band;
+        }
+        
         if(moduleCheck(moduleCode)){
             try {
                 String filename = specifiedName + "modulelist.txt";
@@ -385,7 +395,7 @@ public class StaffPage {
                 mode = "T";
             else if(activities[i].trim().equals("Lab"))
                 mode = "TL";
-            information = mode+","+index+","+name+","+day+","+time;
+            information = mode+","+index+","+name+","+day.toUpperCase()+","+time;
             try{
                 PrintWriter outputStream = new PrintWriter(new FileOutputStream(modulefile, true));
                 outputStream.println(information);
