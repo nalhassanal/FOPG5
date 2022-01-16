@@ -25,10 +25,13 @@ import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
  */
 public class Chatbot {
 
+    public Chatbot(){
+        
+    }
     private JTextArea Chatarea = new JTextArea();
     private JTextField chatbox = new JTextField();
     
-    public Chatbot() {
+    public void Chatbot() {
         JFrame frame = new JFrame();
 
         frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -120,10 +123,5 @@ public class Chatbot {
 
     private void bot(String string) {
         Chatarea.append("Bot : " + string + "\n");
-    }
-
-    public static void main(String[] args) {
-
-        new Chatbot();
     }
 }
