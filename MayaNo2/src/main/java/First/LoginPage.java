@@ -29,7 +29,7 @@ public class LoginPage {
         String mail ="", username ="", password ="", fullname, staff, status ="Professor";
         int statusNum;
         // asking user credentials
-        System.out.println("Please enter your Full Name");
+        System.out.println("Please enter your Full Name (without /)");
         fullname = input.nextLine();
         boolean keepGoing = true;
         while (keepGoing){
@@ -177,7 +177,7 @@ public class LoginPage {
         String mail ="", matrixNum, password, fullname, student , programme ="Bachelor of Computer Science (Data Science)", muet = "Band 2";
         int muetNum,programmeNum;
         // asking user credentials
-        System.out.println("Please enter your Full Name");
+        System.out.println("Please enter your Full Name (without /)");
         fullname = input.nextLine();
         
         boolean keepGoing = true;
@@ -209,13 +209,13 @@ public class LoginPage {
                 programme = "Bachelor of Computer Science (Data Science)";
                 break;
             case 3:
-                programme = "Bachelor of Computer Science (Computer System and Network";
+                programme = "Bachelor of Computer Science (Computer System and Network)";
                 break;
             case 4:
                 programme = "Bachelor of Computer Science (Software Engineering)";
                 break;
             case 5:
-                programme = "Bachelor of Information Technology (Information Systems";
+                programme = "Bachelor of Information Technology (Information Systems)";
                 break;
             case 6:
                 programme = "Bachelor of Information Technology (Multimedia)";

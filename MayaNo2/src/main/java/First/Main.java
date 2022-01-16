@@ -12,6 +12,7 @@ public class Main {
         static StaffPage staff = new StaffPage();
         static Student student = new Student();
         static Scanner in = new Scanner(System.in);
+        static Chatbot bot = new Chatbot();
         static String type;
         static boolean keepGoing = true;
         static popupBox box;
@@ -20,29 +21,36 @@ public class Main {
         box.infoBox("WELCOME TO MAYA 2.0", "MAYA");
         in = new Scanner(System.in);
         int i = 0;
-        displayMenu();
-        String choice = in.next();
-        switch(choice.toUpperCase()){
-            case "A" :
-                logIn();
-                break;
-                
-            case "B" :
-                register();
-                break;
-                
-            case "X" :
-                System.out.println("Exiting normally...");
-                break;
-                
-            default :
-                i++;
-                if(i >= 3){
-                    System.out.println("You entered wrong three times\nProgram exited....");
+        while(keepGoing){
+            displayMenu();
+            String choice = in.next();
+            switch(choice.toUpperCase()){
+                case "A" :
+                    logIn();
                     break;
-                }
-                else
-                    main(null);   
+
+                case "B" :
+                    register();
+                    break;
+
+                case "C" :
+                    bot.Chatbot();
+                    break;
+
+                case "X" :
+                    System.out.println("Exiting normally...");
+                    keepGoing = false;
+                    break;
+
+                default :
+                    i++;
+                    if(i >= 3){
+                        System.out.println("You entered wrong three times\nProgram exited....");
+                        keepGoing = false;
+                        break;
+                    }
+                    break;
+            }
         }
         
     }
@@ -51,6 +59,7 @@ public class Main {
         System.out.println();
         System.out.println("A) LOGIN ");
         System.out.println("B) REGISTER ");
+        System.out.println("C) CHAT WITH HELPER");
         System.out.println("X) EXIT");
         System.out.println();
         System.out.println("Please choose one : ");
@@ -128,7 +137,7 @@ public class Main {
             case "student":
                 login = log.studentLogin();
                 
-                if(login.equals("Login Successful")){
+                if(login.equals("Login successful")){
                     // display login result
                     System.out.println(login);
                     student.student();
@@ -143,8 +152,6 @@ public class Main {
                         }
                     }
                 }
-                System.out.println(login);
-                //main(null);
                 break;
 
             default:
