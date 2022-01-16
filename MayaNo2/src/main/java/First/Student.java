@@ -16,6 +16,7 @@ public class Student {
     }
     
     public void student(){
+        popupBox box = new popupBox();
         Scanner sc = new Scanner(System.in);
         searchModule search = new searchModule();
         addmodule addmoduleobject = new addmodule();
@@ -23,7 +24,7 @@ public class Student {
         viewregistered viewregisteredobject = new viewregistered();
         timetable timetableobject = new timetable();
         timetableupdater timetableupdaterobject = new timetableupdater();
-        
+        box.infoBox("WELCOME TO STUDENT PAGE", "STUDENT PAGE");
         String studentmatrix = "";
         try{
             String filename = "loggerStu.txt";
@@ -37,7 +38,7 @@ public class Student {
         int count = 0;
         while (keepGoing){
             
-            System.out.println(); // tambahh selection search module
+            System.out.println();
             System.out.println("Welcome to Student page!!!");
             System.out.println("1)See all module\n2)add module\n3)delete module\n4)view course registered\n5)view timetable\n6)Search module\n7)exit");
             System.out.println("What you want to do:");
