@@ -1,2 +1,6 @@
 U2102848,U2102848@siswa.um.edu.my,Hassanal Harriz Bin Ahmed Hakimmy Fuad,Hhahf8122,Bachelor of Computer Science (Computer System and Network,Band 4
 U2102848,U2102848@siswa.um.edu.my,Hassanal Harriz Bin Ahmed Hakimmy Fuad,Hhahf8122,Bachelor of Computer Science (Computer System and Network,Band 4
+S2122641,s2122641@siswa.um.edu.my,Yousef Haitham Awad,testpassword,Bachelor of Computer Science (Software Engineering),Band 5/6
+s21241241,fawafawfac@siswa.um.edu.my,fkawfawfa,testpassword,Bachelor of Computer Science (Artificial Intelligence),Band 2
+s123456,test@siswa.udm.edu.my,test test,testpassword,Bachelor of Computer Science (Data Science),Band 2
+test,test@gmail.com,test test,testpassword,Bachelor of Computer Science (Computer System and Network),Band 5/6
