@@ -15,7 +15,7 @@ public class viewregistered {
         Scanner sc = new Scanner(System.in);
         System.out.println("This is your course");
         
-        
+        //declare array variable and normal variale for the usage of the method
         String[] subjectlist = new String[30];
         String[] moduleselectview = new String [30];
         String[] subjectmodeview = new String [30];
@@ -60,7 +60,7 @@ public class viewregistered {
         String[] readsplit;
         int[] credithournum = new int [read.length];
         int total_credit_hour = 0;
-        
+        //read student checklist file
         try
         {   
             File checklistfile = new File(studentmatrix+"checklist.txt");
@@ -86,6 +86,7 @@ public class viewregistered {
         {
             e.printStackTrace();
         }
+        //calculate total credi hour base on data obtained from student checklist file
         total_credit_hour = 0;
         for(int i = 0 ; i< read.length;i++)
         {
@@ -93,7 +94,7 @@ public class viewregistered {
 
         }
         System.out.println("Total credit hours:" + total_credit_hour);
-
+        //read student module file to get registered module information
         try
         {   
             File studentmodulefile = new File(studentmatrix+"modules.txt");
@@ -124,7 +125,7 @@ public class viewregistered {
         {
             e.printStackTrace();
         }
-
+        //read from Main course subject file
         try
         {
             BufferedReader reader = new BufferedReader(new FileReader("modulelist.txt"));
@@ -151,6 +152,7 @@ public class viewregistered {
         {
             e.printStackTrace();
         }
+        //read from specialization module subject file
         try
         {
             BufferedReader reader = new BufferedReader(new FileReader("specializationmodulelist.txt"));
@@ -178,6 +180,7 @@ public class viewregistered {
         {
             e.printStackTrace();
         }
+        //read from english module subject file
         try
         {
             BufferedReader reader = new BufferedReader(new FileReader("Englishmodulelist.txt"));
@@ -206,7 +209,7 @@ public class viewregistered {
         {
             e.printStackTrace();
         }
-        
+        //convert shortform to userfriendly String
         for(int m =0; m < subjectmodeview.length; m++)
         {
             if(subjectmodeview[m]!=null)
@@ -219,7 +222,7 @@ public class viewregistered {
                     modesubjectview[m] = "TUTORIAL/LAB";
             }
         }
-
+        //search and set the module registered
         for(int i = 0;i < moduleselectview.length;i++)
         {
             if(moduleselectview[i] != null)
@@ -242,7 +245,7 @@ public class viewregistered {
             }
         }
 
-
+        //print all module registered
         for(int i = 0;i < 30; i++)
         {
             if(moduleselectview[i]!=null)
