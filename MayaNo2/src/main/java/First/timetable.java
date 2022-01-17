@@ -9,13 +9,13 @@ import java.io.*;
  */
 
 public class timetable {
-    public timetable(){
-        
-    }
     public void printtimetable(String studentmatrix)
     {
+        //declare scanner
         Scanner sc = new Scanner (System.in);
-        String[] subject = new String[49];
+        //create array for the subject for index 0 to 49(for 5 days and 10 hours of class for each days, so 5 x 10 = 50)
+        String[] subject = new String[50];
+        //read the student time table and transfer th data into the specified time array(the subject array)
         try
         {
             BufferedReader reader = new BufferedReader(new FileReader(studentmatrix+"timetable.txt"));
@@ -34,10 +34,11 @@ public class timetable {
         
         
 
-                
+        //print the timmetable (by using the format index 0 - 9 is for Monday, 10 - 19 for Tuesday,20 - 29 for Wednesday,30 - 39 for Thursday and 40 - 49 for Friday)        
         System.out.println("My timetable");
         System.out.println("________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________");
         System.out.print("Day/Time");
+        //this is for the time (top of the time table)
         for(int i = 9 ; i <= 18 ; i++)
         {
             
@@ -92,8 +93,7 @@ public class timetable {
         System.out.println("________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________");
         System.out.println("\n");
         
-        System.out.println("Enter 1 to add module, 2 to delete module, 3 to view module registered, 4 to exit");
-        int selection = sc.nextInt();
+
     }
 }
 
