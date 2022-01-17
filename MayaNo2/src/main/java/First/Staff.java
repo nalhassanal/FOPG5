@@ -27,7 +27,7 @@ public class Staff {
      */
     private Scanner input;
     
-        /**
+    /**
      * authorization object for one of the methods use
      */
     private Authorization log;
@@ -90,7 +90,12 @@ public class Staff {
     
 
     /**
-     *
+     * this is one of the menu after the choice is made from staff method
+     * here have 4 more choices create, delete, edit and return
+     * create, delete and edit have their own methods
+     * 
+     * here also calls the method staffTest authorization class 
+     * to restrict some choices from not authorized staff
      */
     private void moduleMenu(){
         String menu = "";
@@ -155,68 +160,35 @@ public class Staff {
     }
     
     /**
-     *
+     * instance string variables
      */
-    private String moduleCode ,
+    private String moduleCode ,moduleName ,Activities ,module;
 
     /**
-     *
+     * instance int variable
      */
-    moduleName ,
+    private int numofOcc  = 1,credits = 1,numAct = 1;
 
     /**
-     *
-     */
-    Activities ,
-
-    /**
-     *
-     */
-    module;
-
-    /**
-     *
-     */
-    private int numofOcc  = 1,
-
-    /**
-     *
-     */
-    credits = 1,
-
-    /**
-     *
-     */
-    numAct = 1;
-
-    /**
-     *
+     * instance int array object
      */
     private int [] inACT;
 
     /**
-     *
+     * instance String array object
      */
     private String [] ACT;
 
     /**
-     *
+     * constant instance String variable
      */
-    private final String ACT1 = "Lecture" ,
-
-    /**
-     *
-     */
-    ACT2 = "Tutorial",
-
-    /**
-     *
-     */
-    ACT3 = "Lab";
+    private final String ACT1 = "Lecture" ,ACT2 = "Tutorial",ACT3 = "Lab";
     
     /**
-     *
-     * @param specifiedName
+     * this method is to be used in add module method
+     * to create the file for the specific group of modules
+     * @param specifiedName - comes from the add module method and is chosen out of 3
+     * 1) English 2) main 3) Specialization
      */
     private void addModuleFile(String specifiedName){
         System.out.println();
@@ -299,9 +271,9 @@ public class Staff {
     }
     
     /**
-     *
-     * @param moduleCode
-     * @return
+     * this method is to ensure that no two modules are created
+     * @param moduleCode - comes from add module method from user input
+     * @return true if there is no two modules entries
      */
     private boolean moduleCheck(String moduleCode){
         boolean result = true;
@@ -314,11 +286,15 @@ public class Staff {
         return result;
     }
     
-    //  this method can only be accessed by higher ranking lecturers only
 
     /**
-     *
-     * @return
+     * this method can only be accessed by higher ranking lecturers only
+     * such as Associate Professor and Professor
+     * this method creates the allModules.txt file and will also call the addModuleFile method
+     * to create the specific group module file
+     * also able to return to the main staff page
+     * @return String representation of success by "Module Added Successfully"
+     * for the user to visualize the process of it
      */
     private String addModule(){
         input = new Scanner(System.in);
@@ -414,14 +390,14 @@ public class Staff {
     }
     
     /**
-     *
-     * @return
+     * this method can only be accessed by higher ranking lecturers only
+     * such as Associate Professor and Professor
+     * this method is to perform delete module
+     * can only delete modules one by one
+     * asks user for the module code to be deleted
+     * @return "successfully deleted module" if all processes happen without error
      */
     private String deleteModule(){
-        // this method is to perform delete module
-        // can only delete modules one by one
-        // asks user for the module code to be deleted
-        
         input = new Scanner(System.in);
         String filename = "allModules.txt", moduleCode , ret ="Failed to delete\nModule did not exist";
         System.out.println("MAYA 2.0");
@@ -488,10 +464,13 @@ public class Staff {
         return ret;
     }
     
-    //maybe this method can be accessed by all lecturers
 
     /**
-     *
+     * this method can be accessed by all lecturers
+     * this method is to able the lecturer to add information to the specific module
+     * but without altering any of the parameters set before in the add module section
+     * if for example, someone wants to add a new occurence and has hit a limit
+     * they have to ask for higher ranking lecturer to add new occurence
      * @return
      */
     private String editModule(){
@@ -539,6 +518,29 @@ public class Staff {
         System.out.println();
         System.out.println("Please enter the index of this occurence");
         index = input.nextInt();
+        
+        // check for existing
+        try{
+            String filename2 = moduleCode+".txt";
+            File test = new File(filename2);
+            if(!test.exists()){
+                test.createNewFile();
+            }
+            Scanner inputStream = new Scanner (new FileInputStream(test));
+            while(inputStream.hasNextLine()){
+                String current = inputStream.nextLine();
+                String data1[] = current.split(",");
+                String test1 = String.valueOf(index);
+                if(test1.equals(data1[1])){
+                    System.out.println("Entry for this occurence has existed");
+                    return "Please Try Again";
+                }           
+            }
+            inputStream.close();
+        }catch(IOException ex){
+            System.out.println("IO Error "+ex.getMessage());
+        } 
+        
         for ( int i = 0; i<activitiesLen ; i++){
             System.out.println();
             System.out.println("Enter "+activities[i].trim() +" information >> ");
@@ -603,16 +605,12 @@ public class Staff {
     }
     
     /**
-     *
+     *  this view methods have two options
+     *  1. is to view all created modules with the exception of activity info
+     *  2. is to view modules taught by the staff
+     *  this method accepts has no inputs and outputs the choice from the staff
      */
-    private void view(){
-        /*
-        this view methods have two options
-        1. is to view all created modules with the exception of activity info
-        2. is to view modules taught by the staff
-        this method accepts has no inputs and outputs the choice from the staff
-        */
-        
+    private void view(){        
         boolean keepGoing = true;
         while (keepGoing){
             System.out.println("MAYA 2.0");
@@ -692,15 +690,11 @@ public class Staff {
     }
 
     /**
-     *
+     *  This method can be accessed by all staff
+     *  this method accepts nothing and returns with the full list of students
+     *  under the staff's care
      */
     private void stuClass(){
-        /*
-        This method can be accessed by all staff
-        this method accepts nothing and returns with the full list of students
-        under the staff's care
-        */
-        
         // this block is to get the staff's name
         // for next block purposes
         String username = "";
