@@ -1,6 +1,8 @@
 package First;
 
 
+import java.awt.AWTException;
+import java.awt.Robot;
 import java.util.Scanner;
 
 /**
@@ -8,8 +10,8 @@ import java.util.Scanner;
  * @author Hassanal
  */
 public class Main {
-        static LoginPage log = new LoginPage();
-        static StaffPage staff = new StaffPage();
+        static Authorization log = new Authorization();
+        static Staff staff = new Staff();
         static Student student = new Student();
         static Scanner in = new Scanner(System.in);
         static Chatbot bot = new Chatbot();
@@ -17,11 +19,15 @@ public class Main {
         static boolean keepGoing = true;
         static popupBox box;
     public static void main(String[] args){
+        wait(100);
+        consoleClear();
         box = new popupBox();
         box.infoBox("WELCOME TO MAYA 2.0", "MAYA");
         in = new Scanner(System.in);
         int i = 0;
         while(keepGoing){
+            System.out.println("MAYA 2.0");
+            System.out.println("--------------------------------------------------------");
             displayMenu();
             String choice = in.next();
             switch(choice.toUpperCase()){
@@ -39,7 +45,9 @@ public class Main {
 
                 case "X" :
                     System.out.println("Exiting normally...");
-                    keepGoing = false;
+                    wait(1000);
+                    consoleClear();
+                    keepGoing = false;                    
                     break;
 
                 default :
@@ -53,6 +61,27 @@ public class Main {
             }
         }
         
+    }
+    
+    private static void wait(int ms){
+        try{
+            Thread.sleep(ms);
+        }catch (InterruptedException ex){
+            Thread.currentThread().interrupt();
+            System.out.println(ex.getMessage());
+        }
+    }
+    
+    private static void consoleClear(){
+        try{
+            Robot pressbot = new Robot();
+            pressbot.keyPress(17); // Holds CTRL key
+            pressbot.keyPress(76); // Holds L key
+            pressbot.keyRelease(17); // Releases CTRL key
+            pressbot.keyRelease(76); // Releases L key
+        } catch (AWTException ex){
+            System.out.println(ex.getMessage());
+        }
     }
     
     public static void displayMenu(){
@@ -77,7 +106,7 @@ public class Main {
 
         // asks user if they want to REGISTER as student or staff
         in = new Scanner(System.in);
-        log = new LoginPage();
+        log = new Authorization();
         System.out.println("Do you want to register as student or staff? (student or staff)");
         type = in.nextLine();
         switch(type.toLowerCase()){
@@ -114,6 +143,8 @@ public class Main {
                 if(login.equals("Login successful")){
                     // display login result
                     System.out.println(login);
+                    wait(1000);
+                    consoleClear();
                     staff.staff();
                     keepGoing = true;
                     while (keepGoing){
@@ -121,6 +152,10 @@ public class Main {
                         String logout = in.next();
                         if(logout.equalsIgnoreCase("yes")){
                             keepGoing = false;
+                            System.out.println("Successful log out");
+                            System.out.println("Exiting program...");
+                            wait(2000);
+                            consoleClear();
                         }
                         else
                             staff.staff(); 
@@ -140,13 +175,20 @@ public class Main {
                 if(login.equals("Login successful")){
                     // display login result
                     System.out.println(login);
+                    wait(1000);
+                    consoleClear();
                     student.student();
                     keepGoing = true;
                     while (keepGoing){
                         logout();
                         String logout = in.next();
-                        if(logout.equalsIgnoreCase("yes"))
+                        if(logout.equalsIgnoreCase("yes")){
                             keepGoing = false;
+                            System.out.println("Successful log out");
+                            System.out.println("Exiting program...");
+                            wait(2000);
+                            consoleClear();
+                        }
                         else{
                             student.student();
                         }
