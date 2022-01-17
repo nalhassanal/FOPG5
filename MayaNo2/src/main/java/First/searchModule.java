@@ -23,29 +23,36 @@ public class searchModule {
         String searchWord;
         
         System.out.println("Enter the module code you want to search: ");
+        System.out.println("Enter exit to return");
         searchWord = ob.nextLine();
-        System.out.println();
-        try{
-            FileReader fr = new FileReader(input);
-            BufferedReader br = new BufferedReader(fr);
-            
-            for(String line; (line = br.readLine()) != null;) {
-                if (line.toLowerCase().contains(searchWord.toLowerCase())) {
-                    String data [] = line.split(",");
-                    System.out.println("Module code " +data[0]);
-                    System.out.println("Module name " +data[1]);
-                    System.out.println("Number of Occurences " +data[2]);
-                    System.out.println("Numeber of Credits " +data[3]);
-                    System.out.println("Activity modes " +data[4]);                    
+        if (searchWord.toUpperCase().equals("EXIT")) {
+            System.out.println("Exited");
+        } else {
+            System.out.println();
+            try {
+                FileReader fr = new FileReader(input);
+                BufferedReader br = new BufferedReader(fr);
+
+                for (String line; (line = br.readLine()) != null;) {
+                    if (line.toLowerCase().contains(searchWord.toLowerCase())) {
+                        String data[] = line.split(",");
+                        System.out.println("Module code " + data[0]);
+                        System.out.println("Module name " + data[1]);
+                        System.out.println("Number of Occurences " + data[2]);
+                        System.out.println("Numeber of Credits " + data[3]);
+                        System.out.println("Activity modes " + data[4]);
+                        System.out.println();
+                        System.out.println("--------------------------------------------------------");
+                    }
                 }
+                fr.close();
+                br.close();
+            } catch (FileNotFoundException ex) {
+                System.out.println("File not found " + ex.getMessage());
+            } catch (IOException ex) {
+                System.out.println("IO Error " + ex.getMessage());
             }
-            fr.close();
-            br.close();
-        } catch(FileNotFoundException ex){
-            System.out.println("File not found " +ex.getMessage());
-        } catch ( IOException ex) {
-            System.out.println("IO Error " + ex.getMessage());
+            System.out.println();
         }
-        System.out.println();
     }   
 }
