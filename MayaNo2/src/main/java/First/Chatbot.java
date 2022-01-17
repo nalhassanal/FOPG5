@@ -24,9 +24,13 @@ public class Chatbot {
         
     }
 
+
     /**
      * instance 
      */
+
+    //declares JtextArea and JtextField for area to type and answers from robot//
+
     private JTextArea Chatarea = new JTextArea();
 
     /**
@@ -38,12 +42,13 @@ public class Chatbot {
      *
      */
     public void Chatbot() {
+        //starts a frame for gui//
         JFrame frame = new JFrame();
-
+        //sets method to close when exiting GUI//
         frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
-
+        //enables resizablity of window//
         frame.setResizable(true);
-
+        //declaring some window properties//
         frame.setSize(600, 600);
         frame.setTitle("ChatBot Here to Help !");
         frame.add(Chatarea);
@@ -52,7 +57,7 @@ public class Chatbot {
         Chatarea.setLocation(2, 2);
         JScrollPane scroll = new JScrollPane(Chatarea,
                 JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-
+        //add ability to scroll through textarea//
         frame.add(scroll);
 
         Chatarea.append("Hello! I am Chatbot. Your virtual guide." + "\n" + "I can help you navigate our brand new Maya 2.0 System!");
@@ -69,6 +74,7 @@ public class Chatbot {
                 chatbox.setText("");
                 if (gtext.contains("hi")) {
                     bot("Hello !");
+                    //detects keywords and returns approppriate answers with tutorials//
                 } else if (gtext.contains("edit") || gtext.contains("modify") || gtext.contains("change")) {
                     bot("If you're a staff member, You can edit the modules by doing the following :-" + "\n"
                             + "Step 1. Login to your staff account" + "\n"
@@ -80,12 +86,22 @@ public class Chatbot {
                             + "Step 1. Login to your staff account" + "\n"
                             + "Step 2. Type 1 in your keyboard to choose the (Modify Modules) menu choice " + "\n"
                             + "Step 3. Type in a on your keyboard to create a new module" + "\n"
-                            + "Step 4. Follow the onscreen instructions to add all the module details");
-                } else if (gtext.contains("view") || gtext.contains("see") || gtext.contains("view modules")) {
+                            + "Step 4. Follow the onscreen instructions to add all the module details"
+                    + "\n" +"\n" +
+                            "If you're a student, You can add/register modules by doing the following :-" + "\n"
+                            + "Step 1. Login to your student account" + "\n"
+                            + "Step 2. Type 2 in your keyboard to choose the (Add Module) menu choice " + "\n"
+                            + "Step 3. Follow the onscreen instructions in order to register to your new module !" + "\n"
+                    );
+                } else if (gtext.contains("view") || gtext.contains("see") || gtext.contains("view modules") || gtext.contains("all modules")) {
                     bot("If you're a staff member, You can view all modules by doing the following :-" + "\n"
                             + "Step 1. Login to your staff account" + "\n"
                             + "Step 2. Type 2 in your keyboard to choose the (View Modules) menu choice " + "\n"
-                            + "Step 3. Follow the onscreen instructions to choose what module to view");
+                            + "Step 3. Follow the onscreen instructions to choose what module to view"
+                    + "\n" +"\n" +
+                            "If you're a student, You can view all the modules by doing the following :-" + "\n"
+                            + "Step 1. Login to your student account" + "\n"
+                            + "Step 2. Type 1 in your keyboard to choose the (See all Modules) menu choice " + "\n");
                 } else if (gtext.contains("forgot") || gtext.contains("password") || gtext.contains("username")) {
                     bot("If you have forgotten your username or password" + "\n" + "please send an email to s2122641@siswa.um.edu.my with the subject: Forgot Password/Username");
                 } else if (gtext.contains("delete") || gtext.contains("remove") || gtext.contains("cancel")) {
@@ -93,7 +109,14 @@ public class Chatbot {
                             + "Step 1. Login to your staff account" + "\n"
                             + "Step 2. Type 1 in your keyboard to choose the (Modify Modules) menu choice " + "\n"
                             + "Step 3. Type in B on your keyboard to remove a module" + "\n"
-                            + "Step 4. Input the code of the module you want to remove");
+                            + "Step 4. Input the code of the module you want to remove"
+                    + "\n" +"\n" +
+                            "If you're a student, You can delete a module by doing the following :-" + "\n"
+                            + "Step 1. Login to your staff account" + "\n"
+                            + "Step 2. Type 3 in your keyboard to choose the (Modify Modules) menu choice " + "\n"
+                            + "Step 3. Follow the onscreen instructions to choose the module you want to delete" + "\n" +
+                            "Step 4. The module is deleted !" + "\n"
+                    );
                 } else if (gtext.contains("register") || gtext.contains("signup") || gtext.contains("sign up") || gtext.contains("make a new account")) {
                     bot("If you want to make a new account do the following :- " + "\n"
                             + "Step 1. Press B on your keyboard to choose the Register option" + "\n"
@@ -105,9 +128,29 @@ public class Chatbot {
                             + "Step 1. Press A on your keyboard to choose the Register option" + "\n"
                             + "Step 2. Specify whether you are a student or a staff by just typing \"student\" or \"staff\"" + "\n"
                             + "Step 3. Enter your username (Case sensitive) then press enter" + "\n"
-                            + "Step 4. Enter your password (Case sensitive) then press enter" + "\n"
+                            + "Step 4. Enter your password (Case sensitive) then press enter" + "\n");
+
+                } else if (gtext.contains("timetable") || gtext.contains("schedule") || gtext.contains("plan") || gtext.contains("time") || gtext.contains("when")) {
+                    bot("If you want to view your timetable as a student do the following :- " + "\n"
+                            + "Step 1. Login to your student account" + "\n"
+                            + "Step 2. Type 5 in your keyboard to choose the (View Timetable) menu choice " + "\n"
+                            + "Step 3. your Timetable with all your current Modules will be printed on your screen" + "\n"
+                    );
+                } else if (gtext.contains("search for a module") || gtext.contains("search modules") || gtext.contains("search") || gtext.contains("find") || gtext.contains("look")) {
+                    bot("If you want to search for a module as a student do the following :- " + "\n"
+                            + "Step 1. Login to your student account" + "\n"
+                            + "Step 2. Type 6 in your keyboard to choose the (Search Module) menu choice " + "\n"
+                            + "Step 3. You will be prompted to enter the code of the Module you're looking for" + "\n"
+                            + "Step 4. The system will return all the matching modules !" + "\n"
+                    );
+                } else if (gtext.contains("registered") || gtext.contains("courses registered") || gtext.contains("registered courses") || gtext.contains("view registered courses")) {
+                    bot("If you want to view all your registered courses as a student do the following :- " + "\n"
+                            + "Step 1. Login to your student account" + "\n"
+                            + "Step 2. Type 4 in your keyboard to choose the (View Registered Courses) menu choice " + "\n"
+                            + "Step 3. The system will return all courses you are enrolled in!" + "\n"
                     );
                 } else {
+                    //small randomizer to cycle between different responses when chatbot doesnt understand question//
                     Random rand = new Random();
                     int amount = rand.nextInt(3);
                     if (amount == 1) {

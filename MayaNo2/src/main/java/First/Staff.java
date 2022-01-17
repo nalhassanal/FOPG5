@@ -16,16 +16,33 @@ import java.util.Scanner;
  * @author Hassanal
  */
 public class Staff {
-    private popupBox box;//add gui
-    private Scanner input;
 
+    /**
+     * object for popup box 
+     */ 
+    private popupBox box;
+
+    /**
+     * object for scanner for user input
+     */
+    private Scanner input;
+    
+        /**
+     * authorization object for one of the methods use
+     */
+    private Authorization log;
+
+    /**
+     * empty constructor for the class
+     */
     public Staff() {
     }
-    
-    // maybe add way to edit staff account
-    // maybe delete account
-    // when they delete, java deletes everything, in staff, staffcredential and also logger,
-    // they might still be in the program, but cannot do important stuff like add module
+
+    /**
+     * the main method of this class which all the methods
+     * all return to
+     * this method is the link between the main class and staff class
+     */
     public void staff(){
         box = new popupBox();
         box.infoBox("WELCOME TO STAFF SECTION", "STAFF");
@@ -69,7 +86,12 @@ public class Staff {
             }
         }        
     }
-    private Authorization log;
+
+    
+
+    /**
+     *
+     */
     private void moduleMenu(){
         String menu = "";
         log = new Authorization();
@@ -132,12 +154,70 @@ public class Staff {
         }
     }
     
-    private String moduleCode , moduleName , Activities , module;
-    private int numofOcc  = 1, credits = 1, numAct = 1;
+    /**
+     *
+     */
+    private String moduleCode ,
+
+    /**
+     *
+     */
+    moduleName ,
+
+    /**
+     *
+     */
+    Activities ,
+
+    /**
+     *
+     */
+    module;
+
+    /**
+     *
+     */
+    private int numofOcc  = 1,
+
+    /**
+     *
+     */
+    credits = 1,
+
+    /**
+     *
+     */
+    numAct = 1;
+
+    /**
+     *
+     */
     private int [] inACT;
+
+    /**
+     *
+     */
     private String [] ACT;
-    private final String ACT1 = "Lecture" , ACT2 = "Tutorial", ACT3 = "Lab";
+
+    /**
+     *
+     */
+    private final String ACT1 = "Lecture" ,
+
+    /**
+     *
+     */
+    ACT2 = "Tutorial",
+
+    /**
+     *
+     */
+    ACT3 = "Lab";
     
+    /**
+     *
+     * @param specifiedName
+     */
     private void addModuleFile(String specifiedName){
         System.out.println();
         // ask module code
@@ -218,6 +298,11 @@ public class Staff {
         }
     }
     
+    /**
+     *
+     * @param moduleCode
+     * @return
+     */
     private boolean moduleCheck(String moduleCode){
         boolean result = true;
         String filename = moduleCode+".txt";
@@ -230,6 +315,11 @@ public class Staff {
     }
     
     //  this method can only be accessed by higher ranking lecturers only
+
+    /**
+     *
+     * @return
+     */
     private String addModule(){
         input = new Scanner(System.in);
         String ret = "Unsuccessfull Module Addition" , specifiedName;
@@ -323,6 +413,10 @@ public class Staff {
         return ret;
     }
     
+    /**
+     *
+     * @return
+     */
     private String deleteModule(){
         // this method is to perform delete module
         // can only delete modules one by one
@@ -395,6 +489,11 @@ public class Staff {
     }
     
     //maybe this method can be accessed by all lecturers
+
+    /**
+     *
+     * @return
+     */
     private String editModule(){
         input = new Scanner(System.in);
         String moduleCode , ret ="Failed to add new items";
@@ -503,6 +602,9 @@ public class Staff {
        return "Successfully added All items";
     }
     
+    /**
+     *
+     */
     private void view(){
         /*
         this view methods have two options
@@ -589,6 +691,9 @@ public class Staff {
         }
     }
 
+    /**
+     *
+     */
     private void stuClass(){
         /*
         This method can be accessed by all staff

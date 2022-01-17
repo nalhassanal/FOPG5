@@ -1,10 +1,5 @@
 package First;
 
-/**
- *
- * @author Hassanal
- */
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -15,16 +10,31 @@ import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ *
+ * @author Hassanal
+ */
 public class Authorization {
 
+    /**
+     * empty constructor 
+     */
     public Authorization() {
     }
     
+    /**
+     * this method will ask users input for information
+     * this method creates two files, staff and staffCredentials
+     * this method also calls the existing staff method to check for existing staff
+     * to avoid two mirrored accounts being created
+     * this method also uses the Checker object
+     * to check the regular expression for email and username
+     * 
+     * student stores all staff information
+     * staffCredentials is used explicitly by student login 
+     */
     public void staffRegister() {
-        //this method will ask users input for information
-        //this method creates two files, staff and staffCredentials
-        //student stores all staff information
-        //staffCredentials is used explicitly by student login 
+        
         Scanner input = new Scanner(System.in);
         String mail ="", username ="", password ="", fullname, staff, status ="Professor";
         int statusNum;
@@ -98,7 +108,6 @@ public class Authorization {
         // use if
         // if true execute try catch
         // else print user already exist and continue to login
-        // method(username);
         if(existingStaff(username)){
             try {
                 String filename = "staff.txt";
@@ -146,7 +155,14 @@ public class Authorization {
         }
     }
 
-    private boolean existingStaff(String name){
+    /**
+     * this method is to check for existing staff
+     * in staff.txt file
+     * this is in order to avoid double account registrations
+     * @param name - comes from staff register name input
+     * @return true if there is no same names in staff.txt file
+     */
+    public boolean existingStaff(String name){
         String filename = "staff.txt";
         File file = new File(filename);
         String currentLine;
@@ -168,11 +184,20 @@ public class Authorization {
         return ret;
     }
     
+    /**
+     * this method works in the same way as staffRegister method
+     * where inside, 
+     * this method will ask users input for information
+     * inside, this method calls existingStudent method
+     * to check for existing accounts to avoid
+     * double registrations
+     * 
+     * this method creates two files, student and studentCredentials
+     * student stores all student information
+     * studentCredentials is used explicitly by student login 
+     */
     public void studentRegister() {
-        //this method will ask users input for information
-        //this method creates two files, student and studentCredentials
-        //student stores all student information
-        //studentCredentials is used explicitly by student login 
+        
         Scanner input = new Scanner(System.in);
         String mail ="", matrixNum, password, fullname, student , programme ="Bachelor of Computer Science (Data Science)", muet = "Band 2";
         int muetNum,programmeNum;
@@ -289,7 +314,13 @@ public class Authorization {
         }
     }
 
-    private boolean existingStudent(String name){
+    /**
+     * this method is to check for existing students
+     * in student.txt file
+     * @param name - comes from student register name input
+     * @return true if there is no same names in student.txt file
+     */
+    public boolean existingStudent(String name){
     String filename = "staff.txt";
     File file = new File(filename);
     String currentLine;
@@ -311,11 +342,17 @@ public class Authorization {
     return ret;
     }
     
+    /**
+     * this method will read from staffCredential file 
+     * will ask for staff input for username and password
+     * and will check every element in the staffCredential.txt file
+     * to compare with given input
+     * @return the result of the comparison in the String representation
+     * if return is "Login successful" staff account can continue to staff page
+     * from main class
+     */
     public String staffLogin() {
-        // this method will read from staffCredential file 
-        // will ask for staff input for username and password
-        // and will check every element in the file
-        // to compare with given input
+        
         Scanner in = new Scanner(System.in);
         String userInput;
         String passInput;
@@ -389,12 +426,17 @@ public class Authorization {
         }
     }
 
-    
+    /**
+     * this method will read from studentCredential file 
+     * will ask for student input for matrix num and password
+     * and will check every element in the studentCredential.txt file
+     * to compare with given input
+     * @return the result of the comparison in the String representation
+     * if return is "Login successful" student account can continue to student page
+     * from main class
+     */
     public String studentLogin() {
-        // this method will read from studentCredential file 
-        // will ask for student input for matrix num and password
-        // and will check every element in the file
-        // to compare with given input
+        
         Scanner in = new Scanner(System.in);
         String userInput, passInput;
         int count = 0;
@@ -447,8 +489,14 @@ public class Authorization {
         }
     }
     
+    /**
+     * this is a method used in Staff class to differentiate between different types of
+     * lecturer status
+     * this is a security measure to avoid lower status lecturers to enter
+     * certain parts to the staff page
+     * @return if staff status is associate prof and prof only return true
+     */
     public boolean staffTest(){
-        // if staff status is associate prof and prof only return true
         //staff = username + "," + mail + "," + fullname + "," + password + "," +status;
         // get inUser from logger file
         String inUser = "";

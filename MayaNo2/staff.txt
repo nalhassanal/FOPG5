@@ -29,4 +29,4 @@ leena,eleena@um.edu.my,Eleena Binti Hasbullah,leena123,Lecturer
 nazriq,nazriq@um.edu.my,Mohd Nazriq Bin Noor Ahmad,ahmadnazriq,Lecturer
 kenTS,kensiang@um.edu.my,Tan Ken Siang,kensiangtan,Lecturer
 peterGH,goonhong@um.edu.my,Ng Goon Hoong Peter,ngPeter,Lecturer
-choywan,choywan@um.edu.my,Lim Choy Wan,Limcwww,Senior Lecturer
+choywan,choywan@um.edu.my,Lim Choy Wan,Limcwww,Senior Lecturerteststaff,s123456@gmail.com,test test test,testpassword,Professor
