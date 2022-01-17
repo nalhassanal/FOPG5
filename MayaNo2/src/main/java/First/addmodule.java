@@ -14,12 +14,14 @@ import java.util.Scanner;
  * @author Haziq
  */
 public class addmodule {
-    /*public addmodule()
+    //a method of addmodule was created and can be called by the addmodule class to the main class
+    void addmodule(String studentmatrix)
     {
-
-    }*/
-    void addmodule(String studentmatrix){
+        //scanner being declared for user input
+        Scanner sc = new Scanner(System.in);
         
+        //some variable created at the beginning of the code so that it can be use all over the method
+        //This array variable will be used to read all students information such as matrix number,programme and muet band from to be compare to a special logger of the student
         int studentsize = 100;
         String[] studentsplit;
         String[] studentinfo = new String[studentsize];
@@ -30,30 +32,19 @@ public class addmodule {
         String[] studentprogrammeread = new String[studentsize];;
         String[] studentmuetread = new String[studentsize];;
         
-        int j = 1;
+        //this variable declaration is for fix information that will be used throughout the method
         String studentname = null;
         String studentprogramme = null;
         String studentmuet = null;
         String specialcourse = null;
         
-        String[] modulecode = new String[100];
-        String[] modulename = new String[100];
-        String[] modulewithname = new String[100];
-        String[] totalocc = new String [100];
-        String[] credithour = new String [100];
-        String[] modulemode = new String[100];
-        String[] modulesplit;
-        int[] numtotalocc = new int[100];
-        int[] numcredithour = new int[100];
-        int credit = 0;
-        int total_credit_hour = 0;
         
-        Scanner sc = new Scanner(System.in);
+        
+        
        
-        //read student account info
+        //this BufferedReader read all student info from student.txt file that and put it in the arraylist
         try
         {
-            //COMPARE USERNAME FROM LLOGGER FILE;
             BufferedReader reader = new BufferedReader(new FileReader("student.txt"));
             for(int i = 0; i<100 ;i++)
             {
@@ -76,6 +67,8 @@ public class addmodule {
         {
             e.printStackTrace();
         }
+        
+        //this loop is to compare the studentmatrix that being pass from main class to obtain the information of the user
         for(int i = 0;i<studentsize;i++)
         {
             if(studentmatrix.equals(studentmatrixread[i]))
@@ -85,7 +78,21 @@ public class addmodule {
                 studentmuet = studentmuetread[i];
             }
         }
-        //read module list(common module)
+        //there are 3 different file that store module list and its information which is for Main courses, Specialization courses, and English courses
+        //this array variable being used for storing Main course module.
+        String[] modulecode = new String[100];
+        String[] modulename = new String[100];
+        String[] modulewithname = new String[100];
+        String[] totalocc = new String [100];
+        String[] credithour = new String [100];
+        String[] modulemode = new String[100];
+        String[] modulesplit;
+        int[] numtotalocc = new int[100];
+        int[] numcredithour = new int[100];
+        int credit = 0;
+        int total_credit_hour = 0;
+        
+        //this try-catch and BufferedaReader being used to read Main courses information from modulelist.txt and store it in the array that has been declared earlier
         try
         {
             BufferedReader reader = new BufferedReader(new FileReader("modulelist.txt"));
@@ -122,7 +129,7 @@ public class addmodule {
                 numcredithour[i] = Integer.parseInt(credithour[i]);
             }
         }
-        //FOR SPECIAL
+        //this array variable is being used for storing specialization courses module
         String[] Smodulecode = new String[100];
         String[] Smodulename = new String[100];
         String[] Smodulewithname = new String[100];
@@ -130,6 +137,7 @@ public class addmodule {
         int [] Scredithour = new int [100];
         String[] Smodulemode = new String[100];
         String[] Smodulesplit;
+        //same as before, try-catch BufferedReader being used to read specialization module information from specializationmodulelist.txt and store it in array form for the program
         try
         {
             BufferedReader reader = new BufferedReader(new FileReader("specializationmodulelist.txt"));
@@ -158,7 +166,7 @@ public class addmodule {
             e.printStackTrace();
         }
         
-        //for english course
+        //fthis array variable is used for English course module
         String[] engmodulecode = new String[100];
         String[] engmodulename = new String[100];
         String[] engmodulewithname = new String[100];
@@ -168,6 +176,7 @@ public class addmodule {
         String[] engband = new String[100];
         String[] engmodulesplit;
         
+        //try-catch BufferedReader for reading English module list from Englishmodulelist.txt and store it in array form
         try
         {
             BufferedReader reader = new BufferedReader(new FileReader("Englishmodulelist.txt"));
@@ -199,10 +208,10 @@ public class addmodule {
         
         
         
-        //specialization course for the student
+        //initialization of specialization course for the student based on their programme
         if(studentprogramme.equals("Bachelor of Computer Science (Computer System and Network)"))
         {
-            specialcourse = "WIC3002";//specialization course
+            specialcourse = "WIC3002";
         }
         else if(studentprogramme.equals("Bachelor of Computer Science (Artificial Intelligence)"))
         {
@@ -224,8 +233,9 @@ public class addmodule {
         {
             specialcourse = "WIH3003";
         }
-        String[] subjectassigned = new String[10];
         
+        //this array variable and regular variable declaration is for all the purpose throughout the program
+        String[] subjectassigned = new String[10];
         String[] subjectreader = new String[10];
         String[] subjectsplit;
         String[] subjectmode = new String[10];
@@ -238,89 +248,90 @@ public class addmodule {
         int[] subjectoccnum = new int[subjectocc.length];
         String moduleselect = null;
         
-        String modeselect = null;
-        String occ_select = null;
-        String lecturer_select = null; 
-        String day_select = null; 
-        String time_select = null; 
         String lecturerfile = null;
         int pick_occ;
 
-                System.out.println("Main Courses:");
-                for(int i = 0; i< modulecode.length;i++)
+        String[] time = new String [30];
+        String [] timesplit;
+        int [] oldtimestart = new int[30];
+        int [] oldtimeend = new int[30];
+        String[] day = new String[30];
+        String[] subjectlist = new String[30];
+        String[] moduleviewsplit;
+        
+        //try-catcch block for creating a student module file to store all data for the subject module that has been registered by the student, this file also useful for reading the time for registered ->
+        //module so that no time clash occurs when student register for a new class(Lecture, Tutorial and Lab)
+        try
+        {   
+            File studentmodulefile = new File(studentmatrix+"modules.txt");
+            if(!studentmodulefile.exists())
+            {
+                studentmodulefile.createNewFile();
+            }
+            BufferedReader reader = new BufferedReader(new FileReader(studentmatrix+"modules.txt"));
+
+            for( int t = 0; t< 30; t++)
+            {
+                subjectlist[t] = reader.readLine();
+                if(subjectlist[t] != null)
                 {
-                    if(modulewithname[i] != null)
-                    System.out.println(credithour[i] + " Credit | " + modulecode[i] + " | " + modulename[i]);
+                    moduleviewsplit = subjectlist[t].split(",");
+                    day[t] = moduleviewsplit[4];
+                    time[t] = moduleviewsplit[5];
+                    timesplit = time[t].split(" - ");
+                    oldtimestart[t] = Integer.parseInt(timesplit[0]);
+                    oldtimeend[t] = Integer.parseInt(timesplit[1]);
+
                 }
+
+            }     
+            reader.close();
+        }
+        catch(IOException e)
+        {
+            e.printStackTrace();
+        }
+        
+        //these 3 loop is for showing all subject that has been created by the lecturer from the 3 file (main, specialization, english)
+        System.out.println("Main Courses:");
+        for(int i = 0; i< modulecode.length;i++)
+        {
+            if(modulewithname[i] != null)
+            System.out.println(credithour[i] + " Credit | " + modulecode[i] + " | " + modulename[i]);
+        }
+
+        System.out.println("Specialization Courses:");
+        for(int i = 0; i < Smodulecode.length;i++)
+        {
+            if(Smodulewithname[i] != null)
+            System.out.println(Scredithour[i] + " Credit | " + Smodulecode[i] + " | " + Smodulename[i]);
+        }
+
+        System.out.println("English Courses:");
+        for(int i = 0; i < engmodulecode.length;i++)
+        {
+            if(engmodulewithname[i] != null)
+            System.out.println(engcredithour[i] + " Credit | " + engmodulecode[i] + " | " + engmodulename[i]);
+        }
+        
+        //intruction for the user to enter an input int to choose what course group he/she wanted to add
+        System.out.println("Enter 1 to add Main course, 2 to add Specialization course, 3 to add English course , 0 to Exit");
+        int selecttype = sc.nextInt();
                 
-                System.out.println("Specialization Courses:");
-                for(int i = 0; i < Smodulecode.length;i++)
-                {
-                    if(Smodulewithname[i] != null)
-                    System.out.println(Scredithour[i] + " Credit | " + Smodulecode[i] + " | " + Smodulename[i]);
-                }
-                
-                
-                
-                
-                String[] time = new String [30];
-                String [] timesplit;
-                int [] oldtimestart = new int[30];
-                int [] oldtimeend = new int[30];
-                String[] day = new String[30];
-                String[] subjectlist = new String[30];
-                String[] moduleviewsplit;
-                try
-                {   
-                    File studentmodulefile = new File(studentmatrix+"modules.txt");
-                    if(!studentmodulefile.exists())
-                    {
-                        studentmodulefile.createNewFile();
-                    }
-                    BufferedReader reader = new BufferedReader(new FileReader(studentmatrix+"modules.txt"));
-                    
-                    for( int t = 0; t< 30; t++)
-                    {
-                        subjectlist[t] = reader.readLine();
-                        if(subjectlist[t] != null)
-                        {
-                            moduleviewsplit = subjectlist[t].split(",");
-                            day[t] = moduleviewsplit[4];
-                            time[t] = moduleviewsplit[5];
-                            timesplit = time[t].split(" - ");
-                            oldtimestart[t] = Integer.parseInt(timesplit[0]);
-                            oldtimeend[t] = Integer.parseInt(timesplit[1]);
-                            
-                        }
-                        
-                    }     
-                    reader.close();
-                }
-                catch(IOException e)
-                {
-                    e.printStackTrace();
-                }
- 
-                System.out.println("English Courses:");
-                for(int i = 0; i < engmodulecode.length;i++)
-                {
-                    if(engmodulewithname[i] != null)
-                    System.out.println(engcredithour[i] + " Credit | " + engmodulecode[i] + " | " + engmodulename[i]);
-                }
-                System.out.println("Enter 1 to add Main course, 2 to add Specialization course, 3 to add English course");
-                int selecttype = sc.nextInt();
-                
+                //a while loop is created to make sure student can continuously add module
+                //first group of code is for main courses module
                 while(selecttype == 1)
                 {    
                     System.out.println("Please enter the module you wanted to register (example: WIX2002):");
                     String userinputmodule = sc.next();
 
-                    //read checklist file(for each student they have checklist txt to prevent them register same module)
+                    //read checklist file(for each student they have checklist txt to prevent them register same module), if they have assign for this module earlier, it will skip this input module session and proceed to continue add other module
                     String[] read = new String[15];
                     String[] readsplit;
                     int[] credithournum = new int [read.length];
 
                     int exception = 0;
+                    //file studentmatrixchecklist.txt being read to check what module that the student has registered and skip this add module session to continue for another session
                     try
                     {   
                         File checklistfile = new File(studentmatrix+"checklist.txt");
@@ -358,6 +369,8 @@ public class addmodule {
                         e.printStackTrace();
                     }
                     
+                    
+                    //this is the condition where student for information technology department only can assign to WIB2001 and student for computer science department only can assign WIA2001 although those are the same subject
                     int codereturn=0;
                     if(userinputmodule.equals("WIA2001"))
                     {
@@ -386,13 +399,14 @@ public class addmodule {
                     {
                             total_credit_hour = total_credit_hour + credithournum[i];                        
                     }
-
+                    //for loop to compare userinput with the main course module and if it is available the program will continue
                     for(int i =0; i < modulecode.length; i++)
                     {
                         if(userinputmodule == null)
                         break;
                         else if(userinputmodule.equals(modulecode[i]))
                         {
+                            //calculate total credit hour including the new module that will be registered so that it is less than 22credit for the student to proceed adding the module
                             int total_credit_hour_test = total_credit_hour + numcredithour[i];
                             if(total_credit_hour_test>22)
                             {
@@ -400,6 +414,7 @@ public class addmodule {
                                 break;
                             }
                             moduleselect = modulecode[i];
+                            //read file from modulename.txt using user input moduleselect and bring out the information into array list so that it can be used in the program
                             try
                             {
                                 BufferedReader reader = new BufferedReader(new FileReader(moduleselect+".txt"));
@@ -425,7 +440,7 @@ public class addmodule {
                             {
                                 e.printStackTrace();
                             }
-
+                            //int the files, Lecture mode is declared as "L", Tutorial as "T" and Tutorial/Lab as "TL", so this for loop is to convert it into more user friendly information to be print out
                             for(int m =0; m < subjectmode.length; m++)
                             {
                                 if(subjectmode[m]!=null)
@@ -438,7 +453,7 @@ public class addmodule {
                                         modesubject[m] = "TUTORIAL/LAB";
                                 }
                             }
-
+                            //for loop to convert String subjectoccnum that being read from file into int datatype so that it can be use in the program more relevantly
                             for(int m = 0; m < subjectocc.length; m++)
                             {
                                 if(subjectocc[m] !=null)
@@ -446,7 +461,7 @@ public class addmodule {
                                     subjectoccnum[m] = Integer.parseInt(subjectocc[m]);
                                 }
                             }
-
+                            //for loop to print all occ(available class) for the student to choose to add into their module registered
                             for(int m = 0; m < subjectmode.length;m++)
                             {
                                 if(subjectoccnum[m] != 0 || modesubject[m] != null)
@@ -457,12 +472,13 @@ public class addmodule {
 
                                 }
                             }
-
+                            
+                            //student input for occ that they wanted to add for their class
                             System.out.println("Please select an occurance");
                             pick_occ = sc.nextInt();
                             
-                            //int[][] newendtime = new int[subjectday.length][day.length];
-                            
+                            //this group of code is to prevent time clash of the classes, when there was a subject that the student has assigned has same time as the new one that will be add, it will =>
+                            //print information that the student has another class at that time and exit the process of adding the new subject
                             int returncode = 0;
                             for(int m = 0;m < subjectday.length;m++ )
                             {
@@ -488,7 +504,7 @@ public class addmodule {
                                     } 
                                 }
                             }
-                            
+                            //reset the array so that no old data being use for next session
                             if(returncode==1)
                             {
                                 for(int l = 0; l<subjectmode.length;l++)
@@ -507,10 +523,10 @@ public class addmodule {
                             
                             
                             
-
+                            
                             System.out.println("This is your occurance selection: ");        
 
-
+                            //reprint the occ(class) that the student has chose 
                             for(int k = 0; k< subjectoccnum.length;k++)
                             {
                                 if(pick_occ == subjectoccnum[k])
@@ -520,9 +536,10 @@ public class addmodule {
                                     System.out.printf("Time : %s , %s \n",subjectday[k],subjecttime[k]);
                                 }
                             }
+                            //asking confirmation from the student to add the module
                             System.out.println("Sure? 1 to confirm 0 to cancel");
                             int confirmation = sc.nextInt();
-
+                            //get the  credit of the module that being registered
                             if(confirmation == 1)
                             {   
                                 for(int m = 0; m< credithour.length ;m++)
@@ -535,6 +552,7 @@ public class addmodule {
                                         }
                                     }
                                 }
+                                //write data (module name and credit) to the checklist file so that the student can continue adding or not based on the checklist condition 
                                 try
                                 {
                                     File studentfile = new File(studentmatrix+"checklist.txt");
@@ -550,7 +568,7 @@ public class addmodule {
                                 {
                                     System.out.println("Error");
                                 }
-
+                                //write module detail(occ, lecturername,day,time) into the student's module file to store the data
                                 try
                                 {
                                     File studentfile = new File(studentmatrix+"modules.txt");
@@ -579,7 +597,7 @@ public class addmodule {
                                     System.out.println("Error");
                                 }
 
-                                
+                                //write the student name into the lecturer's file so that the lecturer can see the student name that he/she teach
                                 try
                                 {
                                     for(int m = 0;m<subjectoccnum.length;m++)
@@ -601,6 +619,7 @@ public class addmodule {
                                 {
                                     System.out.println("Error");
                                 }
+                                //reset the array so that old data not being used for next session
                                 for(int l = 0; l<subjectmode.length;l++)
                                 {
                                     subjectmode[l] = null;
@@ -613,27 +632,32 @@ public class addmodule {
                                 }
 
                             }
+                            //if student did not confirm to add the occ, it will end the session and proceed to next session
                             else if(confirmation == 0)
                             {
                                 break;
                             }
                         }
                     }
+                    //break if user input is null
                     userinputmodule = null;
                     break;
                 }
-
+                //second selection for Specialization courses module
                 while(selecttype == 2)
                 {
                 //specializationmodulelist
+                    //userinput for the subject they want to add
                     System.out.println("Please enter the module you wanted to register (example: WIC3002):");
                     String userinputmodule = sc.next();
                     
+                    //condition for the student to *only* register for their specialiaztion course module, not other programme specialization couurse module
                     if(!userinputmodule.equals(specialcourse))
                     {
                         System.out.println("You cannot register this module.");
                         break;
                     }
+                    //check the checklis file to determine either the student can register for this module or not based on their registered course and total credit hour
                     
                     String[] read = new String[15];
                     String[] readsplit;
@@ -692,13 +716,16 @@ public class addmodule {
                         break;
                         else if(userinputmodule.equals(Smodulecode[i]))
                         {
+                            //add total credit hour with the newly-will-add module so the total credit hour not exceeding 22 including the module that will be add by the student
                             int total_credit_hour_test = total_credit_hour + Scredithour[i];
                             if(total_credit_hour_test>22)
                             {
                                 System.out.println("You have exceeding the credit hour limit!");
                                 break;
                             }
+                            //set the specialization course module code into a fix variable to be use
                             moduleselect = Smodulecode[i];
+                            //read the module file to get information about the subject
                             try
                             {
                                 BufferedReader reader = new BufferedReader(new FileReader(moduleselect+".txt"));
@@ -724,7 +751,7 @@ public class addmodule {
                             {
                                 e.printStackTrace();
                             }
-
+                            //change shortform into more user friendly data that can be read
                             for(int m =0; m < subjectmode.length; m++)
                             {
                                 if(subjectmode[m]!=null)
@@ -738,7 +765,7 @@ public class addmodule {
                                         
                                 }
                             }
-
+                            //change the String subjectoccnum into int to be used more effectively in the program
                             for(int m = 0; m < subjectocc.length; m++)
                             {
                                 if(subjectocc[m] !=null)
@@ -746,7 +773,7 @@ public class addmodule {
                                     subjectoccnum[m] = Integer.parseInt(subjectocc[m]);
                                 }
                             }
-
+                            //print all available occurance for the subject
                             for(int m = 0; m < subjectmode.length;m++)
                             {
                                 if(subjectoccnum[m] != 0 || modesubject[m] != null)
@@ -757,10 +784,11 @@ public class addmodule {
 
                                 }
                             }
-
+                            //userinput to select occurance that they want to add to their list
                             System.out.println("Please select an occurance");
                             pick_occ = sc.nextInt();
                             
+                            //block of code to prevent from time clash of the subject
                             int returncode = 0;
                             for(int m = 0;m < subjectday.length;m++ )
                             {
@@ -786,7 +814,7 @@ public class addmodule {
                                     } 
                                 }
                             }
-                            
+                            //if there are time clash, will exit the add session and reset all the array so the old data will not being use for next session
                             if(returncode==1)
                             {
                                 for(int l = 0; l<subjectmode.length;l++)
@@ -803,7 +831,7 @@ public class addmodule {
                             }
 
                             System.out.println("This is your occurance selection: ");        
-
+                            //reprint student selection of occurance
 
                             for(int k = 0; k< subjectoccnum.length;k++)
                             {
@@ -814,11 +842,14 @@ public class addmodule {
                                     System.out.printf("Time : %s , %s \n",subjectday[k],subjecttime[k]);
                                 }
                             }
+                            
+                            //getting student confirmation to add the occurance or not
                             System.out.println("Sure? 1 to confirm 0 to cancel");
                             int confirmation = sc.nextInt();
-
+                            //if the student want to proceed
                             if(confirmation == 1)
                             {   
+                                //set the credit to fix variable to be used for next operation
                                 for(int m = 0; m< Scredithour.length ;m++)
                                 {
                                     if(Smodulecode[m]!=null)
@@ -829,6 +860,7 @@ public class addmodule {
                                         }
                                     }
                                 }
+                                //write the module code and credit so that student cannot add this module again and the credit for student not to exceed 22 credit while adding new module in the future
                                 try
                                 {
                                     File studentfile = new File(studentmatrix+"checklist.txt");
@@ -844,7 +876,7 @@ public class addmodule {
                                 {
                                     System.out.println("Error");
                                 }
-
+                                //write the module detail in the student module file to store the data for future use
                                 try
                                 {
                                     File studentfile = new File(studentmatrix+"modules.txt");
@@ -872,6 +904,7 @@ public class addmodule {
                                 {
                                     System.out.println("Error");
                                 }
+                                //write the student name into the lecturer's file so that the lecturer can see who he/she teach
                                 try
                                 {
                                     for(int m = 0; m<subjectoccnum.length;m++)
@@ -900,6 +933,7 @@ public class addmodule {
                                 {
                                     System.out.println("Error");
                                 }
+                                //reset the array so old data not being use for next session
                                 for(int l = 0; l<subjectmode.length;l++)
                                 {
                                     subjectmode[l] = null;
@@ -913,6 +947,7 @@ public class addmodule {
                                 
 
                             }
+                            //when user cancel to add the occurance, exite the session and proceed to next session
                             else if(confirmation == 0)
                             {
                                 break;
@@ -921,16 +956,18 @@ public class addmodule {
                         }
                         
                     }
+                    //exit the session if user input is null
                     userinputmodule = null;
                     break;
                 }
                 
-                
+                //selsection for English course subject
                 while(selecttype == 3)
                 {
+                    //userinput for the module that the student want to add 
                     System.out.println("Please enter the module you wanted to register (example: GLT1018):");
                     String userinputmodule = sc.next();
-
+                    //get the band needed for the subject for the condition student to register the module
                     String[] read = new String[15];
                     String[] readsplit;
                     int[] credithournum = new int [read.length];
@@ -946,12 +983,14 @@ public class addmodule {
                         }
                         
                     }
+                    //if student band meet reguirement of the subject, continue, else, break
                     if(!studentmuet.equals(bandneeded))
                     {
                         System.out.println("You cannot assign for this module."+"Band needed: "+bandneeded); 
                         break;
                         
                     }
+                    //read checklist file to confirm that the student has assigned for the module or not and make sure student total credit hour not exceeding 22
                     int exception = 0;
                     try
                     {   
@@ -1004,13 +1043,14 @@ public class addmodule {
                         break;
                         else if(userinputmodule.equals(engmodulecode[i]))
                         {
+                            //total credit hour including new subject to be add ,if total more that 22, exit the session and proceed to next session
                             int total_credit_hour_test = total_credit_hour + engcredithour[i];
                             if(total_credit_hour_test>22)
                             {
                                 System.out.println("You have exceeding the credit hour limit!");
                                 break;
                             }
-                            
+                            //read from the module file to get the information of the subject that being choose
                             moduleselect = engmodulecode[i];
                             try
                             {
@@ -1037,7 +1077,7 @@ public class addmodule {
                             {
                                 e.printStackTrace();
                             }
-
+                            //convert shortform to moreuserfriendly data to be read
                             for(int m =0; m < subjectmode.length; m++)
                             {
                                 if(subjectmode[m]!=null)
@@ -1050,7 +1090,7 @@ public class addmodule {
                                         modesubject[m] = "TUTORIAL/LAB";
                                 }
                             }
-
+                            //convert String subjectoccnum to int type so that it can be used more effectively for the program
                             for(int m = 0; m < subjectocc.length; m++)
                             {
                                 if(subjectocc[m] !=null)
@@ -1058,7 +1098,7 @@ public class addmodule {
                                     subjectoccnum[m] = Integer.parseInt(subjectocc[m]);
                                 }
                             }
-
+                            //print all occurance available for the subject
                             for(int m = 0; m < subjectmode.length;m++)
                             {
                                 if(subjectoccnum[m] != 0 || modesubject[m] != null)
@@ -1069,10 +1109,10 @@ public class addmodule {
 
                                 }
                             }
-
+                            //student pick an occ to be add to their list
                             System.out.println("Please select an occurance");
                             pick_occ = sc.nextInt();
-                            
+                            //make sure no time clash if the student take this subject, if there is time clash, exit the current session and proceed to next session
                             int returncode = 0;
                             for(int m = 0;m < subjectday.length;m++ )
                             {
@@ -1098,7 +1138,7 @@ public class addmodule {
                                     } 
                                 }
                             }
-                            
+                            //if student cannot assign for the module, reset the array data so that old data not being used for next session
                             if(returncode==1)
                             {
                                 for(int l = 0; l<subjectmode.length;l++)
@@ -1115,7 +1155,7 @@ public class addmodule {
                             }
  
                             System.out.println("This is your occurance selection: ");        
-
+                            //reprint selected occurance for the student to confirm
 
                             for(int k = 0; k< subjectoccnum.length;k++)
                             {
@@ -1126,11 +1166,13 @@ public class addmodule {
                                     System.out.printf("Time : %s , %s \n",subjectday[k],subjecttime[k]);
                                 }
                             }
+                            //student confirmamtion to add the module
                             System.out.println("Sure? 1 to confirm 0 to cancel");
                             int confirmation = sc.nextInt();
-
+                            //student proceed
                             if(confirmation == 1)
                             {   
+                                //set the credithour into a fix variable to be use for the program
                                 for(int m = 0; m< credithournum.length ;m++)
                                 {
                                     if(engmodulecode[m]!=null)
@@ -1141,6 +1183,7 @@ public class addmodule {
                                         }
                                     }
                                 }
+                                //write the modulecode and credit to the checklist for student future use of adding and deleting subject
                                 try
                                 {
                                     File studentfile = new File(studentmatrix+"checklist.txt");
@@ -1156,7 +1199,7 @@ public class addmodule {
                                 {
                                     System.out.println("Error");
                                 }
-
+                                //add the module detail into student module file
                                 try
                                 {
                                     File studentfile = new File(studentmatrix+"modules.txt");
@@ -1184,6 +1227,7 @@ public class addmodule {
                                 {
                                     System.out.println("Error");
                                 }
+                                //add student name to lecturer file for the lecturer to see the students they teach
                                 try
                                 {
                                     for(int m = 0; m<subjectoccnum.length;m++)
@@ -1212,7 +1256,7 @@ public class addmodule {
                                 {
                                     System.out.println("Error");
                                 }
-                                
+                                //at the end of the session, reset the array so that old data not being use for next session
                                 for(int l = 0; l<subjectmode.length;l++)
                                 {
                                     subjectmode[l] = null;
@@ -1225,6 +1269,7 @@ public class addmodule {
                                 }
 
                             }
+                            //if student cancel to add the occurance, ecit the session and proceed to next
                             else if(confirmation == 0)
                             {
                                 break;
@@ -1234,9 +1279,12 @@ public class addmodule {
                     userinputmodule = null;
                     break;
                 }
-                if(selecttype!=1&&selecttype!=2&&selecttype!=3)
+                //if the user enter wrong code, a message will appear
+                if(selecttype!=1&&selecttype!=2&&selecttype!=3&&selecttype!=0)
                 {
                     System.out.println("Wrong code!");
                 }
+                if(selecttype == 0)
+                    System.out.println("Exited");
     }
 }
