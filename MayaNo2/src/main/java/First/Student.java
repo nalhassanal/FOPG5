@@ -37,7 +37,9 @@ public class Student {
         boolean keepGoing = true;
         int count = 0;
         while (keepGoing){
-            
+            System.out.println();
+            System.out.println("MAYA 2.0");
+            System.out.println("--------------------------------------------------------");
             System.out.println();
             System.out.println("Welcome to Student page!!!");
             System.out.println("1)See all module\n2)add module\n3)delete module\n4)view course registered\n5)view timetable\n6)Search module\n7)exit");
@@ -56,13 +58,12 @@ public class Student {
                     boolean inkeepGoing = true;
                     while (inkeepGoing){
                         addmoduleobject.addmodule(studentmatrix);
-                        System.out.println("Do you want to continue adding module?\nyes\nno");
-                        String input = sc.nextLine();
-                        if ( input.toUpperCase().equals("NO"))
+                        System.out.println("Do you want to continue adding module?\n1) yes,2) no");
+                        int input = sc.nextInt();
+                        if ( input == 2)
                             inkeepGoing = false;
                         else {
-                            System.out.println("Invalid input");
-                            inkeepGoing = false;
+                            inkeepGoing = true;
                         }
                         System.out.println();
                     }    
@@ -93,14 +94,12 @@ public class Student {
                     while(inkeepGoing){
                         search.SearchModule();
                         System.out.println("Do you want to continue searching?");
-                        System.out.println("Yes or No");
-                        String input = sc.nextLine();
-                        if ( input.toUpperCase().equals("NO"))
+                        System.out.println("1) Yes or 2) No");
+                        int input = sc.nextInt();
+                        if ( input == 2)
                             inkeepGoing = false;
-                        else {
-                            System.out.println("Invalid input");
-                            inkeepGoing = false;
-                        }
+                        else if( input == 1)
+                            inkeepGoing = true;
                         System.out.println();
                     }
                     break;
