@@ -1,17 +1,9 @@
-
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package First;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Random;
-
 import javax.swing.JFrame;
-
-
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -21,16 +13,30 @@ import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 
 /**
  *
- * @author yoyoa
+ * @author Yousef
  */
 public class Chatbot {
 
+    /**
+     * empty constructor
+     */
     public Chatbot(){
         
     }
+
+    /**
+     * instance 
+     */
     private JTextArea Chatarea = new JTextArea();
+
+    /**
+     *
+     */
     private JTextField chatbox = new JTextField();
     
+    /**
+     *
+     */
     public void Chatbot() {
         JFrame frame = new JFrame();
 
@@ -118,9 +124,12 @@ public class Chatbot {
             }
         }
         );
-
     }
 
+    /**
+     *
+     * @param string
+     */
     private void bot(String string) {
         Chatarea.append("Bot : " + string + "\n");
     }
