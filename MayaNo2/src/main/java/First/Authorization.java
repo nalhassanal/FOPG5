@@ -476,13 +476,20 @@ public class Authorization {
                 currentLine = inputStream.nextLine();
                 data = currentLine.split(",");
                 
-                if (data[0].equals(inUser) ){//something wrong
-                    if(data[position].equalsIgnoreCase("Associate Professor"))
+                if (data[0].equals(inUser) ){
+                    if(data[position].equalsIgnoreCase("Associate Professor")){
                          ret = true;
-                    else if (data[position].equalsIgnoreCase("Professor"))
+                         break;
+                    }
+                        
+                    else if (data[position].equalsIgnoreCase("Professor")){
                         ret = true;
-                    else
-                         ret = false;
+                         break;
+                    }
+                    else{
+                        ret = false;
+                        break;
+                    }
                 }
             }
             inputStream.close();
