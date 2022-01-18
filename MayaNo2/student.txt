@@ -1,3 +1,3 @@
-U2102848,U2102848@siswa.um.edu.my,Hassanal Harriz Bin Ahmed Hakimmy Fuad,Hhahf8122,Bachelor of Computer Science (Computer System and Network,Band 4
-U2102848,U2102848@siswa.um.edu.my,Hassanal Harriz Bin Ahmed Hakimmy Fuad,Hhahf8122,Bachelor of Computer Science (Computer System and Network,Band 4
 U2102723,U2102723@siswa.um.edu.my,Muhammad Haziq Hudzairy bin Hussin,haziq123,Bachelor of Information Technology (Multimedia),Band 4
+U2002028,U2002028@siswa.um.edu.my,Mohamad Haikal Haziq Bin Hasan,malek,Bachelor of Computer Science (Computer System and Network),Band 4
+U2102848,U2102848@siswa.um.edu.my,Hassanal Harriz Bin Ahmed Hakimmy Fuad,hassanal8122,Bachelor of Computer Science (Computer System and Network),Band 4

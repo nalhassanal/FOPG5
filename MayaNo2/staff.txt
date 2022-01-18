@@ -7,7 +7,6 @@ hema,hema@um.edu.my,Dr. Hema A/P Subramaniam,Subrahema,Senior Lecturer
 koksoon,koksoon@um.edu.my,Dr. Tey Kok Soon,ksTey,Senior Lecturer
 zaily,zaily@um.edu.my,Noorzaily Bin Mohamed Noor,Noorzaily,Lecturer
 emranMT,emran@um.edu.my,Emran Bin Mohd Tamil,emran1003,Lecturer
-rozramli,roziana.ramli@um.edu.my,Dr. Roziana Binti Ramli,ramliroz,Senior Lecturer
 yinkia,yinkia@um.edu.my,Dr. Chiam Yin Kia,ChiamYK,Senior Lecturer
 haizam,hairulnizam@um.edu.my,Dr. Mohd Hairul Nizam Bin Md Nasir,rulnizam,Senior Lecturer
 maizatul,maizatul@um.edu.my,Dr. Maizatul Akmar Binti Ismail,maiAkmar,Associate Professor
@@ -30,3 +29,4 @@ nazriq,nazriq@um.edu.my,Mohd Nazriq Bin Noor Ahmad,ahmadnazriq,Lecturer
 kenTS,kensiang@um.edu.my,Tan Ken Siang,kensiangtan,Lecturer
 peterGH,goonhong@um.edu.my,Ng Goon Hoong Peter,ngPeter,Lecturer
 choywan,choywan@um.edu.my,Lim Choy Wan,Limcwww,Senior Lecturerteststaff,s123456@gmail.com,test test test,testpassword,Professor
+rozramli,roziana.ramli@um.edu.my,Dr. Roziana Binti Ramli,ramliroz,Senior Lecturer

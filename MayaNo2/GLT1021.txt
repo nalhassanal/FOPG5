@@ -1,3 +1,3 @@
-T,1,Nor Aafina Binti Mohd Zamil,Thursday,1400 - 1600
-T,2,Kiranjeet Kaur A/P Mukhtiar Singh,Thursday,1400 - 1600
-T,3,Eleena Binti Hasbullah,Thursday,1400 - 1600
+T,1,Nor Aafina Binti Mohd Zamil,THURSDAY,1400 - 1600
+T,2,Kiranjeet Kaur AP Mukhtiar Singh,THURSDAY,1400 - 1600
+T,3,Eleena Binti Hasbullah,THURSDAY,1400 - 1600

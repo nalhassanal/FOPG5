@@ -1,4 +1,4 @@
-L,1,Dr. Chiam Yin Kia,Monday,0900 - 1100
-T,1,Dr. Mohd Hairul Nizam Bin Md Nasir,Wednesday,1600 - 1700
-L,2,Dr. Chiam Yin Kia,Monday,0900 - 1100
-T,2,Noorzaily Bin Mohamed Noor,Wednesday,1700 - 1800
+L,1,Dr. Chiam Yin Kia,MONDAY,0900 - 1100
+T,1,Dr. Mohd Hairul Nizam Bin Md Nasir,WEDNESDAY,1600 - 1700
+L,2,Dr. Chiam Yin Kia,MONDAY,0900 - 1100
+T,2,Noorzaily Bin Mohamed Noor,WEDNESDAY,1700 - 1800

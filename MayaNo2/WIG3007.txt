@@ -1,1 +1,1 @@
-LT,1,Dr. Amirrudin Bin Kamsin,Tuesday,1500 - 1800
+TL,1,Dr. Amirrudin Bin Kamsin,TUESDAY,1500 - 1800

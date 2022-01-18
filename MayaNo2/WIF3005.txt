@@ -1,2 +1,2 @@
-L,1,Dr. Hasan Kahtan Khalaf,Tuesday,1600 - 1800
-T,1,Dr. Hasan Kahtan Khalaf,Thursday,1600 - 1700
+L,1,Dr. Hasan Kahtan Khalaf,TUESDAY,1600 - 1800
+T,1,Dr. Hasan Kahtan Khalaf,THURSDAY,1600 - 1700

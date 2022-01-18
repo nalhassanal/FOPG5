@@ -1,2 +1,2 @@
-L,1,Dr. Por Lip Yee @ Por Khoon Sun,Wednesday,0900 - 1100
-T,1,Dr. Por Lip Yee @ Por Khoon Sun,Friday,1400 - 1500
+L,1,Dr. Por Lip Yee @ Por Khoon Sun,WEDNESDAY,0900 - 1100
+T,1,Dr. Por Lip Yee @ Por Khoon Sun,FRIDAY,1400 - 1500
