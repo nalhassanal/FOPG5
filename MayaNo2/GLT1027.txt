@@ -1,3 +1,0 @@
-T,1,Ng Goon Hoong Peter,Thursday,1700 - 1900
-T,2,Lim Choy Wan,Thursday,1700 - 1900
-T,3,Mohd Nazriq Bin Noor Ahmad,Thursday,1700 - 1900

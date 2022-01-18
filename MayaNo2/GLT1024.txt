@@ -1,3 +1,0 @@
-T,1,Kiranjeet Kaur A/P Mukhtiar Singh,Friday,1500 - 1700
-T,2,Mohd Nazriq Bin Noor Ahmad,Friday,1500 - 1700
-T,3,Tan Ken Siang,Friday,1500 - 1700
