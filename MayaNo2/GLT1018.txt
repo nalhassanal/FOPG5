@@ -1,3 +1,3 @@
-T,1,Kamarazaman Bin Md Said,Monday,1100 - 1300
-T,2,Aina Azlin Binti Mohamat Arif,Monday,1100 - 1300
-T,3,Nor Syakirin Binti Mohamed Nasrudin,Monday,1100 - 1300
+T,1,Kamarazaman Bin Md Said,MONDAY,1100 - 1300
+T,2,Aina Azlin Binti Mohamat Arif,MONDAY,1100 - 1300
+T,3,Nor Syakirin Binti Mohamed Nasrudin,MONDAY,1100 - 1300
