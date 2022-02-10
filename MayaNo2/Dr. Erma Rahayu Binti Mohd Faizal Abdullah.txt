@@ -1,4 +1,1 @@
-<<<<<<< HEAD
-=======
 WIX1001,L,3,U2102723,Muhammad Haziq Hudzairy bin Hussin
->>>>>>> dbf58cdefd41b9d26882e92d179f746e616f065e

@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-L,1,Dr. Teh Ying Wah,WEDNESDAY,1600 - 1800
-T,1,Dr. Teh Ying Wah,THURSDAY,1600 - 1700
-=======
 L,1,Dr. Teh Ying Wah,WEDNESDAY,1600 - 1700
 T,1,Dr. Teh Ying Wah,THURSDAY,1600 - 1700
 
->>>>>>> dbf58cdefd41b9d26882e92d179f746e616f065e

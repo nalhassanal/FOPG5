@@ -1,7 +1,2 @@
-<<<<<<< HEAD
-T,1,Hannyzzura Binti Pal @ Affal,THURSDAY,1000 - 1300
-T,2,Mas Idayu Binti Md Sabri,THURSDAY,1300 - 1600
-=======
 T,1,Hannyzura Binti Pal @ Affal,TUESDAY,1000 - 1300
 T,2,Mas Idayuu Binti Md Sabri,TUESDAY,1300 - 1600
->>>>>>> dbf58cdefd41b9d26882e92d179f746e616f065e
