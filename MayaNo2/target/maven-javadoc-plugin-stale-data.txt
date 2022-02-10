@@ -1,0 +1,60 @@
+@options
+@packages
+@argfile
+-classpath
+'C:/Users/Hassanal/.m2/repository/mysql/mysql-connector-java/8.0.27/mysql-connector-java-8.0.27.jar;C:/Users/Hassanal/.m2/repository/com/google/protobuf/protobuf-java/3.11.4/protobuf-java-3.11.4.jar'
+-encoding
+'UTF-8'
+-protected
+-source
+'16'
+-sourcepath
+'C:/Users/Hassanal/Java/LabReport01/FOPG5/MayaNo2/src/main/java'
+-author
+-bottom
+'Copyright &#169; 2022. All rights reserved.'
+-charset
+'UTF-8'
+-d
+'C:/Users/Hassanal/Java/LabReport01/FOPG5/MayaNo2/target/site/apidocs'
+-docencoding
+'UTF-8'
+-doctitle
+'MayaNo2 1.0-SNAPSHOT API'
+-use
+-version
+-windowtitle
+'MayaNo2 1.0-SNAPSHOT API'
+Main
+'C:/Users/Hassanal/Java/LabReport01/FOPG5/MayaNo2/src/main/java/Main/addmodule.java'
+'C:/Users/Hassanal/Java/LabReport01/FOPG5/MayaNo2/src/main/java/Main/Authorization.java'
+'C:/Users/Hassanal/Java/LabReport01/FOPG5/MayaNo2/src/main/java/Main/Chatbot.java'
+'C:/Users/Hassanal/Java/LabReport01/FOPG5/MayaNo2/src/main/java/Main/Checker.java'
+'C:/Users/Hassanal/Java/LabReport01/FOPG5/MayaNo2/src/main/java/Main/deletemodule.java'
+'C:/Users/Hassanal/Java/LabReport01/FOPG5/MayaNo2/src/main/java/Main/Main.java'
+'C:/Users/Hassanal/Java/LabReport01/FOPG5/MayaNo2/src/main/java/Main/popupBox.java'
+'C:/Users/Hassanal/Java/LabReport01/FOPG5/MayaNo2/src/main/java/Main/searchModule.java'
+'C:/Users/Hassanal/Java/LabReport01/FOPG5/MayaNo2/src/main/java/Main/Staff.java'
+'C:/Users/Hassanal/Java/LabReport01/FOPG5/MayaNo2/src/main/java/Main/Student.java'
+'C:/Users/Hassanal/Java/LabReport01/FOPG5/MayaNo2/src/main/java/Main/timetable.java'
+'C:/Users/Hassanal/Java/LabReport01/FOPG5/MayaNo2/src/main/java/Main/timetableupdater.java'
+'C:/Users/Hassanal/Java/LabReport01/FOPG5/MayaNo2/src/main/java/Main/viewregistered.java'
+C:\Users\Hassanal\.m2\repository\mysql\mysql-connector-java\8.0.27\mysql-connector-java-8.0.27.jar = 1639899857839
+C:\Users\Hassanal\.m2\repository\com\google\protobuf\protobuf-java\3.11.4\protobuf-java-3.11.4.jar = 1639899858279
+C:\Users\Hassanal\Java\LabReport01\FOPG5\MayaNo2\src\main\java = 1642487767135
+C:\Users\Hassanal\Java\LabReport01\FOPG5\MayaNo2\target\site\apidocs\allclasses-index.html = 1642491826766
+C:\Users\Hassanal\Java\LabReport01\FOPG5\MayaNo2\target\site\apidocs\allpackages-index.html = 1642491826772
+C:\Users\Hassanal\Java\LabReport01\FOPG5\MayaNo2\target\site\apidocs\element-list = 1642491826506
+C:\Users\Hassanal\Java\LabReport01\FOPG5\MayaNo2\target\site\apidocs\help-doc.html = 1642491826842
+C:\Users\Hassanal\Java\LabReport01\FOPG5\MayaNo2\target\site\apidocs\index-all.html = 1642491826828
+C:\Users\Hassanal\Java\LabReport01\FOPG5\MayaNo2\target\site\apidocs\index.html = 1642491826833
+C:\Users\Hassanal\Java\LabReport01\FOPG5\MayaNo2\target\site\apidocs\jquery-ui.overrides.css = 1642491827337
+C:\Users\Hassanal\Java\LabReport01\FOPG5\MayaNo2\target\site\apidocs\member-search-index.js = 1642491826791
+C:\Users\Hassanal\Java\LabReport01\FOPG5\MayaNo2\target\site\apidocs\module-search-index.js = 1642491826776
+C:\Users\Hassanal\Java\LabReport01\FOPG5\MayaNo2\target\site\apidocs\overview-tree.html = 1642491826721
+C:\Users\Hassanal\Java\LabReport01\FOPG5\MayaNo2\target\site\apidocs\package-search-index.js = 1642491826780
+C:\Users\Hassanal\Java\LabReport01\FOPG5\MayaNo2\target\site\apidocs\script.js = 1642491826919
+C:\Users\Hassanal\Java\LabReport01\FOPG5\MayaNo2\target\site\apidocs\search.js = 1642491826929
+C:\Users\Hassanal\Java\LabReport01\FOPG5\MayaNo2\target\site\apidocs\stylesheet.css = 1642491826870
+C:\Users\Hassanal\Java\LabReport01\FOPG5\MayaNo2\target\site\apidocs\tag-search-index.js = 1642491826796
+C:\Users\Hassanal\Java\LabReport01\FOPG5\MayaNo2\target\site\apidocs\type-search-index.js = 1642491826785
