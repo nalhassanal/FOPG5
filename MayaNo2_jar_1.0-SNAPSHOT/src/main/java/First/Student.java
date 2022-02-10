@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Main;
+package First;
 
 /**
  *
@@ -35,25 +35,15 @@ public class Student {
             System.out.println("File not found "+ex.getMessage());
         }
         boolean keepGoing = true;
-        int count ;
+        int count = 0;
         while (keepGoing){
-            count = 0;
-            System.out.println();
-            System.out.println("MAYA 2.0");
-            System.out.println("--------------------------------------------------------");
+            
             System.out.println();
             System.out.println("Welcome to Student page!!!");
             System.out.println("1)See all module\n2)add module\n3)delete module\n4)view course registered\n5)view timetable\n6)Search module\n7)exit");
             System.out.println("What you want to do:");
-            int userinput;
-            
-            try {
-                userinput = sc.nextInt();
-            } catch (java.util.InputMismatchException ex) {
-                System.out.println("Invalid Input " + ex.getMessage());
-                userinput = 7;
-            }
-            
+            int userinput = sc.nextInt();
+
             switch(userinput){
                 case 1:
                     System.out.println();
@@ -66,12 +56,13 @@ public class Student {
                     boolean inkeepGoing = true;
                     while (inkeepGoing){
                         addmoduleobject.addmodule(studentmatrix);
-                        System.out.println("Do you want to continue adding module?\n1) yes,2) no");
-                        int input = sc.nextInt();
-                        if ( input == 2)
+                        System.out.println("Do you want to continue adding module?\nyes\nno");
+                        String input = sc.nextLine();
+                        if ( input.toUpperCase().equals("NO"))
                             inkeepGoing = false;
                         else {
-                            inkeepGoing = true;
+                            System.out.println("Invalid input");
+                            inkeepGoing = false;
                         }
                         System.out.println();
                     }    
@@ -102,12 +93,14 @@ public class Student {
                     while(inkeepGoing){
                         search.SearchModule();
                         System.out.println("Do you want to continue searching?");
-                        System.out.println("1) Yes or 2) No");
-                        int input = sc.nextInt();
-                        if ( input == 2)
+                        System.out.println("Yes or No");
+                        String input = sc.nextLine();
+                        if ( input.toUpperCase().equals("NO"))
                             inkeepGoing = false;
-                        else if( input == 1)
-                            inkeepGoing = true;
+                        else {
+                            System.out.println("Invalid input");
+                            inkeepGoing = false;
+                        }
                         System.out.println();
                     }
                     break;

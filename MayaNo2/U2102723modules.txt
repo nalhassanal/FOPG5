@@ -1,0 +1,8 @@
+WIX1001,L,3,Dr. Lim Chee Kau,MONDAY,1600 - 1800
+WIX1001,T,3,Dr. Erma Rahayu Binti Mohd Faizal Abdullah,WEDNESDAY,1400 - 1500
+WIB2001,L,1,Dr. Norjihan Binti Abdul Ghani,Monday,1400 - 1600
+WIB2001,T,1,Dr. Fariza Hanum Binti Md Nasaruddin,Wednesday,1100 - 1200
+GLT1024,T,3,Tan Ken Siang,FRIDAY,1500 - 1700
+WIX2002,L,1,Dr. Chiam Yin Kia,Monday,0900 - 1100
+WIX2002,T,1,Dr. Mohd Hairul Nizam Bin Md Nasir,Wednesday,1600 - 1700
+WIG3007,LT,1,Dr. Amirrudin Bin Kamsin,TUESDAY,1500 - 1800

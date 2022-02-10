@@ -1,4 +1,4 @@
-package Main;
+package First;
 
 
 import java.awt.AWTException;
@@ -10,66 +10,20 @@ import java.util.Scanner;
  * @author Hassanal
  */
 public class Main {
-    
-    /**
-     * this is a static object for authorization class that is to be used by
-     * register and log in method
-     */
-    static Authorization log = new Authorization();
-
-    /**
-     * this is a static object for staff class that is to be used by log in method
-     */
-    static Staff staff = new Staff();
-
-    /**
-     * this is a static object for student class that is to be used by log in method
-     */
-    static Student student = new Student();
-
-    /**
-     * this is a static object for getting user input
-     */
-    static Scanner in = new Scanner(System.in);
-
-    /**
-     * this is a static object for Chatbot class to be used in main method
-     */
-    static Chatbot bot = new Chatbot();
-
-    /**
-     * a static variable to be used by register and log in method as the type of user
-     * either staff or student
-     */
-    static String type;
-
-    /**
-     * a static variable to be used by every loop in every method 
-     * whenever applicable
-     */
-    static boolean keepGoing = true;
-
-    /**
-     * a static object for popupBox class to be used in any methods that needs it
-     */
-    static popupBox box;
-        
-    /**
-     * This main method is responsible for the main menu of the whole
-     * application whenever a user wants to exit, must go through here
-     *
-     * @param args - not used
-     */
+        static authorization log = new authorization();
+        static Staff staff = new Staff();
+        static Student student = new Student();
+        static Scanner in = new Scanner(System.in);
+        static Chatbot bot = new Chatbot();
+        static String type;
+        static boolean keepGoing = true;
+        static popupBox box;
     public static void main(String[] args){
-        wait(100);
-        consoleClear();
         box = new popupBox();
         box.infoBox("WELCOME TO MAYA 2.0", "MAYA");
         in = new Scanner(System.in);
         int i = 0;
         while(keepGoing){
-            System.out.println("MAYA 2.0");
-            System.out.println("--------------------------------------------------------");
             displayMenu();
             String choice = in.next();
             switch(choice.toUpperCase()){
@@ -102,29 +56,17 @@ public class Main {
                     break;
             }
         }
-        
     }
     
-    /**
-     * this is a delay method 
-     * which functions to sleep the process for how many milliseconds 
-     * also handles error in the case that the sleep gets interrupted
-     * @param millisec
-     */
-    private static void wait(int millisec){
+    private static void wait( int ms){
         try{
-            Thread.sleep(millisec);
+            Thread.sleep(ms);
         }catch (InterruptedException ex){
             Thread.currentThread().interrupt();
             System.out.println(ex.getMessage());
         }
     }
     
-    /**
-     * this consoleClear method uses a java robot
-     * which automates the process of pressing CTRL + L together
-     * to clear the console screen of netbeans IDE
-     */
     private static void consoleClear(){
         try{
             Robot pressbot = new Robot();
@@ -137,9 +79,7 @@ public class Main {
         }
     }
     
-    /**
-     * this is a menu method for the main method
-     */
+    
     public static void displayMenu(){
         System.out.println();
         System.out.println("A) LOGIN ");
@@ -150,44 +90,29 @@ public class Main {
         System.out.println("Please choose one : ");
     }
     
-    /**
-     * this is just a log out statement
-     */
     public static void logout(){
         System.out.println();
         System.out.println("Do you want to log out?");
         System.out.println();
     }
     
-    /**
-     * this is a register menu method, this is where
-     * after user inputs their status will get redirected to the 
-     * appropriate registration sequence
-     * and after the sequence, it will continue to the log in method
-     */
     public static void register(){
         box = new popupBox();
         box.infoBox("WELCOME TO REGISTRATION PAGE", "REGISTRATION PAGE");
 
         // asks user if they want to REGISTER as student or staff
         in = new Scanner(System.in);
-        log = new Authorization();
+        log = new authorization();
         System.out.println("Do you want to register as student or staff? (student or staff)");
         type = in.nextLine();
         switch(type.toLowerCase()){
             case "staff":
                 log.staffRegister();
-                System.out.println();
-                System.out.println("--------------------------------------------------------");
-                System.out.println();
                 logIn();
                 break;
 
             case "student":
                 log.studentRegister();
-                System.out.println();
-                System.out.println("--------------------------------------------------------");
-                System.out.println();
                 logIn();
                 break;
 
@@ -199,19 +124,6 @@ public class Main {
         }
     }
     
-    /**
-     * this is the log in method, this is where
-     * after user inputs their status, will get redirected 
-     * to the appropriate log in sequence
-     * if successful then user be redirected
-     * to appropriate status menu
-     * ie. staff or student
-     * 
-     * this method will also call the log out method and 
-     * processes the logout sequence 
-     * if user chooses to logout, it will end the program
-     * else it will go back to their respective menus.
-     */
     public static void logIn(){
         // asks user if they are student or staff
         
@@ -227,8 +139,6 @@ public class Main {
                 if(login.equals("Login successful")){
                     // display login result
                     System.out.println(login);
-                    wait(1000);
-                    consoleClear();
                     staff.staff();
                     keepGoing = true;
                     while (keepGoing){
@@ -236,14 +146,9 @@ public class Main {
                         String logout = in.next();
                         if(logout.equalsIgnoreCase("yes")){
                             keepGoing = false;
-                            System.out.println("Successful log out");
                             System.out.println("Exiting program...");
-                            wait(2000);
+                            wait(1000);
                             consoleClear();
-                            System.out.println();
-                            System.out.println("Thank you for using our program");
-                            System.out.println("Created by Group 5");
-                            System.out.println("--------------------------------------------------------");
                         }
                         else
                             staff.staff(); 
@@ -263,8 +168,6 @@ public class Main {
                 if(login.equals("Login successful")){
                     // display login result
                     System.out.println(login);
-                    wait(1000);
-                    consoleClear();
                     student.student();
                     keepGoing = true;
                     while (keepGoing){
@@ -272,24 +175,16 @@ public class Main {
                         String logout = in.next();
                         if(logout.equalsIgnoreCase("yes")){
                             keepGoing = false;
-                            System.out.println("Successful log out");
                             System.out.println("Exiting program...");
-                            wait(2000);
+                            wait(1000);
                             consoleClear();
-                            System.out.println();
-                            System.out.println("Thank you for using our program");
-                            System.out.println("Created by Group 5");
-                            System.out.println("--------------------------------------------------------");
                         }
+                            
                         else{
+                            wait(500);
                             student.student();
                         }
                     }
-                }
-                else{
-                    System.out.println("Login unsuccessful");
-                    System.out.println(login);
-                    break;
                 }
                 break;
 
