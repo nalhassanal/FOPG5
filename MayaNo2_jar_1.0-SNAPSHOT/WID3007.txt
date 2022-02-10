@@ -1,2 +1,0 @@
-L,1,Dr. Lim Chee Kau,Tuesday,1600 - 1800
-T,1,Dr. Lim Chee Kau,Thursday,1100 - 1200
