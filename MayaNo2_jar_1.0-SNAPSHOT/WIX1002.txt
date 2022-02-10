@@ -1,6 +1,0 @@
-T,1,Dr. Nor Badrul Anuar Bin Juma'at,Monday,0900 - 1100
-L,1,Dr. Ang Tan Fong,Thursday,0900 - 1200
-T,2,Dr. Nor Badrul Anuar Bin Juma'at,Monday,0900 - 1100
-L,2,Dr. Nor Badrul Anuar Bin Juma'at,Thursday,0900 - 1200
-T,3,Dr. Nor Badrul Anuar Bin Juma'at,Monday,0900 - 1100
-L,3,Dr. Hema A/P Subramaniam,Friday,0900 - 1200
