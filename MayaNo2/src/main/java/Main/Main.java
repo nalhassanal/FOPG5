@@ -10,7 +10,7 @@ import java.util.Scanner;
  * @author Hassanal
  */
 public class Main {
-
+    
     /**
      * this is a static object for authorization class that is to be used by
      * register and log in method
@@ -285,6 +285,11 @@ public class Main {
                             student.student();
                         }
                     }
+                }
+                else{
+                    System.out.println("Login unsuccessful");
+                    System.out.println(login);
+                    break;
                 }
                 break;
 

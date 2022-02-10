@@ -743,10 +743,10 @@ public class Staff {
                     // this block is to read from the staff's txt file
                     // and prints out all of their modules that they will be teaching
                     File moduleTaught = new File(username+".txt");
+                    int i = 1;
                     try{
                         Scanner inputStream = new Scanner(new FileInputStream(moduleTaught));
                         while (inputStream.hasNextLine()){
-                            int i=1;
                             currentLine = inputStream.nextLine();
                             System.out.println( i +") " +currentLine); // just shows the module code only
                             System.out.println();

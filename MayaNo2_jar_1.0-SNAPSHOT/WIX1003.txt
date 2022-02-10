@@ -1,0 +1,6 @@
+T,1,Dr. Tey Kok Soon,Wednesday,0900 - 1100
+L,1,Noorzaily Bin Mohamed Noor,Thursday,1200 - 1300
+T,2,Dr. Tey Kok Soon,Wednesday,0900 - 1100
+L,2,Emran Bin Mohd Tamil,Thursday,1200 - 1300
+T,3,Dr. Tey Kok Soon,Wednesday,0900 - 1100
+L,3,Dr. Roziana Binti Ramli,Thursday,1300 - 1400
