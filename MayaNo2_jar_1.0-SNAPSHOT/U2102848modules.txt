@@ -1,0 +1,7 @@
+WIX1001,L,3,Dr. Lim Chee Kau,MONDAY,1600 - 1800
+WIX1001,T,3,Dr. Erma Rahayu Binti Mohd Faizal Abdullah,WEDNESDAY,1400 - 1500
+WIX1002,L,3,Dr. Nor Badrul Anuar Bin Juma'at,MONDAY,0900 - 1100
+WIX1002,TL,3,Dr. Hema AP Subramaniam,FRIDAY,0900 - 1200
+WIX1003,L,3,Dr. Tey Kok Soon,WEDNESDAY,0900 - 1100
+WIX1003,T,3,Dr. Roziana Binti Ramli,THURSDAY,1300 - 1400
+WIX2001,T,1,Hannyzzura Binti Pal @ Affal,THURSDAY,1000 - 1300
