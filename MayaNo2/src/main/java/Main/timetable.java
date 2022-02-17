@@ -19,7 +19,7 @@ public class timetable {
         try
         {
             BufferedReader reader = new BufferedReader(new FileReader(studentmatrix+"timetable.txt"));
-            String line;
+            
                 for(int i = 0; i< 49; i++)
                 {
                     subject[i] = reader.readLine();
@@ -93,6 +93,7 @@ public class timetable {
         System.out.println("________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________");
         System.out.println("\n");
         
+        sc.close();
 
     }
 }

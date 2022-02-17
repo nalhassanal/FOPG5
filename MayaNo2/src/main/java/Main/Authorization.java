@@ -46,7 +46,7 @@ public class Authorization {
             System.out.println("Please enter your Univerisity Email");
             mail = input.nextLine();
             Checker check = new Checker(mail);
-            if (check.emailCheck(mail))
+            if (check.emailCheck())
                 keepGoing = false;
             else{
                 System.out.println("Invalid entry for email\nTry again\n");
@@ -59,7 +59,7 @@ public class Authorization {
             System.out.println("Please enter your preferred username");
             username = input.nextLine();
             Checker check = new Checker(username);
-            if(check.emailCheck(mail))
+            if(check.emailCheck())
                 keepGoing = false;
             else{
                 System.out.println("Invalid entry for username\nTry again\n");
@@ -148,6 +148,7 @@ public class Authorization {
             System.out.println("The user is already registered");
             
         }
+        input.close();
     }
 
     /**
@@ -205,7 +206,7 @@ public class Authorization {
             System.out.println("Please enter your Univerisity Email");
             mail = input.nextLine();
             Checker check = new Checker(mail);
-            if (check.emailCheck(mail))
+            if (check.emailCheck())
                 keepGoing = false;
             else{
                 System.out.println("Invalid entry for email\nTry again\n");
@@ -318,6 +319,7 @@ public class Authorization {
         else{
             System.out.println("This user is already registered");
         }
+        input.close();
     }
 
     /**
@@ -416,20 +418,22 @@ public class Authorization {
             inputStream.close();
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Authorization.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            System.out.println("IO error " + ex.getMessage());
-        }
+        } 
         
         if (count == 2) {
+            in.close();
             //popupBox.infoBox("Login Successful" , "Login");
             return "Login successful";
         } else if (count == 1) {
+            in.close();
             //popupBox.infoBox("Login Unsuccessful", "Login");
             return "Login unsuccessful\nwrong password";
         } else {
+            in.close();
            // popupBox.infoBox("User is not registered", "Login");
             return "User is not registered";
         }
+        
     }
 
     /**
@@ -482,15 +486,16 @@ public class Authorization {
             inputStream.close();
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Authorization.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            System.out.println("IO error " + ex.getMessage());
-        }
+        } 
 
         if (count == 2) {
+            in.close();
             return "Login successful";
         } else if (count == 1) {
+            in.close();
             return "Login unsuccessful\nwrong password";
         } else {
+            in.close();
             return "User is not registered";
         }
     }

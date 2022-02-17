@@ -39,9 +39,9 @@ public class Checker {
      * @param email - gets input from caller from user input
      * @return true if email matches the pattern
      */
-    public boolean emailCheck(String email){
+    public boolean emailCheck(){
         Pattern pattern = Pattern.compile(mailRegex);
-        Matcher matcher = pattern.matcher(email);
+        Matcher matcher = pattern.matcher(input);
         boolean check = matcher.matches();
         if (check == true)
             return check;

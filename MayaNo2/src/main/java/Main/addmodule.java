@@ -2,7 +2,6 @@ package Main;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
@@ -14,8 +13,11 @@ import java.util.Scanner;
  * @author Haziq
  */
 public class addmodule {
+    public addmodule(){
+
+    }
     //a method of addmodule was created and can be called by the addmodule class to the main class
-    void addmodule(String studentmatrix)
+    public void addModule(String studentmatrix)
     {
         //scanner being declared for user input
         Scanner sc = new Scanner(System.in);
@@ -28,19 +30,15 @@ public class addmodule {
         String[] studentmatrixread = new String[studentsize];
         String[] studentemailread = new String[studentsize];
         String[] studentnameread = new String[studentsize];
-        String[] studentpasswordread = new String[studentsize];;
-        String[] studentprogrammeread = new String[studentsize];;
-        String[] studentmuetread = new String[studentsize];;
+        //String[] studentpasswordread = new String[studentsize];
+        String[] studentprogrammeread = new String[studentsize];
+        String[] studentmuetread = new String[studentsize];
         
         //this variable declaration is for fix information that will be used throughout the method
         String studentname = null;
         String studentprogramme = null;
         String studentmuet = null;
         String specialcourse = null;
-        
-        
-        
-        
        
         //this BufferedReader read all student info from student.txt file that and put it in the arraylist
         try
@@ -1102,5 +1100,7 @@ public class addmodule {
         }
         if (selecttype == 0)
             System.out.println("Exited");
+
+    sc.close();
     }
 }

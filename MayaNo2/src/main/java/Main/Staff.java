@@ -771,6 +771,7 @@ public class Staff {
                     System.out.println();
                     break;
             }
+            staffinput.close();
         }
     }
 

@@ -82,7 +82,7 @@ public class Main {
                     break;
 
                 case "C" :
-                    bot.Chatbot();
+                    bot.ChatBot();
                     break;
 
                 case "X" :

@@ -15,6 +15,7 @@ public class searchModule {
 
     public searchModule(){
     }
+
     public void SearchModule()  {
         
         File input = new File("allModules.txt");
@@ -54,5 +55,6 @@ public class searchModule {
             }
             System.out.println();
         }
+        ob.close();
     }   
 }

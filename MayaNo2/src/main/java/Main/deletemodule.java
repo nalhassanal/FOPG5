@@ -14,7 +14,11 @@ import java.util.*;
  */
 
 public class deletemodule {
-    void deletemodule(String studentmatrix)
+    public deletemodule(){
+
+    }
+
+    public void deleteModule(String studentmatrix)
     {
         
         //declare scanner
@@ -42,10 +46,6 @@ public class deletemodule {
         String[] credithour = new String[100];
         String[] modulemode = new String[100];
         String[] modulesplit;
-        int[] numtotalocc = new int[100];
-        int[] numcredithour = new int[100];
-        int credit = 0;
-        int total_credit_hour = 0;
 
         //declare array variable for reading specialization course module list
         String[] Smodulecode = new String[100];
@@ -65,9 +65,6 @@ public class deletemodule {
         String[] engmodulemode = new String[100];
         String[] engband = new String[100];
         String[] engmodulesplit;
-
-        //declare array variable for assigned subject
-        String[] subjectassigned = new String[10];
 
         //read student module file and put all the registered module information to array to be use in the method
         try {
@@ -454,5 +451,6 @@ public class deletemodule {
                 System.out.println("Error");
             }
         }
+        sc.close();
     }
 }

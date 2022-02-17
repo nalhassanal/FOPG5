@@ -34,10 +34,6 @@ public class viewregistered {
         String[] credithour = new String [100];
         String[] modulemode = new String[100];
         String[] modulesplit;
-        int[] numtotalocc = new int[100];
-        int[] numcredithour = new int[100];
-        int credit = 0;
-
         String[] Smodulecode = new String[100];
         String[] Smodulename = new String[100];
         String[] Smodulewithname = new String[100];
@@ -256,6 +252,7 @@ public class viewregistered {
                 System.out.println("Lecturer name : " + lecturernameview[i]);
                 System.out.printf("Time : %s , %s \n",subjectdayview[i],subjecttimeview[i]);
             }
-        }           
+        }    
+        sc.close();       
     }
 }
