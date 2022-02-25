@@ -54,12 +54,12 @@ public class Checker {
      * @param name - gets input from caller from user input
      * @return true if name matches the pattern
      */
-    public boolean usernameCheck(String name){
+    public boolean usernameCheck(){
         Pattern pattern = Pattern.compile(usernameRegex);
-        Matcher match = pattern.matcher(name);
+        Matcher match = pattern.matcher(input);
         boolean check = match.matches();
         if ( check == true)
-            return check;
+            return true;
         else
             return false;
     }

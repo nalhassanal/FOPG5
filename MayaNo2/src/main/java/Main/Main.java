@@ -53,6 +53,8 @@ public class Main {
      * a static object for popupBox class to be used in any methods that needs it
      */
     static popupBox box;
+
+    static Authorizationsql regSql = new Authorizationsql();
         
     /**
      * This main method is responsible for the main menu of the whole
@@ -177,6 +179,7 @@ public class Main {
         switch(type.toLowerCase()){
             case "staff":
                 log.staffRegister();
+                //regSql.staffRegister();
                 System.out.println();
                 System.out.println("--------------------------------------------------------");
                 System.out.println();

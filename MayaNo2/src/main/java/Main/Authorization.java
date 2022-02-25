@@ -59,7 +59,7 @@ public class Authorization {
             System.out.println("Please enter your preferred username");
             username = input.nextLine();
             Checker check = new Checker(username);
-            if(check.emailCheck())
+            if(check.usernameCheck())
                 keepGoing = false;
             else{
                 System.out.println("Invalid entry for username\nTry again\n");
