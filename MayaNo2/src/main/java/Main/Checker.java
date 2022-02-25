@@ -24,7 +24,7 @@ public class Checker {
      * constant instance variable usernameRegex
      * this is the regular expression to be used by the username checker
      */
-    private final String usernameRegex = "\\b[a-zA-Z][a-zA-Z0-9\\-._]{3,}\\b";
+    private final String usernameRegex = "\\b[a-zA-Z][a-zA-Z0-9\\-._]{2,}\\b";
 
     /**
      * constructor to initialize the instance variable input

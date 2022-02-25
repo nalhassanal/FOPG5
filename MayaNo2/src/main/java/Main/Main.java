@@ -178,8 +178,8 @@ public class Main {
         type = in.nextLine();
         switch(type.toLowerCase()){
             case "staff":
-                log.staffRegister();
-                //regSql.staffRegister();
+                // log.staffRegister();
+                regSql.staffRegister();
                 System.out.println();
                 System.out.println("--------------------------------------------------------");
                 System.out.println();

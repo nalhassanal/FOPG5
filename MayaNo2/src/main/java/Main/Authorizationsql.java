@@ -9,8 +9,11 @@ public class Authorizationsql {
     
     public Authorizationsql(){
     }
+    
     sqlconnect Conn = new sqlconnect();
+    
     Connection con = Conn.connector();
+
     public void staffRegister(){
         Scanner input = new Scanner(System.in);
         String mail ="", username ="", password ="", fullname, staff, status ="Professor";
@@ -79,7 +82,7 @@ public class Authorizationsql {
         
         //making all credentials into one string
         staff = username + "," + mail + "," + fullname + "," + password + "," +status;
-        String query = "insert into users (name,password,mail,username,status) values (?,?,?,?,?)";
+        String query = "insert into staff (name,password,mail,username,status) values (?,?,?,?,?)";
         try{
             PreparedStatement ps = con.prepareStatement(query);
             ps.setString(1, fullname);
@@ -99,4 +102,6 @@ public class Authorizationsql {
         }
         input.close();
     }
+
+    // do staff login
 }
