@@ -22,6 +22,7 @@ public class deletemodule {
     {
         
         //declare scanner
+        @SuppressWarnings("resource")
         Scanner sc = new Scanner(System.in);
         
         System.out.println("Delete your module");
@@ -451,6 +452,6 @@ public class deletemodule {
                 System.out.println("Error");
             }
         }
-        sc.close();
+        //sc.close();
     }
 }

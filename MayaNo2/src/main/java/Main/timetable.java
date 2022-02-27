@@ -1,6 +1,5 @@
 package Main;
 
-import java.util.*;
 import java.io.*;
 
 /**
@@ -11,8 +10,6 @@ import java.io.*;
 public class timetable {
     public void printtimetable(String studentmatrix)
     {
-        //declare scanner
-        Scanner sc = new Scanner (System.in);
         //create array for the subject for index 0 to 49(for 5 days and 10 hours of class for each days, so 5 x 10 = 50)
         String[] subject = new String[50];
         //read the student time table and transfer th data into the specified time array(the subject array)
@@ -93,7 +90,6 @@ public class timetable {
         System.out.println("________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________");
         System.out.println("\n");
         
-        sc.close();
 
     }
 }

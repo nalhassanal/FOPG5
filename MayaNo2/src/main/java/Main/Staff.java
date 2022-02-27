@@ -56,8 +56,9 @@ public class Staff {
             System.out.println("2. View Modules");
             System.out.println("3. View Students in your classes");
             System.out.println("4. Exit");
-            System.out.println("Enter the number you want >> ");
+            System.out.println("Enter the number you want >> \n");
             menu = input.nextInt();
+            System.out.println("here");
             switch (menu) {
                 case 1:
                     moduleMenu();
@@ -85,7 +86,8 @@ public class Staff {
                     }
                     break;
             }
-        }        
+        } 
+        //input.close();       
     }
 
     
@@ -673,6 +675,9 @@ public class Staff {
      *  this method accepts has no inputs and outputs the choice from the staff
      */
     private void view(){        
+        @SuppressWarnings("resource")
+        Scanner staffinput = new Scanner(System.in);
+
         boolean keepGoing = true;
         while (keepGoing){
             System.out.println();
@@ -684,7 +689,6 @@ public class Staff {
             System.out.println("A) View all modules");
             System.out.println("B) View modules taught by you");
             System.out.println("R) Return");
-            Scanner staffinput = new Scanner(System.in);
             String choice = staffinput.next();
             // selection block
             switch (choice.toUpperCase()) {
@@ -771,7 +775,7 @@ public class Staff {
                     System.out.println();
                     break;
             }
-            staffinput.close();
+            //staffinput.close();
         }
     }
 

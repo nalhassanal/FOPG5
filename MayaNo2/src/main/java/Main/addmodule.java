@@ -20,6 +20,7 @@ public class addmodule {
     public void addModule(String studentmatrix)
     {
         //scanner being declared for user input
+        @SuppressWarnings("resource")
         Scanner sc = new Scanner(System.in);
         
         //some variable created at the beginning of the code so that it can be use all over the method
@@ -1101,6 +1102,6 @@ public class addmodule {
         if (selecttype == 0)
             System.out.println("Exited");
 
-    sc.close();
+    //sc.close();
     }
 }

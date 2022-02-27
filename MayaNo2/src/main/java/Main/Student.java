@@ -17,7 +17,10 @@ public class Student {
     
     public void student(){
         popupBox box = new popupBox();
+
+        @SuppressWarnings("resource")
         Scanner sc = new Scanner(System.in);
+
         searchModule search = new searchModule();
         addmodule addmoduleobject = new addmodule();
         deletemodule deletemoduleobject = new deletemodule();
@@ -131,7 +134,7 @@ public class Student {
             }
             
         }
-        sc.close();
+        //sc.close();
     }
     // this method is to show all modules
     private void view(){

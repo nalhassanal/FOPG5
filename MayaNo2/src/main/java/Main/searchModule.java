@@ -20,6 +20,7 @@ public class searchModule {
         
         File input = new File("allModules.txt");
         
+        @SuppressWarnings("resource")
         Scanner ob = new Scanner(System.in);
         String searchWord;
         
@@ -55,6 +56,6 @@ public class searchModule {
             }
             System.out.println();
         }
-        ob.close();
+        //ob.close();
     }   
 }

@@ -20,7 +20,9 @@ public class Authorizationsql {
     Connection con = Conn.connector();
 
     public void staffRegister(){
+        @SuppressWarnings("resource")
         Scanner input = new Scanner(System.in);
+        
         String mail ="", username ="", password ="", fullname, staff, status ="Professor";
         int statusNum;
         // asking user credentials
@@ -105,12 +107,13 @@ public class Authorizationsql {
             ex.printStackTrace();
             System.out.println(ex.getMessage());
         }
-        input.close();
+        //input.close();
     }
 
     public void studentRegister() {
-        
+        @SuppressWarnings("resource")
         Scanner input = new Scanner(System.in);
+        
         String mail ="", matrixNum, password = "", fullname, student , programme ="Bachelor of Computer Science (Data Science)", muet = "Band 2";
         int muetNum,programmeNum;
         // asking user credentials
@@ -214,14 +217,16 @@ public class Authorizationsql {
             System.out.println(ex.getMessage());
         }
 
-        input.close();        
+        //input.close();        
 
     }
 
     public String staffLogin() {
         String Name = "",password = "",username= "";
         
+        @SuppressWarnings("resource")
         Scanner in = new Scanner(System.in);
+        
         String userInput;
         String passInput;
         int count = 0;
@@ -271,15 +276,15 @@ public class Authorizationsql {
         }
         
         if (count == 2) {
-            in.close();
+            //in.close();
             //popupBox.infoBox("Login Successful" , "Login");
             return "Login successful";
         } else if (count == 1) {
-            in.close();
+            //in.close();
             //popupBox.infoBox("Login Unsuccessful", "Login");
             return "Login unsuccessful\nwrong password";
         } else {
-            in.close();
+            //in.close();
            // popupBox.infoBox("User is not registered", "Login");
             return "User is not registered";
         }
@@ -287,7 +292,9 @@ public class Authorizationsql {
 
     public String studentLogin() {
         String matrixNum, password;
+        @SuppressWarnings("resource")
         Scanner in = new Scanner(System.in);
+        
         String userInput, passInput;
         int count = 0;
         System.out.println("Please enter your matrix number and password");
@@ -331,13 +338,13 @@ public class Authorizationsql {
         }
 
         if (count == 2) {
-            in.close();
+            //in.close();
             return "Login successful";
         } else if (count == 1) {
-            in.close();
+            //in.close();
             return "Login unsuccessful\nwrong password";
         } else {
-            in.close();
+            //in.close();
             return "User is not registered";
         }
     }

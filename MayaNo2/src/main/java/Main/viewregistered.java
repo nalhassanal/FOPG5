@@ -3,7 +3,6 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.*;
 
 /**
  *
@@ -12,7 +11,6 @@ import java.util.*;
 public class viewregistered {
     public void registered(String studentmatrix)
     {
-        Scanner sc = new Scanner(System.in);
         System.out.println("This is your course");
         
         //declare array variable and normal variale for the usage of the method
@@ -253,6 +251,6 @@ public class viewregistered {
                 System.out.printf("Time : %s , %s \n",subjectdayview[i],subjecttimeview[i]);
             }
         }    
-        sc.close();       
+        //sc.close();       
     }
 }

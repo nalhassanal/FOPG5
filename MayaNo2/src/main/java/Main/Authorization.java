@@ -34,6 +34,7 @@ public class Authorization {
      * staffCredentials is used explicitly by student login 
      */
     public void staffRegister() {
+        @SuppressWarnings("resource")
         
         Scanner input = new Scanner(System.in);
         String mail ="", username ="", password ="", fullname, staff, status ="Professor";
@@ -148,7 +149,7 @@ public class Authorization {
             System.out.println("The user is already registered");
             
         }
-        input.close();
+        //input.close();
     }
 
     /**
@@ -193,8 +194,9 @@ public class Authorization {
      * studentCredentials is used explicitly by student login 
      */
     public void studentRegister() {
-        
+        @SuppressWarnings("resource")
         Scanner input = new Scanner(System.in);
+       
         String mail ="", matrixNum, password = "", fullname, student , programme ="Bachelor of Computer Science (Data Science)", muet = "Band 2";
         int muetNum,programmeNum;
         // asking user credentials
@@ -319,7 +321,7 @@ public class Authorization {
         else{
             System.out.println("This user is already registered");
         }
-        input.close();
+        //input.close();
     }
 
     /**
@@ -360,8 +362,9 @@ public class Authorization {
      * from main class
      */
     public String staffLogin() {
-        
+        @SuppressWarnings("resource")
         Scanner in = new Scanner(System.in);
+        
         String userInput;
         String passInput;
         int count = 0;
@@ -425,15 +428,15 @@ public class Authorization {
         } 
         
         if (count == 2) {
-            in.close();
+            //in.close();
             //popupBox.infoBox("Login Successful" , "Login");
             return "Login successful";
         } else if (count == 1) {
-            in.close();
+            //in.close();
             //popupBox.infoBox("Login Unsuccessful", "Login");
             return "Login unsuccessful\nwrong password";
         } else {
-            in.close();
+            //in.close();
            // popupBox.infoBox("User is not registered", "Login");
             return "User is not registered";
         }
@@ -450,8 +453,9 @@ public class Authorization {
      * from main class
      */
     public String studentLogin() {
-        
+        @SuppressWarnings("resource")
         Scanner in = new Scanner(System.in);
+       
         String userInput, passInput;
         int count = 0;
         System.out.println("Please enter your matrix number and password");
@@ -493,13 +497,13 @@ public class Authorization {
         } 
 
         if (count == 2) {
-            in.close();
+            //in.close();
             return "Login successful";
         } else if (count == 1) {
-            in.close();
+            //in.close();
             return "Login unsuccessful\nwrong password";
         } else {
-            in.close();
+            //in.close();
             return "User is not registered";
         }
     }
