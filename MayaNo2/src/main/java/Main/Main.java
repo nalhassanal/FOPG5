@@ -187,7 +187,8 @@ public class Main {
                 break;
 
             case "student":
-                log.studentRegister();
+                // log.studentRegister();
+                regSql.studentRegister();
                 System.out.println();
                 System.out.println("--------------------------------------------------------");
                 System.out.println();
@@ -225,7 +226,8 @@ public class Main {
         type = in.nextLine();
         switch(type.toLowerCase()){
             case "staff":
-                String login = log.staffLogin();
+                //String login = log.staffLogin();
+                String login = regSql.staffLogin();
                 // this maybe need some confirmation
                 if(login.equals("Login successful")){
                     // display login result
@@ -261,7 +263,8 @@ public class Main {
                 break;
                 
             case "student":
-                login = log.studentLogin();
+                //login = log.studentLogin();
+                login = regSql.studentLogin();
                 
                 if(login.equals("Login successful")){
                     // display login result

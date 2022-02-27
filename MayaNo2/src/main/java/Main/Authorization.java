@@ -329,25 +329,25 @@ public class Authorization {
      * @return true if there is no same names in student.txt file
      */
     private boolean existingStudent(String name){
-    String filename = "staff.txt";
-    File file = new File(filename);
-    String currentLine;
-    String data[];
-    boolean ret = true;
-    try{
-        Scanner inputStream = new Scanner(new FileInputStream(file));
-        while(inputStream.hasNextLine()){
-            currentLine = inputStream.nextLine();
-            data = currentLine.split(",");
-            if(name.equals(data[0]))
-                ret = false;
-            else
-                ret = true;
+        String filename = "staff.txt";
+        File file = new File(filename);
+        String currentLine;
+        String data[];
+        boolean ret = true;
+        try{
+            Scanner inputStream = new Scanner(new FileInputStream(file));
+            while(inputStream.hasNextLine()){
+                currentLine = inputStream.nextLine();
+                data = currentLine.split(",");
+                if(name.equals(data[0]))
+                    ret = false;
+                else
+                    ret = true;
+            }
+        } catch(FileNotFoundException ex){
+            System.out.println("File not found " +ex.getMessage());
         }
-    } catch(FileNotFoundException ex){
-        System.out.println("File not found " +ex.getMessage());
-    }
-    return ret;
+        return ret;
     }
     
     /**
@@ -373,6 +373,8 @@ public class Authorization {
             String [] data;
             String filename = "loggerStaff.txt" , currentLine , name = "";
             File file = new File(filename);
+            PrintWriter outputStream = new PrintWriter(new FileOutputStream(file));
+            // this try catch block is to get the fullname
             try{
                 Scanner inputStream = new Scanner ( new FileInputStream("staff.txt"));
 
@@ -387,9 +389,12 @@ public class Authorization {
             } catch(FileNotFoundException ex){
                 System.out.println("File not found "+ex.getMessage());
             }
-            PrintWriter outputStream = new PrintWriter(new FileOutputStream(file));
-            outputStream.println(userInput);
-            outputStream.println(name);
+
+            if (name != ""){
+                outputStream.println(userInput);
+                outputStream.println(name);
+            }
+            
             outputStream.flush();
             outputStream.close();
         } catch(IOException ex){
@@ -401,7 +406,6 @@ public class Authorization {
             // to read contents of file
             Scanner inputStream = new Scanner(new FileInputStream(filename));
 
-            
             while (inputStream.hasNextLine()) {
                 if (userInput.equals(inputStream.nextLine())) {//line 1
                     count = 1;
