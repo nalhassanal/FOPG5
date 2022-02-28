@@ -17,7 +17,10 @@ public class Student {
     
     public void student(){
         popupBox box = new popupBox();
+
+        @SuppressWarnings("resource")
         Scanner sc = new Scanner(System.in);
+
         searchModule search = new searchModule();
         addmodule addmoduleobject = new addmodule();
         deletemodule deletemoduleobject = new deletemodule();
@@ -65,7 +68,7 @@ public class Student {
                     System.out.println();
                     boolean inkeepGoing = true;
                     while (inkeepGoing){
-                        addmoduleobject.addmodule(studentmatrix);
+                        addmoduleobject.addModule(studentmatrix);
                         System.out.println("Do you want to continue adding module?\n1) yes,2) no");
                         int input = sc.nextInt();
                         if ( input == 2)
@@ -79,7 +82,7 @@ public class Student {
 
                 case 3:
                     System.out.println();
-                    deletemoduleobject.deletemodule(studentmatrix);
+                    deletemoduleobject.deleteModule(studentmatrix);
                     System.out.println();
                     break;
 
@@ -131,8 +134,8 @@ public class Student {
             }
             
         }
-     }
-    
+        //sc.close();
+    }
     // this method is to show all modules
     private void view(){
         String filename1 = "modulelist.txt" , filename2 = "Englishmodulelist.txt", filename3 = "Specializationmodulelist.txt";

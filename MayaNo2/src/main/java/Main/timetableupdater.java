@@ -27,16 +27,10 @@ public class timetableupdater {
         String[] lecturernameview = new String[30];
         String[] subjectdayview = new String[30];
         String[] subjecttimeview = new String[30];
-        String[] modulenameview = new String[30];
-        String[] modesubjectview = new String[30];
         String[] subjecttimetableview = new String[30];
         String[] moduleviewsplit;
         int[][] timetablelisttime = new int[5][10];
-        String[][] subject = new String[5][10];
-        String[][] mode = new String[5][10];
         String[][] subjectviewtimetable =  new String[5][10];
-        String[] day = {"Mo", "Tu", "We", "Th", "Fr"};
-        
         //read from student modules file and extract all the information
         try {
             File studentmodulefile = new File(studentmatrix + "modules.txt");
@@ -71,7 +65,6 @@ public class timetableupdater {
         String[] timesplit;
         int starttime = 0;
         int endtime = 0;
-        int diftime;
         //for loop to set the subject into the specific format of time arranged
         //for each loop, 1 subject + subject mode is involved
         for (int i = 0; i < subjectdayview.length; i++) {
@@ -100,7 +93,6 @@ public class timetableupdater {
                 timesplit = subjecttimeview[i].split(" - ");
                 starttime = Integer.parseInt(timesplit[0]);
                 endtime = Integer.parseInt(timesplit[1]);
-                diftime = endtime - starttime;
             }
             //create temporary file to write starting time for 1 hour of the subject
             //example: for Lecture WIX1002, time = 0900 - 1100, so the starting time for an hour is 0900 and 1000(2 hours) (to be printed in the timetable)

@@ -7,7 +7,6 @@ import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import javax.swing.SpringLayout;
 import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 
 
@@ -41,7 +40,7 @@ public class Chatbot {
     /**
      *
      */
-    public void Chatbot() {
+    public void ChatBot() {
         //starts a frame for gui//
         JFrame frame = new JFrame();
         //sets method to close when exiting GUI//

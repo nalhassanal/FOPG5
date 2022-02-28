@@ -34,6 +34,7 @@ public class Authorization {
      * staffCredentials is used explicitly by student login 
      */
     public void staffRegister() {
+        @SuppressWarnings("resource")
         
         Scanner input = new Scanner(System.in);
         String mail ="", username ="", password ="", fullname, staff, status ="Professor";
@@ -46,7 +47,7 @@ public class Authorization {
             System.out.println("Please enter your Univerisity Email");
             mail = input.nextLine();
             Checker check = new Checker(mail);
-            if (check.emailCheck(mail))
+            if (check.emailCheck())
                 keepGoing = false;
             else{
                 System.out.println("Invalid entry for email\nTry again\n");
@@ -59,7 +60,7 @@ public class Authorization {
             System.out.println("Please enter your preferred username");
             username = input.nextLine();
             Checker check = new Checker(username);
-            if(check.emailCheck(mail))
+            if(check.usernameCheck())
                 keepGoing = false;
             else{
                 System.out.println("Invalid entry for username\nTry again\n");
@@ -148,6 +149,7 @@ public class Authorization {
             System.out.println("The user is already registered");
             
         }
+        //input.close();
     }
 
     /**
@@ -192,9 +194,10 @@ public class Authorization {
      * studentCredentials is used explicitly by student login 
      */
     public void studentRegister() {
-        
+        @SuppressWarnings("resource")
         Scanner input = new Scanner(System.in);
-        String mail ="", matrixNum, password = "", fullname, student , programme ="Bachelor of Computer Science (Data Science)", muet = "Band 2";
+       
+        String mail ="", matrixNum = "", password = "", fullname, student , programme ="Bachelor of Computer Science (Data Science)", muet = "Band 2";
         int muetNum,programmeNum;
         // asking user credentials
         System.out.println("Please enter your Full Name (without /)");
@@ -205,7 +208,7 @@ public class Authorization {
             System.out.println("Please enter your Univerisity Email");
             mail = input.nextLine();
             Checker check = new Checker(mail);
-            if (check.emailCheck(mail))
+            if (check.emailCheck())
                 keepGoing = false;
             else{
                 System.out.println("Invalid entry for email\nTry again\n");
@@ -213,8 +216,21 @@ public class Authorization {
                 keepGoing = true;
             }
         }
-        System.out.println("Please enter your Matrix Number");
-        matrixNum = input.nextLine();
+
+        keepGoing = true;
+        while (keepGoing){
+            System.out.println("Please enter your Matrix Number");
+            matrixNum = input.nextLine();
+            Checker check = new Checker(matrixNum);
+            if (check.matrixCheck())
+                keepGoing = false;
+            else{
+                System.out.println("Invalid entry for matrix number\nTry Again\n");
+                System.out.println("Use new matrix number");
+                keepGoing = true;
+            }
+        }
+
         keepGoing = true;
         while(keepGoing){
             System.out.println("Please enter your password");
@@ -318,6 +334,7 @@ public class Authorization {
         else{
             System.out.println("This user is already registered");
         }
+        //input.close();
     }
 
     /**
@@ -327,25 +344,25 @@ public class Authorization {
      * @return true if there is no same names in student.txt file
      */
     private boolean existingStudent(String name){
-    String filename = "staff.txt";
-    File file = new File(filename);
-    String currentLine;
-    String data[];
-    boolean ret = true;
-    try{
-        Scanner inputStream = new Scanner(new FileInputStream(file));
-        while(inputStream.hasNextLine()){
-            currentLine = inputStream.nextLine();
-            data = currentLine.split(",");
-            if(name.equals(data[0]))
-                ret = false;
-            else
-                ret = true;
+        String filename = "staff.txt";
+        File file = new File(filename);
+        String currentLine;
+        String data[];
+        boolean ret = true;
+        try{
+            Scanner inputStream = new Scanner(new FileInputStream(file));
+            while(inputStream.hasNextLine()){
+                currentLine = inputStream.nextLine();
+                data = currentLine.split(",");
+                if(name.equals(data[0]))
+                    ret = false;
+                else
+                    ret = true;
+            }
+        } catch(FileNotFoundException ex){
+            System.out.println("File not found " +ex.getMessage());
         }
-    } catch(FileNotFoundException ex){
-        System.out.println("File not found " +ex.getMessage());
-    }
-    return ret;
+        return ret;
     }
     
     /**
@@ -358,8 +375,9 @@ public class Authorization {
      * from main class
      */
     public String staffLogin() {
-        
+        @SuppressWarnings("resource")
         Scanner in = new Scanner(System.in);
+        
         String userInput;
         String passInput;
         int count = 0;
@@ -371,6 +389,8 @@ public class Authorization {
             String [] data;
             String filename = "loggerStaff.txt" , currentLine , name = "";
             File file = new File(filename);
+            PrintWriter outputStream = new PrintWriter(new FileOutputStream(file));
+            // this try catch block is to get the fullname
             try{
                 Scanner inputStream = new Scanner ( new FileInputStream("staff.txt"));
 
@@ -385,9 +405,12 @@ public class Authorization {
             } catch(FileNotFoundException ex){
                 System.out.println("File not found "+ex.getMessage());
             }
-            PrintWriter outputStream = new PrintWriter(new FileOutputStream(file));
-            outputStream.println(userInput);
-            outputStream.println(name);
+
+            if (name != ""){
+                outputStream.println(userInput);
+                outputStream.println(name);
+            }
+            
             outputStream.flush();
             outputStream.close();
         } catch(IOException ex){
@@ -399,7 +422,6 @@ public class Authorization {
             // to read contents of file
             Scanner inputStream = new Scanner(new FileInputStream(filename));
 
-            
             while (inputStream.hasNextLine()) {
                 if (userInput.equals(inputStream.nextLine())) {//line 1
                     count = 1;
@@ -416,20 +438,22 @@ public class Authorization {
             inputStream.close();
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Authorization.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            System.out.println("IO error " + ex.getMessage());
-        }
+        } 
         
         if (count == 2) {
+            //in.close();
             //popupBox.infoBox("Login Successful" , "Login");
             return "Login successful";
         } else if (count == 1) {
+            //in.close();
             //popupBox.infoBox("Login Unsuccessful", "Login");
             return "Login unsuccessful\nwrong password";
         } else {
+            //in.close();
            // popupBox.infoBox("User is not registered", "Login");
             return "User is not registered";
         }
+        
     }
 
     /**
@@ -442,8 +466,9 @@ public class Authorization {
      * from main class
      */
     public String studentLogin() {
-        
+        @SuppressWarnings("resource")
         Scanner in = new Scanner(System.in);
+       
         String userInput, passInput;
         int count = 0;
         System.out.println("Please enter your matrix number and password");
@@ -482,15 +507,16 @@ public class Authorization {
             inputStream.close();
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Authorization.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            System.out.println("IO error " + ex.getMessage());
-        }
+        } 
 
         if (count == 2) {
+            //in.close();
             return "Login successful";
         } else if (count == 1) {
+            //in.close();
             return "Login unsuccessful\nwrong password";
         } else {
+            //in.close();
             return "User is not registered";
         }
     }

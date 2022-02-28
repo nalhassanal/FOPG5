@@ -1,8 +1,8 @@
 package Main;
 
 
-import java.awt.AWTException;
-import java.awt.Robot;
+//import java.awt.AWTException;
+//import java.awt.Robot;
 import java.util.Scanner;
 
 /**
@@ -53,6 +53,8 @@ public class Main {
      * a static object for popupBox class to be used in any methods that needs it
      */
     static popupBox box;
+
+    static Authorizationsql regSql = new Authorizationsql();
         
     /**
      * This main method is responsible for the main menu of the whole
@@ -62,7 +64,7 @@ public class Main {
      */
     public static void main(String[] args){
         wait(100);
-        consoleClear();
+        //consoleClear();
         box = new popupBox();
         box.infoBox("WELCOME TO MAYA 2.0", "MAYA");
         in = new Scanner(System.in);
@@ -82,13 +84,13 @@ public class Main {
                     break;
 
                 case "C" :
-                    bot.Chatbot();
+                    bot.ChatBot();
                     break;
 
                 case "X" :
                     System.out.println("Exiting normally...");
                     wait(1000);
-                    consoleClear();
+                    //consoleClear();
                     keepGoing = false;                    
                     break;
 
@@ -125,6 +127,7 @@ public class Main {
      * which automates the process of pressing CTRL + L together
      * to clear the console screen of netbeans IDE
      */
+    /*
     private static void consoleClear(){
         try{
             Robot pressbot = new Robot();
@@ -136,7 +139,7 @@ public class Main {
             System.out.println(ex.getMessage());
         }
     }
-    
+    */
     /**
      * this is a menu method for the main method
      */
@@ -176,7 +179,8 @@ public class Main {
         type = in.nextLine();
         switch(type.toLowerCase()){
             case "staff":
-                log.staffRegister();
+                // log.staffRegister();
+                regSql.staffRegister();
                 System.out.println();
                 System.out.println("--------------------------------------------------------");
                 System.out.println();
@@ -184,7 +188,8 @@ public class Main {
                 break;
 
             case "student":
-                log.studentRegister();
+                // log.studentRegister();
+                regSql.studentRegister();
                 System.out.println();
                 System.out.println("--------------------------------------------------------");
                 System.out.println();
@@ -222,13 +227,14 @@ public class Main {
         type = in.nextLine();
         switch(type.toLowerCase()){
             case "staff":
-                String login = log.staffLogin();
+                //String login = log.staffLogin();
+                String login = regSql.staffLogin();
                 // this maybe need some confirmation
                 if(login.equals("Login successful")){
                     // display login result
                     System.out.println(login);
                     wait(1000);
-                    consoleClear();
+                    //consoleClear();
                     staff.staff();
                     keepGoing = true;
                     while (keepGoing){
@@ -239,7 +245,7 @@ public class Main {
                             System.out.println("Successful log out");
                             System.out.println("Exiting program...");
                             wait(2000);
-                            consoleClear();
+                            //consoleClear();
                             System.out.println();
                             System.out.println("Thank you for using our program");
                             System.out.println("Created by Group 5");
@@ -258,13 +264,14 @@ public class Main {
                 break;
                 
             case "student":
-                login = log.studentLogin();
+                //login = log.studentLogin();
+                login = regSql.studentLogin();
                 
                 if(login.equals("Login successful")){
                     // display login result
                     System.out.println(login);
                     wait(1000);
-                    consoleClear();
+                    //consoleClear();
                     student.student();
                     keepGoing = true;
                     while (keepGoing){
@@ -275,7 +282,7 @@ public class Main {
                             System.out.println("Successful log out");
                             System.out.println("Exiting program...");
                             wait(2000);
-                            consoleClear();
+                            //consoleClear();
                             System.out.println();
                             System.out.println("Thank you for using our program");
                             System.out.println("Created by Group 5");
