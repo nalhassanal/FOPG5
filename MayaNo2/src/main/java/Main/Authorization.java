@@ -197,7 +197,7 @@ public class Authorization {
         @SuppressWarnings("resource")
         Scanner input = new Scanner(System.in);
        
-        String mail ="", matrixNum, password = "", fullname, student , programme ="Bachelor of Computer Science (Data Science)", muet = "Band 2";
+        String mail ="", matrixNum = "", password = "", fullname, student , programme ="Bachelor of Computer Science (Data Science)", muet = "Band 2";
         int muetNum,programmeNum;
         // asking user credentials
         System.out.println("Please enter your Full Name (without /)");
@@ -216,8 +216,21 @@ public class Authorization {
                 keepGoing = true;
             }
         }
-        System.out.println("Please enter your Matrix Number");
-        matrixNum = input.nextLine();
+
+        keepGoing = true;
+        while (keepGoing){
+            System.out.println("Please enter your Matrix Number");
+            matrixNum = input.nextLine();
+            Checker check = new Checker(matrixNum);
+            if (check.matrixCheck())
+                keepGoing = false;
+            else{
+                System.out.println("Invalid entry for matrix number\nTry Again\n");
+                System.out.println("Use new matrix number");
+                keepGoing = true;
+            }
+        }
+
         keepGoing = true;
         while(keepGoing){
             System.out.println("Please enter your password");

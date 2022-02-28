@@ -26,6 +26,8 @@ public class Checker {
      */
     private final String usernameRegex = "\\b[a-zA-Z][a-zA-Z0-9\\-._]{2,}\\b";
 
+    private final String matrixNumRegex = "^\\b[U][0-9]{7}\\b";
+
     /**
      * constructor to initialize the instance variable input
      * @param input
@@ -34,6 +36,16 @@ public class Checker {
         this.input = input;
     }
     
+    public boolean matrixCheck(){
+        Pattern pattern = Pattern.compile(matrixNumRegex);
+        Matcher matcher = pattern.matcher(input);
+        boolean check = matcher.matches();
+        if ( check )
+            return true;
+        else
+            return false;
+    }
+
     /**
      * this method is used to check the email whether it follow the regular expression
      * @param email - gets input from caller from user input
