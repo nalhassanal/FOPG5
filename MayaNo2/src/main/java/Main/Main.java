@@ -10,6 +10,8 @@ import java.util.Scanner;
  * @author Hassanal
  */
 public class Main {
+
+    static SqlStaff staffsql = new SqlStaff();
     
     /**
      * this is a static object for authorization class that is to be used by
@@ -235,7 +237,8 @@ public class Main {
                     System.out.println(login);
                     wait(1000);
                     //consoleClear();
-                    staff.staff();
+                    //staff.staff();
+                    staffsql.staff();
                     keepGoing = true;
                     while (keepGoing){
                         logout(); // maybe this needs loop

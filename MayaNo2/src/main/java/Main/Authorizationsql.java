@@ -1,6 +1,7 @@
 package Main;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -10,11 +11,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Scanner;
 
-public class Authorizationsql {
-    
+public class Authorizationsql {    
+
     public Authorizationsql(){
     }
-    
+
     sqlconnect Conn = new sqlconnect();
     
     Connection con = Conn.connector();
@@ -113,7 +114,7 @@ public class Authorizationsql {
     public void studentRegister() {
         @SuppressWarnings("resource")
         Scanner input = new Scanner(System.in);
-        
+ 
         String mail ="", matrixNum="", password = "", fullname, student , programme ="Bachelor of Computer Science (Data Science)", muet = "Band 2";
         int muetNum,programmeNum;
         // asking user credentials
@@ -147,8 +148,6 @@ public class Authorizationsql {
                 keepGoing = true;
             }
         }
-        
-
 
         keepGoing = true;
         while(keepGoing){
@@ -237,7 +236,7 @@ public class Authorizationsql {
     }
 
     public String staffLogin() {
-        String Name = "",password = "",username= "";
+        String Name = "",password = "",username= "", status = "";
         
         @SuppressWarnings("resource")
         Scanner in = new Scanner(System.in);
@@ -260,6 +259,7 @@ public class Authorizationsql {
                 Name = rs.getString("name");
                 password = rs.getString("password");
                 username = rs.getString("username");
+                status = rs.getString("status");
                 if ( userInput.equals(username) ){
                     count = 1;
                     if ( passInput.equals(password)){
@@ -272,6 +272,7 @@ public class Authorizationsql {
                             if (!Name.equals(null)){
                                 outputStream.println(Name);
                                 outputStream.println(username);
+                                outputStream.println(status);
                             }
                             outputStream.flush();
                             outputStream.close();
@@ -302,6 +303,31 @@ public class Authorizationsql {
             //in.close();
            // popupBox.infoBox("User is not registered", "Login");
             return "User is not registered";
+        }
+    }
+
+    public boolean statusCheck(){
+        String Status = "Lecturer";
+        try{
+            String filename = "loggerStaff.txt";
+            Scanner inputStream = new Scanner (new FileInputStream(filename));
+            while(inputStream.hasNext()){
+                inputStream.nextLine();
+                inputStream.nextLine();
+                Status = inputStream.nextLine();
+            }
+            inputStream.close();
+        } catch (IOException ex){
+            System.out.println("IO Error :" +ex.getMessage());
+        }
+        if (Status.equals("Associate Professor")){
+            return true;
+        }
+        else if (Status.equals("Professor")){
+            return true;
+        }
+        else{
+            return false;
         }
     }
 

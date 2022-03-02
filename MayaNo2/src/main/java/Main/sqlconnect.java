@@ -9,9 +9,9 @@ public class sqlconnect {
     }
 
     public Connection connector (){
-        String url = "jdbc:mysql://localhost:3306/mayav2?serverTimezone=UTC";
+        String url = "jdbc:mysql://127.0.0.1:3306/mayav2?serverTimezone=UTC";
         String user = "nal";
-        String password = "Hassanaharriz8122*";
+        String password = "Hassanalharriz8122*";
         Connection con = null;
         try {
             //Class.forName("com.mysql.jdbc.Driver");

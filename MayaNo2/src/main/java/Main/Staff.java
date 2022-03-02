@@ -195,28 +195,34 @@ public class Staff {
      */
     private void addModuleFile(String specifiedName){
         System.out.println();
+        
         // ask module code
         System.out.println("Please enter the module code > ");
         moduleCode = input.nextLine();
         System.out.println();
+        
         // ask module name
         System.out.println("Please enter the module name > ");
         moduleName = input.nextLine();
         System.out.println();
+        
         // ask the number of occurence
         System.out.println("Please enter the number of occurrences > ");
         numofOcc = input.nextInt();
         System.out.println();
+        
         // ask the number of credit hours
         System.out.println("Please enter the number of credits > ");
         credits = input.nextInt();
         System.out.println();
+        
         // ask the number of activities
         System.out.println("How many activities will this module have?\n( 1 OR 2 )");
         numAct = input.nextInt();
         inACT = new int[numAct];
         ACT = new String[numAct];
         System.out.println();
+
         // ask the type of activities
         System.out.println("Please enter the activities type");
         System.out.println("1. Lecture\t2. Tutorial\t 3. Lab");
@@ -608,9 +614,10 @@ public class Staff {
             System.out.println("Enter "+activities[i].trim() +" information >> ");
             System.out.println("Enter name > ");
             if ( i > 0){
-                if ( activities[i].trim().equals("Tutorial")){
+                if ( activities[i].trim().equals("Tutorial"))
                     System.out.println("Press Enter to continue");
-                } else if( activities[i].trim().equals("Lab"))
+
+                else if( activities[i].trim().equals("Lab"))
                     System.out.println("Press Enter to continue");
             }
             input.nextLine();
