@@ -9,10 +9,23 @@
             "server": "localhost",
             "port": 3306,
             "driver": "MySQL",
-            "name": "Mayatest",
+            "name": "maya",
             "database": "mayav2",
             "username": "nal",
-            "password": "Hassanaharriz8122*_"
+            "password": "Hasssanalharriz8122*"
+        },
+        {
+            "mysqlOptions": {
+                "authProtocol": "default"
+            },
+            "previewLimit": 50,
+            "server": "127.0.0.1",
+            "port": 3306,
+            "driver": "MySQL",
+            "name": "test",
+            "database": "mayav2",
+            "username": "root",
+            "password": "Hassanal8122*_"
         }
     ]
 }

@@ -1,0 +1,6 @@
+
+-- @BLOCK
+SHOW DATABASES;
+
+-- @BLOCK
+SELECT * FROM staff;
