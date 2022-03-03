@@ -1,1 +1,5 @@
 SHOW DATABASE;
+
+-- @BLOCK
+insert into modules(name,CODE,occ,type)
+VALUES ('THINKING AND COMMUNICATION SKILLS','WIX2001',3,'Tutorial'),('PROJECT MANAGEMENT','WIX2002',3,'Tutorial');
